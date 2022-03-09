@@ -2,47 +2,46 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
- <link href="css/inc_top.css" rel="stylesheet" type="text/css">
-
-<div class="header-bottom">
-	<div>
-		<button type="button" class="navbar-toggle" data-toggle="collapse"
-			data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-			<span class="icon-bar"></span> <span class="icon-bar"></span>
-		</button>
-	</div>
-
-	<div class="mainmenu pull-left">
-		<ul class="nav navbar-nav collapse navbar-collapse">
-			<li><a href="index.html" class="active">Home</a></li>
-			<li class="dropdown"><a href="#">Shop<i
-					class="fa fa-angle-down"></i></a>
-				<ul role="menu" class="sub-menu">
-					<li><a href="shop.html">Products</a></li>
-					<li><a href="product-details.html">Product Details</a></li>
-					<li><a href="checkout.html">Checkout</a></li>
-					<li><a href="cart.html">Cart</a></li>
-					<li><a href="login.html">Login</a></li>
-				</ul></li>
-			<li class="dropdown"><a href="#">Blog<i
-					class="fa fa-angle-down"></i></a>
-				<ul role="menu" class="sub-menu">
-					<li><a href="blog.html">Blog List</a></li>
-					<li><a href="blog-single.html">Blog Single</a></li>
-				</ul></li>
-			<li><a href="404.html">404</a></li>
-			<li><a href="contact-us.html">Contact</a></li>
-		</ul>
-	</div>
+<html>
 
 
-	<div class="col-sm-3">
-		<div class="search_box pull-right">
-			<input type="text" placeholder="Search" />
-		</div>
-	</div>
+
+<div class="header_bottom">
+
+	<ul class="cate-list">
+		<li class="dropdown"><a href="">식품</a>
+			<div class="dropdown-box">
+				<a href="shop.html">유제품</a>
+				<a href="product-details.html">가공식품</a>
+				<a href="product-details.html">과자류</a>
+			</div>		
+		</li>
+		
+		<li class="dropdown"><a href="">가구</a>
+			<div class="dropdown-box">
+				<a href="shop.html">Products</a>
+				<a href="product-details.html">Product Details</a>
+			</div>		
+		</li>
+		
+		<li class="dropdown"><a href="">의류</a>
+			<div class="dropdown-box">
+				<a href="shop.html">여성</a>
+				<a href="product-details.html">남성</a>
+				<a href="product-details.html">유아</a>
+			</div>		
+		</li>
+		
+		<li class="dropdown"><a href="">의류</a>
+			<div class="dropdown-box">
+				<a href="shop.html">Products</a>
+				<a href="product-details.html">Product Details</a>
+			</div>		
+		</li>
+	</ul>
 	
 </div>
 
-<!--/header-bottom-->
+
+
+</html>

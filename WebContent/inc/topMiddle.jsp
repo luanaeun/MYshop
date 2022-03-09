@@ -8,18 +8,24 @@
 <div class="header-middle">
 
 	<div class="topMiddle_left">
-		<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+		<a href="index.html">
+			<img src="assets/nav/logo.png" alt="" />
+		</a>
 	</div>
 
+
 	<div class="topMiddle_right">
-		<ul class="nav navbar-nav">
-			<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-			<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-			<li><a href="checkout.html"><i class="fa fa-crosshairs"></i>
-					Checkout</a></li>
-			<li><a href="cart.html"><i class="fa fa-shopping-cart"></i>Cart</a></li>
-			<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+	
+		<ul>
+			<li><a href="#">Notice</a></li>
+			<li><a href="#">Q & A</a></li>
+			<li><a href="checkout.html">Review</a></li>
 		</ul>
+		
+	</div>
+	
+	<div class="nav-search-box">
+		<input class="" type="text" placeholder="Search" />
 	</div>
 
 </div>

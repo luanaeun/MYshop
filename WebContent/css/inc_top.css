@@ -7,8 +7,12 @@ ul li {
 	float : left;
 	text-align: center;
 	margin: auto 5px;	
-	
 }    
+
+a {
+	text-decoration: none;
+	color: black;
+}
 
 
 .header_top {
@@ -29,8 +33,6 @@ ul li {
 
 .header_top a {
 	line-height: 20px;
-	text-decoration: none;
-	color: black;
 	margin-right: 15px;
 }
 
@@ -55,156 +57,127 @@ ul li {
 
 .header-middle {
 	height: 80px;
-	border-bottom: 1 solid black;
+/* 	border: 1px solid black; */
+	border-bottom: 1px solid #999;
+	background: none repeat scroll 0 0 #fff;
 
 }
+
 
 .topMiddle_left {
 	float: left;
-/* 	margin-left: 20px; */
+	margin-left: 20px;
 	height: 80px;
-	display: block;
+	width: 200px;
+/* 	border: 1px solid black; */
 }
 
-.topMiddle_left img{
-	float: left;
+.topMiddle_left img {
+	width: 160px;
+	height: 55px;
+	margin: 10px 100px;
 }
+
 
 .topMiddle_right {
 	float: right;
-	margin-right: 20px;
+	margin-right: 130px;
+/* 	border: 1px solid black; */
 }
+
+.topMiddle_right ul li a{
+	display: inline-block;
+	font-size: 17px;
+	font-weight: 500;
+	margin-left: 25px;
+	margin-top: 50px;	
+}
+
+.topMiddle_right ul li a:hover {
+	color: orange;
+}
+
+.nav-search-box {
+	float: right;;
+}
+
+.nav-search-box input{
+	width: 110px;
+	padding: 5px 5px;
+	margin-top: 45px;
+}
+
+/* .nav-search-box { */
+/* 	float: right; */
+/* 	background: #F0F0E9; */
+/*     border: medium none; */
+/*     color: #B2B2B2; */
+/*     font-family: 'roboto'; */
+/*     font-size: 12px; */
+/*     font-weight: 300; */
+/*     height: 35px; */
+/*     outline: medium none; */
+/*     padding-left: 10px; */
+/*     width: 155px; */
+/*     background-image: url(../images/home/searchicon.png); */
+/*     background-repeat: no-repeat; */
+/*     background-position: 130px; */
+/*     line-height: inherit; */
+/* } */
+
 
 
 
 /* ---------------top-bottom.jsp--------------- */
 
-.header-bottom {
-	padding-bottom: 30px;
-    padding-top: 30px;
+.header_bottom{
+	height: 80px;
+	border-bottom: 1px solid #999;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+ 
+.cate-list li {
+	height: 50px;
+	width: 110px;
+	border: 1px solid black;
+	line-height: 50px;
+	margin: auto 20px;
+}
 
+.dropdown {
+  position : relative;
+  display : block-inline;
+}
 
+.dropdown-box {
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #f9f9f9;
+  min-width : 110px;
+}
 
-
-
-
-
-
-
-.usa {
-  border-radius: 0;
-  color: #B4B1AB;
+.dropdown-box a {
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
   font-size: 12px;
-  margin-right: 20px;
-  padding: 2px 15px;
-  margin-top: 10px;
-}
-
-.usa:hover {
-	background:#FE980F;
-	color:#fff;
-	border-color:#FE980F;
-}
-
-.usa:active, .usa.active {
-  background: none repeat scroll 0 0 #FE980F;
-  box-shadow: inherit;
-  outline: 0 none;
-}
-
-.btn-group.open .dropdown-toggle {
-  background: rgba(0, 0, 0, 0);
-  box-shadow: none;
-}
-
-.dropdown-menu  li  a:hover, .dropdown-menu  li  a:focus {
-  background-color: #FE980F;
-  color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
-  text-decoration: none;
+  height: 40px;
+  line-height: 40px;
 }
 
 
-.shop-menu ul li {
-	display:inline-block;
-  padding-left: 15px;
-  padding-right: 15px;
+.dropdown-box a:hover{
+  background-color : #ececec
 }
 
-.shop-menu ul li:last-child {
-  padding-right: 0;
-}
-
-
-.shop-menu ul li a {
-  background: #FFFFFF;
-  color: #696763;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  padding:0;
-  padding-right: 0;
-  margin-top: 10px;
+.dropdown:hover .dropdown-box {
+  display: block;
 }
 
 
-.shop-menu ul li a i{
-	margin-right:3px;
-}
 
-
-.shop-menu ul li a:hover {
-	color:#fe980f;
-	background:#fff;
-}
-
-
-.header-bottom {
-  padding-bottom: 30px;
-  padding-top: 30px;
-}
-
-.navbar-collapse.collapse{
-  padding-left: 0;
-}
-
-.mainmenu ul li{
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.mainmenu ul li:first-child{
-  padding-left: 0px;
-}
-
-.mainmenu ul li a {
-	color: #696763;
-	font-family: 'Roboto', sans-serif;
-	font-size: 17px;
-	font-weight: 300;
-	padding: 0;
-	padding-bottom: 10px;
-}
-
-.mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
-	background:none;
-	color:#fdb45e;
-}
-
-.search_box input {
-  background: #F0F0E9;
-  border: medium none;
-  color: #B2B2B2;
-  font-family: 'roboto';
-  font-size: 12px;
-  font-weight: 300;
-  height: 35px;
-  outline: medium none;
-  padding-left: 10px;
-  width: 155px;
-  background-image: url(../images/home/searchicon.png);
-  background-repeat: no-repeat;
-  background-position: 130px;
-}

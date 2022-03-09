@@ -40,7 +40,6 @@
 	
 	
 	<section id="slider"><!--slider-->
-		
 		<jsp:include page="./main/section01.jsp" />
 	</section><!--/slider-->
 	
