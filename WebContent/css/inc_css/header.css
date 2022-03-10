@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+
+ul li {
+	list-style: none;
+	box-sizing: border-box;
+	cursor: pointer;
+	float : left;
+	text-align: center;
+	margin: auto 5px;	
+}    
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+
+.header_top {
+  height: 35px;
+  background: none repeat scroll 0 0 #F0F0E9;
+}
+
+.top_left {
+	float: left;
+	margin-left: 20px;
+}
+
+.top_li_nav {
+	float: left;
+	margin-right: 50px;
+	line-height: 35px;
+}
+
+.top_li_nav a {
+	line-height: 20px;
+	margin-right: 15px;
+}
+
+.top_li_nav a:hover {
+	color: orange;
+}
+
+
+.fa-facebook:hover {
+  background: #0083C9;
+}
+
+.fa-twitter:hover  {
+	background:#5BBCEC;
+}
+
+
+.top_right {
+	float: right;
+	margin-right: 20px;
+}
+
+
+
+/* ---------------top-middle.jsp--------------- */
+
+.header-middle {
+	height: 80px;
+/* 	border: 1px solid black; */
+	border-bottom: 1px solid #999;
+	background: none repeat scroll 0 0 #fff;
+
+}
+
+
+.topMiddle_left {
+	float: left;
+	margin-left: 20px;
+	height: 80px;
+	width: 200px;
+/* 	border: 1px solid black; */
+}
+
+.topMiddle_left img {
+	width: 160px;
+	height: 55px;
+	margin: 10px 100px;
+}
+
+
+.topMiddle_right {
+	float: right;
+	margin-right: 130px;
+/* 	border: 1px solid black; */
+}
+
+.topMiddle_right ul li a{
+	display: inline-block;
+	font-size: 17px;
+	font-weight: 500;
+	margin-left: 25px;
+	margin-top: 50px;	
+}
+
+.topMiddle_right ul li a:hover {
+	color: orange;
+}
+
+.nav-search-box {
+	float: right;;
+}
+
+.nav-search-box input{
+	width: 110px;
+	padding: 5px 5px;
+	margin-top: 45px;
+}
+
+/* .nav-search-box { */
+/* 	float: right; */
+/* 	background: #F0F0E9; */
+/*     border: medium none; */
+/*     color: #B2B2B2; */
+/*     font-family: 'roboto'; */
+/*     font-size: 12px; */
+/*     font-weight: 300; */
+/*     height: 35px; */
+/*     outline: medium none; */
+/*     padding-left: 10px; */
+/*     width: 155px; */
+/*     background-image: url(../images/home/searchicon.png); */
+/*     background-repeat: no-repeat; */
+/*     background-position: 130px; */
+/*     line-height: inherit; */
+/* } */
+
+
+
+
+
+
+

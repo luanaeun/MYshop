@@ -1,0 +1,35 @@
+.productList-container {
+	height: 300px;
+    border: 1px solid black;
+}
+
+.prodList-title {
+	height: 10px;
+	margin: 10px 10px 20px 30px;
+}
+
+.prod-total {
+	height: 290px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.prod-box {
+	height: 250px;
+	width: 200px;
+	border: 1px solid black;
+	text-align: center;
+	background-color: lightblue;
+	margin: 10px auto;
+	
+}
+
+.prod-box img {
+	height: 180px;
+	width: 150px;
+	margin: 10px auto;
+}
+
+
