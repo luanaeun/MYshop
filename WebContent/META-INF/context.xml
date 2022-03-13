@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+  <Resource
+    name = "jdbc/myshop"
+    auth = "Container"
+    type = "javax.sql.DataSource"
+    driverClassName = "java:comp/env/jdbc/myshop"
+    url = "jdbc:mysql://localhost:3306/jspdb"
+    username = "root"
+    password = "1234"
+    maxActive="500"
+  />  
+</Context>

@@ -1,15 +1,15 @@
 .productList-container {
-	height: 300px;
+	height: 330px;
     border: 1px solid black;
 }
 
 .prodList-title {
-	height: 10px;
+	height: 5px;
 	margin: 10px 10px 20px 30px;
 }
 
 .prod-total {
-	height: 290px;
+	height: 295px;
 	display: flex;
     align-items: center;
     justify-content: center;
