@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-  <link href="/MYshop/css/inc_css/header.css" rel="stylesheet" type="text/css">
+  <link href="css/inc_css/header.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -20,8 +20,8 @@
 
 	<div class="top_right">
 		<ul class="top_li_nav">
-			<li><a href="${pageContext.request.contextPath}/user/login.jsp">로그인</a></li>
-			<li><a href="${pageContext.request.contextPath}/user/register.jsp">회원가입</a></li>
+			<li><a href="${pageContext.request.contextPath}/SignIn.us">로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li>
 			<li><a href="">주문조회</a></li>
 			<li><a href="">배송조회</a></li>
 		</ul>
@@ -32,7 +32,7 @@
 <div class="header-middle">
 
 	<div class="topMiddle_left">
-		<a href="${pageContext.request.contextPath}/index.jsp">
+		<a href="${pageContext.request.contextPath}/Main.ma">
 			<img src="${pageContext.request.contextPath}/assets/inc/logo.png" alt="" />
 		</a>
 	</div>

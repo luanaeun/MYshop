@@ -5,7 +5,7 @@
     name = "jdbc/myshop"
     auth = "Container"
     type = "javax.sql.DataSource"
-    driverClassName = "java:comp/env/jdbc/myshop"
+    driverClassName = "com.mysql.cj.jdbc.Driver"
     url = "jdbc:mysql://localhost:3306/jspdb"
     username = "root"
     password = "1234"

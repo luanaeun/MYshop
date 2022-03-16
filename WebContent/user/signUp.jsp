@@ -5,16 +5,16 @@
 <html>
     <head>
         <title>로그인 / 회원가입 폼 템플릿</title>
-        <link href="${pageContext.request.contextPath}/css/user_css/register.css" rel="stylesheet" type="text/css">
+        <link href="css/user_css/signUp.css" rel="stylesheet" type="text/css">
     </head>
     <body>
     	<jsp:include page="../inc/header.jsp"></jsp:include>
- 
+
         <div class="wrap">
             <div class="form-wrap">
             	<h1 style="text-align: center; margin-top:30px">MYshop</h1>
                 
-                <form id="register" action="" class="input-group">
+                <form id="register" action="./SignUp.us" class="input-group">
                 	
                 	<label>아이디</label>
                     <input type="text" class="input-field" placeholder="최소3자 이상" minlength=3 maxlength=8 required>

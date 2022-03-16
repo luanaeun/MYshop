@@ -9,4 +9,34 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+  <!-- 메인(Main)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>MainFrontCtl</servlet-name>
+	<servlet-class>com.myshop.main.MainFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>MainFrontCtl</servlet-name>
+	<url-pattern>*.ma</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 회원(User)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>UserFrontCtl</servlet-name>
+	<servlet-class>com.myshop.user.action.UserFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>UserFrontCtl</servlet-name>
+	<url-pattern>*.us</url-pattern>
+  </servlet-mapping> 
+  
+  
+  
 </web-app>
+
+
+

@@ -1,14 +1,14 @@
-package com.myshop.member;
+package com.myshop.product.db;
 
 import java.sql.Timestamp;
 
-public class MemberBean {
+public class ProductDTO {
 	// member 테이블 정보를 한번에 저장하는 객체
 	
 	private String id;
 	private String pw;
 	private String name;
-	private String phone;
+	private int phone;
 	private int birth;
 	private String gender;
 	private String email;
@@ -31,10 +31,10 @@ public class MemberBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPhone() {
+	public int getPhone() {
 		return phone;
 	}
-	public void setPhone(String phone) {
+	public void setPhone(int phone) {
 		this.phone = phone;
 	}
 	public int getBirth() {
