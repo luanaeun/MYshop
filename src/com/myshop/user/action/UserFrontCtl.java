@@ -35,18 +35,34 @@ public class UserFrontCtl extends HttpServlet{
 			forward.setPath("./user/signIn.jsp");
 			forward.setRedirect(false);
 			
-		} else if(command.equals("/SignUp.us")) {	// 회원가입
+		} else if(command.equals("/SignInAction.us")) {	// 회원가입DB동작 
+			action = new UserSignInAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/SignUp.us")) {	// 회원가입
 			forward = new ActionForward();
 			forward.setPath("./user/signUp.jsp");
 			forward.setRedirect(false);
 			
-		} else if(command.equals("SignUpAction.us")) {	// 회원가입DB동작 
+		} else if(command.equals("/SignUpAction.us")) {	// 회원가입DB동작 
 			action = new UserSignUpAction();	
 			try {
 				forward = action.execute(req, resp);	
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		}
+		
+		else if(command.equals("/MyPage.us")) {	// 마이페이지
+			forward = new ActionForward();
+			forward.setPath("./user/myPage.jsp");
+			forward.setRedirect(false);
+			
 		}
 		
 		

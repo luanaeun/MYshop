@@ -14,9 +14,10 @@ public class UserDTO {
 	private String gender;
 	private String email;
 	private Timestamp regdate;
+	private Timestamp lastLogin;
 	private String state;
 	
-	private boolean agree;
+	private String agree;
 	private int buyCount;
 	private int prodCount;
 	private int qaCount;
@@ -85,10 +86,10 @@ public class UserDTO {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public boolean isAgree() {
+	public String getAgree() {
 		return agree;
 	}
-	public void setAgree(boolean agree) {
+	public void setAgree(String agree) {
 		this.agree = agree;
 	}
 	public int getBuyCount() {
@@ -126,6 +127,23 @@ public class UserDTO {
 	}
 	public void setCartCount(int cartCount) {
 		this.cartCount = cartCount;
+	}
+	public Timestamp getLastLogin() {
+		return lastLogin;
+	}
+	public void setLastLogin(Timestamp lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "UserDTO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", birth="
+				+ birth + ", gender=" + gender + ", email=" + email + ", regdate=" + regdate + ", state=" + state
+				+ ", agree=" + agree + ", buyCount=" + buyCount + ", prodCount=" + prodCount + ", qaCount=" + qaCount
+				+ ", reviewCount=" + reviewCount + ", likeCount=" + likeCount + ", cartCount=" + cartCount + "]";
 	}
 	
 	

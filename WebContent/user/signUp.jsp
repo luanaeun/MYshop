@@ -14,22 +14,22 @@
             <div class="form-wrap">
             	<h1 style="text-align: center; margin-top:30px">MYshop</h1>
                 
-                <form id="register" action="./SignUp.us" class="input-group">
+                <form id="register" action="./SignUpAction.us" class="input-group">
                 	
                 	<label>아이디</label>
-                    <input type="text" class="input-field" placeholder="최소3자 이상" minlength=3 maxlength=8 required>
+                    <input type="text" class="input-field" name="id" placeholder="최소3자 이상" minlength=3 maxlength=8 required>
                     
                     <label>비밀번호</label>
-                    <input type="password" class="input-field" minlength=8 maxlength=16 required>
+                    <input type="password" class="input-field" name="pw" minlength=8 maxlength=16 required>
                     
                     <label>비밀번호 확인</label>
-                    <input type="password" class="input-field" minlength=8 maxlength=16 required><br>
+                    <input type="password" class="input-field" name="checkPW" minlength=8 maxlength=16 required><br>
                     
                     <label>이름</label>
-                    <input type="text" class="input-field" required><br>
+                    <input type="text" class="input-field" name="name" required><br>
                     
                     <label>생년월일</label>
-                    <input type="text" class="input-field" placeholder="주민번호 앞 6자리" required><br>
+                    <input type="text" class="input-field" name="birth" placeholder="주민번호 앞 6자리" required><br>
                     
                     <label>성별</label><br><br><br>
                     <input type="radio" class="input-radio" name="gender" required>남
@@ -38,8 +38,13 @@
 
                     
                     <label>핸드폰 번호</label>
-                    <input type="text" class="input-field" placeholder="-없이 숫자만 입력" required><br>
+                    <input type="text" class="input-field" name="phone" placeholder="-없이 숫자만 입력" required><br>
                     
+                    <label>이메일</label>
+                    <input type="text" class="input-field" name="email" required><br>
+                    
+                   	<br><br>
+                    <input type="checkbox" class="input-radio" name="agree" required>이용약관 동의
              
                     <button class="submit">회원가입</button>
                 </form>

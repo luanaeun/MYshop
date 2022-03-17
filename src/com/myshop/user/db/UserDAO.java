@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.myshop.user.db.UserDTO;
@@ -40,25 +41,40 @@ public class UserDAO {
   
   
   // 회원가입 메서드 
-  public void registerUser(UserDTO dto) {
-	System.out.println("DAO: insertMember(dto) 호출");
+  public void userSignUp(UserDTO dto) {
+	System.out.println("DAO: signUpUser(dto) 호출");
+	int uNum = 0;
 	
 	try {
 		con = getCon();
-		sql = "insert into itwill_member(user_idx, user_id, user_pw, user_name, user_birth, user_gender, "
-				+ "user_phone, user_email, user_regdate, user_state, user_agree, "
-				+ "user_buycount, user_prodcount, user_qacount, user_reviewcount, user_likecount, user_cartcount"
-				+ "values(?,?,?,?,?,?,?,?,?,'active',?,0,0,0,0,0,0)";
+		
+		// 회원이 몇명있는지 알아보고 idx를 하나 늘리기
+		sql = "select max(user_idx) from myshop_user";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			// getInt()는 컬럼 인덱스를 가져오는거. bno = 
+			uNum = rs.getInt(1)+1;
+		}
+		
+		
+		sql = "insert into myshop_user(user_idx, user_id, user_pw, user_name, user_birth, user_gender, "
+				+ "user_phone, user_email, user_rgdate, user_state, user_agree, "
+				+ "user_buycount, user_prodcount, user_qacount, user_reviewcount, user_likecount, user_cartcount) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0)";
 		
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, dto.getId());
-		pstmt.setString(2, dto.getPw());
-		pstmt.setString(3, dto.getName());
-		pstmt.setInt(4, dto.getBirth());
-		pstmt.setString(5, dto.getGender());
-		pstmt.setInt(6, dto.getPhone());
-		pstmt.setString(7, dto.getEmail());
-		pstmt.setTimestamp(8, dto.getRegdate());
+		pstmt.setInt(1, uNum);
+		pstmt.setString(2, dto.getId());
+		pstmt.setString(3, dto.getPw());
+		pstmt.setString(4, dto.getName());
+		pstmt.setInt(5, dto.getBirth());
+		pstmt.setString(6, dto.getGender());
+		pstmt.setInt(7, dto.getPhone());
+		pstmt.setString(8, dto.getEmail());
+		pstmt.setTimestamp(9, dto.getRegdate());
+		pstmt.setString(10, dto.getState());
+		pstmt.setString(11, dto.getAgree());
 		
 		pstmt.executeUpdate();
 		System.out.println("DAO: 회원가입 완료");
@@ -70,5 +86,43 @@ public class UserDAO {
 	}
 	System.out.println("DAO : registerUser() 끝!");
   }
-	
+  
+  
+  
+  public int userSignIn(UserDTO dto){
+	  int loginResult = -1;
+	  
+	  try {
+			con = getCon();
+			
+			// 아이디로 비밀번호 가져오기
+			sql = "select user_pw from myshop_user where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+	 			if(dto.getPw().equals(rs.getString("user_pw")) ) {	
+	 				loginResult = 1;
+	 			} else {	
+	 				loginResult = 0;
+	 			}
+	 		} else {	// 데이터가 없을때 -> 비회원
+	 			loginResult = -1;
+	 		}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+		return loginResult;
+  }
+  
+  
+  
+  
 }
+	
+

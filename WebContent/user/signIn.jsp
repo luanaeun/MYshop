@@ -11,16 +11,16 @@
 	<div class="form-wrap">
 	  <h1 style="text-align: center; margin-top:30px">로그인</h1>
 
-	  <form id="login" action="" class="input-group">
-		<input type="text" class="input-field" placeholder="User name or Email" required> 
-		<input type="password" class="input-field" placeholder="Enter Password" required> 
-		<input type="checkbox" class="checkbox">
-		<span>Remember ID</span>
+	  <form id="login" action="./SignInAction.us" class="input-group" method="post">
+		<input type="text" name="id" class="input-field" placeholder="아이디" required> 
+		<input type="password" name="pw" class="input-field" placeholder="비밀번호"  required> 
+		<input type="checkbox" class="checkbox"> 
+		<span>아이디 기억하기</span>
 		
 		<div class="social-icons">
-		  <img src="img/fb.png" alt="facebook"> 
-		  <img src="img/tw.png" alt="twitter"> 
-		  <img src="img/gl.png" alt="google">
+		  <img src="assets/user/naverLogo.png" alt="네이버">
+		  <img src="assets/user/kakaoLogo.png" alt="카카오"> 
+		  <img src="assets/user/googleLogo.png" alt="구글">
 	    </div>
 	  
 		

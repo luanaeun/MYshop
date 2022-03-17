@@ -18,8 +18,6 @@ btn {
 span {
     color: #777;
     font-size: 12px;
-    bottom: 68px;
-    position: absolute;
 }
 
 
@@ -47,8 +45,10 @@ span {
     text-align: center;
 }
 .social-icons img {
-    width: 30px ;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+    margin: 0px 15px;
 }
 
 

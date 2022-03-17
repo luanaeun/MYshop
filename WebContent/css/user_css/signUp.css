@@ -25,16 +25,12 @@ span {
 label {
 	float: left;
 	font-size: 11pt;
-	margin: 30px 0px 5px 25px;
-/* 	margin-left: 23px; */
-/* 	margin-top: 30px; */
-/* 	color: grey; */
-	
+	margin: 30px 0px 5px 25px;	
 }
 
 
 .wrap {
-    height: 1000;
+    height: 1200px;
     width: 100%;
     background-image: url(img/background.jpg);
     background-position: center;
@@ -44,7 +40,7 @@ label {
 
 .form-wrap {
     width: 460px;
-    height: 1000px;
+    height: 1200px;
     position: relative;
     margin: 6% auto;
     background: #CEFBC9;

@@ -9,6 +9,10 @@
 </head>
 
 <body>
+<%
+	String user_id = (String) request.getAttribute("user_id");
+%>
+
 <div class="header_top">
 
 	<div class="top_left">
@@ -20,6 +24,7 @@
 
 	<div class="top_right">
 		<ul class="top_li_nav">
+			<li><a href="${pageContext.request.contextPath}/MyPage.us">마이페이지</a></li>
 			<li><a href="${pageContext.request.contextPath}/SignIn.us">로그인</a></li>
 			<li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li>
 			<li><a href="">주문조회</a></li>
