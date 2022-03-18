@@ -13,7 +13,7 @@
 	
 	<jsp:include page="../main/section01.jsp" />
 	
-	<jsp:include page="../product/productList.jsp" />
+	<jsp:include page="../product/mainpList.jsp" />
 <%-- 	<jsp:include page="./product/productList.jsp" /> --%>
 	
 	<jsp:include page="../inc/footer.jsp"></jsp:include>

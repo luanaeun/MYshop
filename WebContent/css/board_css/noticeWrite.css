@@ -1,0 +1,41 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.nWrite-container {
+	margin: 30px 15%;
+	border: 1px solid black;
+	text-align: center;
+}
+
+
+table{
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+
+table thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+
+table tbody th {
+	width: 100px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+table td {
+	width: 400px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}

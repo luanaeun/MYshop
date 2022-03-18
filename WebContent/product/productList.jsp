@@ -1,50 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
-<link href="${pageContext.request.contextPath}/css/product_css/productList.css" rel="stylesheet">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/index.css" rel="stylesheet" type="text/css">
+<link href="css/product_css/productList.css" rel="stylesheet" type="text/css">
 
-<div class="productList-container">
-	<div class="prodList-title">
-		<h3>오늘 신상</h3>
-	</div>
+<title>Insert title here</title>
+</head>
+<body>
+  <jsp:include page="../inc/header.jsp"></jsp:include>
+  <jsp:include page="../inc/category.jsp"></jsp:include>
 
-	<div class="prod-total">
-		<div class="prod-box">
-			<img class="prod-view" alt="" src="assets/testImage/productTest.png">
-			<h3>하늘색 기본 티</h3>
-			<p>30,000원</p>
-		</div>
+  <div class="productList-container">
+  <div class="right-bar">
+  
+        <h2 class="right-title">오른쪽 제목</h2>
+    
 
-		<div class="prod-box">
-			<img class="prod-view" alt="" src="assets/product/productTest.png">
-			<h3>하늘색 기본 티</h3>
-			<p>30,000원</p>
-		</div>
-
-		<div class="prod-box">
-			<img class="prod-view" alt="" src="assets/product/productTest.png">
-			<h3>하늘색 기본 티</h3>
-			<p>30,000원</p>
-		</div>
-
-		<div class="prod-box">
-			<img class="prod-view" alt="" src="assets/product/productTest.png">
-			<h3>하늘색 기본 티</h3>
-			<p>30,000원</p>
-		</div>
-
-		<div class="prod-box">
-			<img class="prod-view" alt="" src="assets/product/productTest.png">
-			<h3>하늘색 기본 티</h3>
-			<p>30,000원</p>
-		</div>
-
-	</div>
+        <div class="clothes-box">
+            <div class="image">
+                이미지
+            </div>
+            <div class="box-text">
+                <span>하늘색 니트티</span>
+                <p>15,000</p>
+            </div>
+            <div style="float:left"><p class="like-icon">♡</p></div>
+        </div>
 
 
+        <div class="clothes-box">
+            <div class="image">
+                이미지
+            </div>
+            <div class="box-text">
+                <span>하늘색 니트티</span>
+                <p>15,000</p>
+            </div>
+            <div style="float:left"><p class="like-icon">♡</p></div>
+        </div>
 
-</div>
+        <div class="clothes-box">
+            <div class="image">이미지</div>
+            <div class="box-text">
+                <span>하늘색 니트티</span>
+                <p>15,000</p>
+            </div>
+            <div style="float:left"><p class="like-icon">♡</p></div>
+        </div>
+        
+        <div class="clothes-box">
+            <div class="image">이미지</div>
+            <div class="box-text">
+                <span>하늘색 니트티</span>
+                <p>15,000</p>
+            </div>
+            <div style="float:left"><p class="like-icon">♡</p></div>
+        </div>
+        
+        <div class="clothes-box">
+            <div class="image">이미지</div>
+            <div class="box-text">
+                <span>하늘색 니트티</span>
+                <p>15,000</p>
+            </div>
+            <div style="float:left"><p class="like-icon">♡</p></div>
+        </div>
 
+    </div>
+  </div>
+	
+
+
+  
+   
+
+  <jsp:include page="../inc/footer.jsp"></jsp:include>
+</body>
 </html>

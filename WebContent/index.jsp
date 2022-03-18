@@ -6,8 +6,10 @@
 <%
   System.out.println("MYshop 시작!");
 
-  response.sendRedirect("./Main.ma");
-
+  // response.sendRedirect("./Main.ma");
+	response.sendRedirect("./BoardWrite.bo");
+ 
+	
   //response.sendRedirect("./SignIn.us");
   //response.sendRedirect("http://localhost:8088/Model2/MemberJoin.me");
   	

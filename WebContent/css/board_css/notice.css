@@ -1,3 +1,71 @@
-.input-radio {
-	margin-left: 50px;
+* {
+	margin: 0px;
+	padding: 0px;
 }
+
+.notice-container {
+	padding: 0 10%;
+}
+
+.notice-container > h1 {
+	margin-bottom: 5px;
+	margin-left: 10px;
+	align-self: flex-end;
+	font-weight: 500;
+	font-size: 35px;
+}
+
+.list_container {
+	border-top: 1px solid black;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin-top: 5px;
+	justify-content: center;
+	width: 100%;
+}
+
+.notice-list:hover {
+	box-shadow: 0 0 20px rgba(82, 82, 82, 0.1);
+}
+
+/*테이블 css*/
+table.type09 {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+
+table.type09 thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+
+table.type09 tbody th {
+	width: 100px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+table.type09 td {
+	width: 400px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+
+
+
+
+
+
+

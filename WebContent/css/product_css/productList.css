@@ -1,35 +1,69 @@
+/* *{ */
+/*     -webkit-text-size-adjust: 100%; */
+/*     -webkit-tap-highlight-color: rgba(0,0,0,0); */
+/*     font-family: 'Roboto', sans-serif; */
+/*     color: #333; */
+/* } */
+
+a{
+    text-decoration: none;
+}
+
 .productList-container {
-	height: 330px;
-    border: 1px solid black;
-}
-
-.prodList-title {
-	height: 5px;
-	margin: 10px 10px 20px 30px;
-}
-
-.prod-total {
-	height: 295px;
 	display: flex;
-    align-items: center;
+	align-items: center;
     justify-content: center;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.right-bar {
+    position: relative;
+    width: 85%;
+    min-height: 1px;
+    padding-left: 30px;
+    padding-right: 20px;
     border: 1px solid black;
 }
 
-.prod-box {
-	height: 250px;
-	width: 200px;
-	border: 1px solid black;
-	text-align: center;
-	background-color: lightblue;
-	margin: 10px auto;
-	
+
+.right-title {
+    text-align: center;
+    color: #FE980F;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 3;
 }
 
-.prod-box img {
-	height: 180px;
-	width: 150px;
-	margin: 10px auto;
+.clothes-box {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    width: 230px;
+    height: 300px;
+    border: 1px solid black;
+    margin-left: 20px;
+    margin-top: 20px;
+
 }
 
+.image {
+    width: 100%;
+    height: 70%;
+    border-radius: 20px;
+    border: 1px solid black;
+}
 
+.box-text{
+    width: 60%;
+    border: 1px solid black;
+    
+}
+
+.like-icon {
+    float: left;
+    font-size: 27pt;
+
+}

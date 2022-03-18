@@ -46,7 +46,7 @@
 	<div class="topMiddle_right">
 	
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/board/notice.jsp">Notice</a></li>
+			<li><a href="${pageContext.request.contextPath}/Notice.bo">Notice</a></li>
 			<li><a href="#">Q & A</a></li>
 			<li><a href="checkout.html">Review</a></li>
 		</ul>
