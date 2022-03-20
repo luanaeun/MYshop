@@ -1,0 +1,29 @@
+.section01-container {
+	height: 350px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px auto;
+    border: 1px solid blue;
+}
+
+.section01-box {
+	border: 1px solid blue;
+	height: 300px;
+	width: 900px;
+	min-width: 500px;
+}
+
+.section01-text {
+	height: 300px;
+	width: 300px;
+	text-align: right;
+	float: left;
+}
+
+.section01-img {
+	height: 300px;
+	width: 600px;
+	min-width: 500px;
+/* 	border: 1px solid blue; */
+}

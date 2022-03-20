@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>MYshop</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+    <!-- 메인(Main)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>MainFrontCtl</servlet-name>
+	<servlet-class>com.myshop.main.MainFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>MainFrontCtl</servlet-name>
+	<url-pattern>*.ma</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 회원(User)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>UserFrontCtl</servlet-name>
+	<servlet-class>com.myshop.user.action.UserFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>UserFrontCtl</servlet-name>
+	<url-pattern>*.us</url-pattern>
+  </servlet-mapping> 
+  
+ 
+  <!-- 제품(Product)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>ProductFrontCtl</servlet-name>
+	<servlet-class>com.myshop.product.action.ProductFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>ProductFrontCtl</servlet-name>
+	<url-pattern>*.pd</url-pattern>
+  </servlet-mapping> 
+  
+  
+  <!-- 게시판(Board)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>BoardFrontCtl</servlet-name>
+	<servlet-class>com.myshop.board.action.BoardFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>BoardFrontCtl</servlet-name>
+	<url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
+
+</web-app>
