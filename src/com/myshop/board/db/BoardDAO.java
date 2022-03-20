@@ -48,7 +48,6 @@ public class BoardDAO {
 	public void writeNotice(NoticeDTO dto) {
 		int bno = 0;
 		try {
-
 			con = getCon();
 			sql = "select max(n_idx) from myshop_notice";
 			pstmt = con.prepareStatement(sql);
@@ -86,75 +85,66 @@ public class BoardDAO {
 	}
 	
 	
+	// getBoardCount() => 공지 글 개수 알아보기.
+	public int getNoticeCount() {
+		System.out.println("공지 글 카운트 함수");
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from myshop_notice";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1); //만약 컬럼명으로 스고싶으면 "count(*)"이렇게 쓰면된다. 
+			}
+			System.out.println("DAO : 공지 총 개수 -> " + result);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}		
+		return result;
+	}
+
+	
+	// 공지 목록 가져오기 getBoardList();
+	public ArrayList getNoticeList() {
+		ArrayList noticeList = new ArrayList();
+		
+		try {
+			con = getCon();
+			sql = "select * from myshop_notice";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
+				NoticeDTO dto = new NoticeDTO();
+				dto.setNum(rs.getInt("n_idx"));
+				dto.setName(rs.getString("user_id"));
+				dto.setPw(rs.getString("n_pw"));
+				dto.setTitle(rs.getString("n_title"));
+				dto.setContent(rs.getString("n_content"));
+				dto.setRgdate(rs.getTimestamp("n_rgdate"));
+				dto.setViewcount(rs.getInt("n_viewcount"));
+							
+				// List 한칸에 저장.
+				noticeList.add(dto);
+			}
+			System.out.println("DAO: 공지들 저장 완료(List)");
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+		return noticeList;
+	}
+
 	
 	
-	// getBoardCount()
-//	public int getBoardCount() {
-//		int result = 0;
-//		
-//		try {
-//			con = getCon();
-//			sql = "select count(*) from itwill_board";
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			if(rs.next()) {
-//				result = rs.getInt(1); //만약 컬럼명으로 스고싶으면 "count(*)"이렇게 쓰면된다. 
-//			}
-//			System.out.println("DAO : 게시판 총 개수 - " + result);
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}		
-//		return result;
-//	}
-//	
-//	
-//	
-//	// 글 목록 가져오기 getBoardList();
-//	public ArrayList getBoardList() {
-//		
-//		ArrayList boardList = new ArrayList();
-//		
-//		try {
-//			con = getCon();
-//			sql = "select * from itwill_board";
-//			pstmt = con.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
-//				NoticeDTO dto = new NoticeDTO();
-//				dto.setContent(rs.getString("content"));
-//				dto.setDate(rs.getDate("date"));
-//				dto.setFile(rs.getString("file"));
-//				dto.setIp(rs.getString("ip"));
-//				dto.setName(rs.getString("name"));
-//				dto.setNum(rs.getInt("num"));
-//				dto.setPass(rs.getString("pass"));
-//				dto.setRe_lev(rs.getInt("re_lev"));
-//				dto.setRe_ref(rs.getInt("re_ref"));
-//				dto.setRe_seq(rs.getInt("re_seq"));
-//				dto.setReadcount(rs.getInt("readcount"));
-//				dto.setSubject(rs.getString("subject"));
-//				
-//				// List 한칸에 저장.
-//				boardList.add(dto);
-//			}
-//			System.out.println("DAO: 글정보 저장 완료(List)");
-//				
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//		
-//		return boardList;
-//	}
-//	
-//	
-//	
 //	// 기존 getBoardList() 오버로딩
 //	public ArrayList getBoardList(int startRow, int pageSize) {
 //		
@@ -200,66 +190,63 @@ public class BoardDAO {
 //		return boardList;
 //	}
 //	
-//	
-//	// 글 조회수 증가 메서드
-//	public void updateReadCount(int num) {
-//		try {
-//			con = getCon();
-//			sql = "update itwill_board set readcount = readcount + 1 where num=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, num);
-//			pstmt.executeUpdate();
-//			
-//			System.out.println("DAO: 조회수 1증가 완료!");
-//			
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//	}
-//	
-//	
-//	
-//	// 글 하나의 정보 가져오기
-//	public NoticeDTO getBoard(int num) {
-//		
-//		NoticeDTO dto = null;
-//		
-//		try {
-//			con = getCon();
-//			sql = "select * from itwill_board where num=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, num);
-//			rs = pstmt.executeQuery();
-//			
-//			
-//			if(rs.next()) {
-//				dto = new NoticeDTO();	// 객체는 미리만들지 말고 필요할때 생성하자!!
-//				
-//				dto.setContent(rs.getString("content"));
-//				dto.setDate(rs.getDate("date"));
-//				dto.setFile(rs.getString("file"));
-//				dto.setIp(rs.getString("ip"));
-//				dto.setName(rs.getString("name"));
-//				dto.setNum(rs.getInt("num"));
-//				dto.setPass(rs.getString("pass"));
-//				dto.setRe_lev(rs.getInt("re_lev"));
-//				dto.setRe_ref(rs.getInt("re_ref"));
-//				dto.setRe_seq(rs.getInt("re_seq"));
-//				dto.setReadcount(rs.getInt("readcount"));
-//				dto.setSubject(rs.getString("subject"));
-//			}
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//
-//		return dto;
-//	}
-//	
-//	
+
+	
+	// 글 조회수 증가 메서드
+	public void updateViewCount(int num) {
+		System.out.println("조회수 증가 메서드 호출");
+		try {
+			con = getCon();
+			sql = "update myshop_notice set n_viewcount = n_viewcount + 1 where n_idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO: 조회수 1증가 완료!");
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+	}
+
+	
+	// 글 하나의 정보 가져오기
+	public NoticeDTO getNoticeDetail(int num) {
+		System.out.println("글 하나의 정보 가져오는 메서드 호출");
+		NoticeDTO dto = null;
+		
+		try {
+			con = getCon();
+			sql = "select * from myshop_notice where n_idx = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				dto = new NoticeDTO();	// 객체는 미리만들지 말고 필요할때 생성하자!!
+								
+				dto.setNum(rs.getInt("n_idx"));
+				dto.setName(rs.getString("user_id"));
+				dto.setPw(rs.getString("n_pw"));
+				dto.setTitle(rs.getString("n_title"));
+				dto.setContent(rs.getString("n_content"));
+				dto.setRgdate(rs.getTimestamp("n_rgdate"));
+				dto.setViewcount(rs.getInt("n_viewcount"));
+				System.out.println("글 하나 정보 저장 완료!");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+
+		return dto;
+	}
+	
+	
 //	public int updateBoard(NoticeDTO dto){
 //		int result = -1;
 //		try {

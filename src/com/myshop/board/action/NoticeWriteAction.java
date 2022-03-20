@@ -8,13 +8,12 @@ import com.myshop.board.db.NoticeDTO;
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
 
-public class BoardWriteAction implements Action {
+public class NoticeWriteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		System.out.println("M : BoardWriteAction_execute()호출");
 		
-		// 글쓰기 동작
 		// 한글처리
 		req.setCharacterEncoding("UTF-8");
 		

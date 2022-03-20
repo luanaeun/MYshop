@@ -61,8 +61,10 @@ span {
 
 .input-group {
     top: 180px;
-    position: absolute;
-    transition: .5s;
+/*     position: absolute; */
+/*     transition: .5s; */
+	width: 80%;
+	margin: 60px auto;
 }
 
 .input-field {

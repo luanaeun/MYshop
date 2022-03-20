@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/board_css/noticeWrite.css" rel="stylesheet" type="text/css">
-<title>Insert title here</title>
+<title>MYshop</title>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"></jsp:include>
 
-<form action="./BoardWriteAction.bo" method="post">
+<form action="./NoticeWriteAction.bo" method="post">
 	<div class="nWrite-container">
 	<h1>게시판 글쓰기</h1>
 		<table id="notice">

@@ -15,7 +15,7 @@
 			do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 	</div>
 	
-	<img src="assets/testImage/girl1.jpg" class="section01-img"/> 
+	<img src="assets/testImage/section01.png" class="section01-img"/> 
   </div>
 
 </div>

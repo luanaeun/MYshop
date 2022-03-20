@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.myshop.board.action.BoardWriteAction;
+import com.myshop.board.action.NoticeListAction;
+
 import com.myshop.common.*;
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
@@ -32,15 +33,26 @@ public class BoardFrontCtl extends HttpServlet {
 		ActionForward forward = null;
 		
 		if(command.equals("/Notice.bo")) {			
-			forward = new ActionForward();
-			forward.setPath("./board/notice.jsp");
-			forward.setRedirect(false);
-		} else if(command.equals("/BoardWrite.bo")) {	
+			action = new NoticeListAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/NoticeDetail.bo")) {
+			action = new NoticeDetailAction();
+			
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		} else if(command.equals("/NoticeWrite.bo")) {		// 공지 쓰기
 			forward = new ActionForward();
 			forward.setPath("./board/noticeWrite.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/BoardWriteAction.bo")) {
-			action = new BoardWriteAction();
+		} else if(command.equals("/NoticeWriteAction.bo")) {
+			action = new NoticeWriteAction();
 			
 			try {
 				forward = action.execute(req, resp);
