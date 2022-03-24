@@ -27,8 +27,8 @@
 			<li><a href="${pageContext.request.contextPath}/MyPage.us">마이페이지</a></li>
 			<li><a href="${pageContext.request.contextPath}/SignIn.us">로그인</a></li>
 			<li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li>
-			<li><a href="">주문조회</a></li>
-			<li><a href="">배송조회</a></li>
+			<li><a href="${pageContext.request.contextPath}/Preparing.pr">주문조회</a></li>
+			<li><a href="${pageContext.request.contextPath}/Preparing.pr">배송조회</a></li>
 		</ul>
 	</div>
 </div>
@@ -47,8 +47,8 @@
 	
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/Notice.bo">Notice</a></li>
-			<li><a href="#">Q & A</a></li>
-			<li><a href="checkout.html">Review</a></li>
+			<li><a href="${pageContext.request.contextPath}/QandA.bo">Q & A</a></li>
+			<li><a href="${pageContext.request.contextPath}/Preparing.pr">Review</a></li>
 		</ul>
 		
 	</div>

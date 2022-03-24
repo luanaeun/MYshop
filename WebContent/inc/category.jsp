@@ -10,19 +10,17 @@
 
 	<ul class="cate-list">
 	
-		<li class="dropdown"><a href="">기획전</a>
-			<div class="dropdown-box">
-				<a href="shop.html">유제품</a>
-				<a href="product-details.html">가공식품</a>
-				<a href="product-details.html">과자류</a>
-			</div>		
-		</li>
+		<li class="dropdown"><a href="">기획전</a></li>
 		
 		<li class="dropdown"><a href="">식품</a>
 			<div class="dropdown-box">
-				<a href="shop.html">유제품</a>
-				<a href="product-details.html">가공식품</a>
-				<a href="product-details.html">과자류</a>
+				<a href="ProductList.pd">유제품</a>
+				<a href="ProductList.pd">과일</a>
+				<a href="ProductList.pd">가공식품</a>
+				<a href="ProductList.pd">과자류</a>
+				<a href="ProductList.pd">음료</a>
+				<a href="ProductList.pd">건강식품</a>
+				<a href="ProductList.pd">기타</a>
 			</div>		
 		</li>
 		

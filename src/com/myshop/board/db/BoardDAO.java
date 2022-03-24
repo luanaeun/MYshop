@@ -58,7 +58,7 @@ public class BoardDAO {
 			}
 			System.out.println("DAO : 글번호:("+bno+ ")");
 			
-			sql = "insert into myshop_notice(n_idx, user_id, n_pw, n_title, n_content, n_rgdate, n_ip, n_viewcount,n_imgcount,n_filecount) "
+			sql = "insert into myshop_notice(n_idx, n_userid, n_pw, n_title, n_content, n_rgdate, n_ip, n_viewcount,n_img,n_file) "
 					+ "values(?,?,?,?,?,now(),?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
@@ -71,8 +71,8 @@ public class BoardDAO {
 			pstmt.setString(6, dto.getIp());
 			
 			pstmt.setInt(7, 0); 
-			pstmt.setInt(8, 0); 
-			pstmt.setInt(9, 0);
+			pstmt.setString(8, dto.getImg()); 
+			pstmt.setString(9, dto.getFile());
 			
 			pstmt.executeUpdate();
 			
@@ -108,31 +108,42 @@ public class BoardDAO {
 	}
 
 	
-	// 공지 목록 가져오기 getBoardList();
-	public ArrayList getNoticeList() {
-		ArrayList noticeList = new ArrayList();
+	// 기존 getBoardList() 오버로딩
+	public ArrayList getNoticeList(int startRow, int pageSize) {
+		System.out.println("DAO: 공지 가져오는 메소드 들어옴!");
+		ArrayList boardList = new ArrayList();
 		
 		try {
 			con = getCon();
-			sql = "select * from myshop_notice";
+			// 글 자르기: limit
+			// 글 정렬: re_ref(내림차순) / re_seq(오름차순)
+			// sql = "select * from myshop_notice order by re_ref desc, re_seq asc limit ?,?";
+			sql = "select * from myshop_notice limit ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow -1);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
 				NoticeDTO dto = new NoticeDTO();
+				
+				
 				dto.setNum(rs.getInt("n_idx"));
-				dto.setName(rs.getString("user_id"));
+				dto.setName(rs.getString("n_userid"));
 				dto.setPw(rs.getString("n_pw"));
 				dto.setTitle(rs.getString("n_title"));
 				dto.setContent(rs.getString("n_content"));
 				dto.setRgdate(rs.getTimestamp("n_rgdate"));
 				dto.setViewcount(rs.getInt("n_viewcount"));
-							
+				dto.setIp(rs.getString("n_ip"));
+				dto.setImg(rs.getString("n_img"));
+				dto.setFile(rs.getString("n_file"));
+				
 				// List 한칸에 저장.
-				noticeList.add(dto);
+				boardList.add(dto);
 			}
-			System.out.println("DAO: 공지들 저장 완료(List)");
+			System.out.println("DAO: 공지 목록 가져오기 완료(List)");
 				
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,56 +151,9 @@ public class BoardDAO {
 			CloseDB();
 		}
 		
-		return noticeList;
+		return boardList;
 	}
-
 	
-	
-//	// 기존 getBoardList() 오버로딩
-//	public ArrayList getBoardList(int startRow, int pageSize) {
-//		
-//		ArrayList boardList = new ArrayList();
-//		
-//		try {
-//			con = getCon();
-//			// 글 자르기: limit
-//			// 글 정렬: re_ref(내림차순) / re_seq(오름차순)
-//			sql = "select * from itwill_board order by re_ref desc, re_seq asc limit ?,?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, startRow -1);
-//			pstmt.setInt(2, pageSize);
-//			rs = pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
-//				NoticeDTO dto = new NoticeDTO();
-//				dto.setContent(rs.getString("content"));
-//				dto.setDate(rs.getDate("date"));
-//				dto.setFile(rs.getString("file"));
-//				dto.setIp(rs.getString("ip"));
-//				dto.setName(rs.getString("name"));
-//				dto.setNum(rs.getInt("num"));
-//				dto.setPass(rs.getString("pass"));
-//				dto.setRe_lev(rs.getInt("re_lev"));
-//				dto.setRe_ref(rs.getInt("re_ref"));
-//				dto.setRe_seq(rs.getInt("re_seq"));
-//				dto.setReadcount(rs.getInt("readcount"));
-//				dto.setSubject(rs.getString("subject"));
-//				
-//				// List 한칸에 저장.
-//				boardList.add(dto);
-//			}
-//			System.out.println("DAO: 글정보 저장 완료(List)");
-//				
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//		
-//		return boardList;
-//	}
-//	
 
 	
 	// 글 조회수 증가 메서드
@@ -229,13 +193,13 @@ public class BoardDAO {
 				dto = new NoticeDTO();	// 객체는 미리만들지 말고 필요할때 생성하자!!
 								
 				dto.setNum(rs.getInt("n_idx"));
-				dto.setName(rs.getString("user_id"));
+				dto.setName(rs.getString("n_userid"));
 				dto.setPw(rs.getString("n_pw"));
 				dto.setTitle(rs.getString("n_title"));
 				dto.setContent(rs.getString("n_content"));
 				dto.setRgdate(rs.getTimestamp("n_rgdate"));
 				dto.setViewcount(rs.getInt("n_viewcount"));
-				System.out.println("글 하나 정보 저장 완료!");
+				System.out.println("글 하나 가져오기 완료!");
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

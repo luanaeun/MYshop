@@ -59,22 +59,29 @@ public class UserDAO {
 		
 		
 		sql = "insert into myshop_user(user_idx, user_id, user_pw, user_name, user_birth, user_gender, "
-				+ "user_phone, user_email, user_rgdate, user_state, user_agree, "
-				+ "user_buycount, user_prodcount, user_qacount, user_reviewcount, user_likecount, user_cartcount) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0)";
+				+ "user_phone, user_email, user_post, user_roadaddr, user_detailaddr, "
+				+ "user_rgdate, user_status, user_infoagree, user_emailagree, "
+				+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0)";
 		
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, uNum);
 		pstmt.setString(2, dto.getId());
 		pstmt.setString(3, dto.getPw());
 		pstmt.setString(4, dto.getName());
-		pstmt.setInt(5, dto.getBirth());
+		pstmt.setString(5, dto.getBirth());
 		pstmt.setString(6, dto.getGender());
-		pstmt.setInt(7, dto.getPhone());
+		
+		pstmt.setString(7, dto.getPhone());
 		pstmt.setString(8, dto.getEmail());
-		pstmt.setTimestamp(9, dto.getRegdate());
-		pstmt.setString(10, dto.getState());
-		pstmt.setString(11, dto.getAgree());
+		pstmt.setInt(9, dto.getPost());
+		pstmt.setString(10, dto.getRoadAddr());
+		pstmt.setString(11, dto.getDetailAddr());
+		
+		pstmt.setTimestamp(12, dto.getRegdate());
+		pstmt.setInt(13, dto.getStatus());
+		pstmt.setInt(14, dto.getInfoAgree());
+		pstmt.setInt(15, dto.getEmailAgree());
 		
 		pstmt.executeUpdate();
 		System.out.println("DAO: 회원가입 완료");

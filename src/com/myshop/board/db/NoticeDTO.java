@@ -13,8 +13,8 @@ public class NoticeDTO {
 	private Timestamp rgdate;
 	private String ip;
 
-	private int imgcount;
-	private int filecount;
+	private String img;
+	private String file;
 	public int getNum() {
 		return num;
 	}
@@ -63,25 +63,25 @@ public class NoticeDTO {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public int getImgcount() {
-		return imgcount;
+	public String getImg() {
+		return img;
 	}
-	public void setImgcount(int imgcount) {
-		this.imgcount = imgcount;
+	public void setImg(String img) {
+		this.img = img;
 	}
-	public int getFilecount() {
-		return filecount;
+	public String getFile() {
+		return file;
 	}
-	public void setFilecount(int filecount) {
-		this.filecount = filecount;
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "NoticeDTO [num=" + num + ", name=" + name + ", pw=" + pw + ", title=" + title + ", content=" + content
-				+ ", viewcount=" + viewcount + ", rgdate=" + rgdate + ", ip=" + ip + ", imgcount=" + imgcount
-				+ ", filecount=" + filecount + "]";
+				+ ", viewcount=" + viewcount + ", rgdate=" + rgdate + ", ip=" + ip + ", img=" + img
+				+ ", file=" + file + "]";
 	}
 	
 	

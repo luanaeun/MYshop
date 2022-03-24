@@ -1,10 +1,6 @@
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
-.notice-container {
-	padding: 5% 10%;
+.qa-container {
+	margin: 5% 10%;
+	border: 1px solid black;
 }
 
 .notice-container > h1 {
@@ -64,19 +60,4 @@ table.type09 td {
 .page_control {
 	text-align: center;
 	margin-top: 30px;
-}
-
-/*글자정렬 center 밖여백 20px 0 0 0
-밖여백오른쪽 auto 밖여백왼쪽 auto */
-.page_control a {
-	padding: 2px 5px;
-	text-decoration: none;
-	color: #333;
-	margin: 0 5px;
-}
-/* 안여백 2px 5px 밑줄 none 글자색#333 밖여백 0 5px */
-.page_control a:hover {
-	font-weight: bold;
-	color: #F90;
-	text-decoration: underline;
 }

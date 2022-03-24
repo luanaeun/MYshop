@@ -34,7 +34,11 @@ public class ProductFrontCtl extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./product/productList.jsp");
 			forward.setRedirect(false);
-		}	
+		} else if (command.equals("/ProductDetail.pd")){
+			forward = new ActionForward();
+			forward.setPath("./product/prodDetail.jsp");
+			forward.setRedirect(false);
+		}
 		
 		
 		// 3. 페이지 이동

@@ -1,0 +1,5 @@
+.reviewArea .reviewList .reviewImg .gradeLayer { display:none; position:absolute; left:0; bottom:-1px; width:100%; }
+.reviewArea .reviewList .prdOption { margin:0 0 8px; }
+.reviewArea .reviewList .reviewImg { position:relative; margin:0 0 6px; min-height:40px; }
+.reviewArea .reviewList .reviewImg .reviewThumb { display:block; width:100%; text-align:center; }
+.reviewArea .reviewList .reviewImg .reviewThumb img { max-width:100%; height:auto; }

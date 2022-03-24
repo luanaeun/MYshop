@@ -24,25 +24,34 @@ public class UserSignUpAction implements Action{
 
 		// 전달해준 파라미터 저장(액션태그X)
 		UserDTO dto = new UserDTO();
-
+		System.out.println("id");
 		dto.setId(req.getParameter("id"));
 		dto.setPw(req.getParameter("pw"));
 		dto.setName(req.getParameter("name"));
-		dto.setBirth(Integer.parseInt(req.getParameter("birth")));
-		dto.setPhone(Integer.parseInt(req.getParameter("phone")));
+		dto.setBirth(req.getParameter("birth"));
+		dto.setPhone(req.getParameter("phone"));
 		dto.setEmail(req.getParameter("email"));
 		dto.setGender(req.getParameter("gender"));
-		dto.setState("default");
-		dto.setAgree(req.getParameter("agree"));
-
+		System.out.println("post");
+		dto.setPost(Integer.parseInt(req.getParameter("post")));
+		dto.setRoadAddr(req.getParameter("roadAddr"));
+		dto.setDetailAddr(req.getParameter("detailAddr"));
+		System.out.println("status");
+		dto.setStatus(1);
+		System.out.println("infoagree");
+		dto.setInfoAgree(req.getParameterValues("agree")[0] == "true"? 1 : 0);
+		System.out.println("emailagree");
 		
+		dto.setEmailAgree(req.getParameter("emailAgree") == null ? 0 : 1);
+		System.out.println("날짜");
 		// 날짜 정보 저장
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
 
-		
 		System.out.println("저장한것: " + dto.toString());
+		
+		
 
-		// DAO 객체 생성
+		// DAO 객체 생성. 실제 메서드 호출!!
 		UserDAO dao = new UserDAO();
 		
 		

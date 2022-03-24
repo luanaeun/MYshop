@@ -9,23 +9,28 @@ public class UserDTO {
 	private String id;
 	private String pw;
 	private String name;
-	private int phone;
-	private int birth;
+	private String phone;
+	private String birth;
 	private String gender;
 	private String email;
 	private Timestamp regdate;
-	private Timestamp lastLogin;
-	private String state;
 	
-	private String agree;
+	private int post;
+	private String roadAddr;
+	private String detailAddr;
+	
+	private int infoAgree;
+	private int emailAgree;
+
+	private int status;
+	private Timestamp lastLogin;
+	
 	private int buyCount;
-	private int prodCount;
+	private int pCount;
 	private int qaCount;
 	private int reviewCount;
-	private int likeCount;
+	private int withCount;
 	private int cartCount;
-	
-	
 	public int getIdx() {
 		return idx;
 	}
@@ -50,16 +55,16 @@ public class UserDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public int getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(int birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getGender() {
@@ -80,17 +85,47 @@ public class UserDTO {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	public String getState() {
-		return state;
+	public int getPost() {
+		return post;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setPost(int post) {
+		this.post = post;
 	}
-	public String getAgree() {
-		return agree;
+	public String getRoadAddr() {
+		return roadAddr;
 	}
-	public void setAgree(String agree) {
-		this.agree = agree;
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+	public int getInfoAgree() {
+		return infoAgree;
+	}
+	public void setInfoAgree(int infoAgree) {
+		this.infoAgree = infoAgree;
+	}
+	public int getEmailAgree() {
+		return emailAgree;
+	}
+	public void setEmailAgree(int emailAgree) {
+		this.emailAgree = emailAgree;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Timestamp getLastLogin() {
+		return lastLogin;
+	}
+	public void setLastLogin(Timestamp lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 	public int getBuyCount() {
 		return buyCount;
@@ -98,11 +133,11 @@ public class UserDTO {
 	public void setBuyCount(int buyCount) {
 		this.buyCount = buyCount;
 	}
-	public int getProdCount() {
-		return prodCount;
+	public int getpCount() {
+		return pCount;
 	}
-	public void setProdCount(int prodCount) {
-		this.prodCount = prodCount;
+	public void setpCount(int pCount) {
+		this.pCount = pCount;
 	}
 	public int getQaCount() {
 		return qaCount;
@@ -116,11 +151,11 @@ public class UserDTO {
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
 	}
-	public int getLikeCount() {
-		return likeCount;
+	public int getWithCount() {
+		return withCount;
 	}
-	public void setLikeCount(int likeCount) {
-		this.likeCount = likeCount;
+	public void setWithCount(int withCount) {
+		this.withCount = withCount;
 	}
 	public int getCartCount() {
 		return cartCount;
@@ -128,27 +163,17 @@ public class UserDTO {
 	public void setCartCount(int cartCount) {
 		this.cartCount = cartCount;
 	}
-	public Timestamp getLastLogin() {
-		return lastLogin;
-	}
-	public void setLastLogin(Timestamp lastLogin) {
-		this.lastLogin = lastLogin;
-	}
-	
-	
 	
 	
 	@Override
 	public String toString() {
 		return "UserDTO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", birth="
-				+ birth + ", gender=" + gender + ", email=" + email + ", regdate=" + regdate + ", state=" + state
-				+ ", agree=" + agree + ", buyCount=" + buyCount + ", prodCount=" + prodCount + ", qaCount=" + qaCount
-				+ ", reviewCount=" + reviewCount + ", likeCount=" + likeCount + ", cartCount=" + cartCount + "]";
+				+ birth + ", gender=" + gender + ", email=" + email + ", regdate=" + regdate + ", post=" + post
+				+ ", roadAddr=" + roadAddr + ", detailAddr=" + detailAddr + ", infoAgree=" + infoAgree + ", emailAgree="
+				+ emailAgree + ", status=" + status + ", lastLogin=" + lastLogin + ", buyCount=" + buyCount
+				+ ", pCount=" + pCount + ", qaCount=" + qaCount + ", reviewCount=" + reviewCount + ", withCount="
+				+ withCount + ", cartCount=" + cartCount + "]";
 	}
 	
-	
-	
-	
-
 	
 }

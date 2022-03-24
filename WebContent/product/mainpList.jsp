@@ -12,11 +12,13 @@
 	</div>
 
 	<div class="prod-total">
+		<a href="./ProductDetail.pd">
 		<div class="prod-box" onclick="location.href='prodDetail.jsp'">
 			<img class="prod-view" alt="" src="assets/testImage/productTest.png">
 			<h3>하늘색 기본 티</h3>
 			<p>30,000원</p>
 		</div>
+		</a>
 
 		<div class="prod-box">
 			<img class="prod-view" alt="" src="assets/product/productTest.png">
