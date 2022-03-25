@@ -4,12 +4,10 @@
     font-family: sans-serif;
 }
 
-
 span {
-    color: #777;
-    font-size: 12px;
-    bottom: 68px;
-    position: absolute;
+	font-size: 11pt;
+	color: #FF5E00;
+	margin-left: 10px;
 }
 
 label {

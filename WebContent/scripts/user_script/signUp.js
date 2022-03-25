@@ -38,36 +38,96 @@ function searchPostNum() {
 
 // 회원가입 유효성 검사 함수.
 
-// 아이디: 영문 대.소문자, 숫자 _,-만 입력 가능하고 5에서 20자리를 입력했는지 체크
-// var useridCheck = RegExp(/^[A-Za-z0-9_\-]{3,10}$/);
-var useridCheck = RegExp(/^[가-힣a-zA-Z0-9]{3,10}$/);	//영어, 한글, 숫자만 사용.
-
-// 이름: 2~15글자의 한글만 입력하였는지 검사
-var nameCheck = RegExp(/^[가-힣]{2,15}$/);
-
-//패스워드: 영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8~16자가 되는지
-var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);																																																											// //주민등록번호
-																																																											// 배열
-// 이메일
-var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-
-// 핸드폰
-var phonNumberCheck = RegExp(/^01[0179][0-9]{7,8}$/);
-
-$('#id').blur(function(){
-    console.log($('#id'),val());
-
-    if($('#id').val().length < 3){
-        $('#helper1').text("3자 이상 입력해주세요.");
-
-    } if($('#username').val().length > 11) {
-        $('#helper1').text("10자 이하로 입력해주세요.");
-
+function signUpCheckFunc() {
+	var useridCheck = RegExp(/^[가-힣a-zA-Z0-9]{3,10}$/);
+	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);																																																											// //주민등록번호
+	var nameCheck = RegExp(/^[가-힣a-zA-Z]{2,15}$/);
+	var birthCheck = RegExp(/^[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|[3][01])/);
+	var phonNumberCheck = RegExp(/^01[0179][0-9]{7,8}$/);
+	var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+	
+	
+	if($("[name=id]").val() == ""){
+        $("#id").text("*아이디를 입력해주세요");
+        $("[name=id]").focus();
+        return false;
     }
-
-});																																																											// if($("#id").val()
+	if(!useridCheck.test($("[name=id]").val())){
+		$("#id").text("*아이디는 한글,영문, 숫자만 가능합니다.");
+        // $("[name=id]").val("");
+        $("[name=id]").focus();
+        return false;
+    }
+	
+	//비밀번호
+	if (!passwdCheck.test($("[name=pw]").val())) {
+		$("#pw").text("*대소문자,특수문자 포함 8~16자로 입력.");
+		$("[name=pw]").val("");
+		$("[name=pw]").focus();
+		return false;
+	}
+	
+	// 비번 확인
+	if ($("[name=pw]").val() !== $("[name=pwCheck]").val()) {
+		$("#pwCheck").text("*비밀번호가 다릅니다.");
+		$("[name=pwCheck]").val("");
+		$("[name=pwCheck]").focus();
+		return false;
+	}
+	
+	// 이름
+	if(!nameCheck.test($("[name=name]").val())){
+		$("#name").text("*이름은 한글,영문만 가능합니다.");
+        $("[name=name]").focus();
+        return false;
+    }
+	
+	// 생년월일
+	if(!birthCheck.test($("[name=birth]").val())){
+		$("#birth").text("*올바른 주민번호 앞자리 입력.");
+        $("[name=birth]").focus();
+        return false;
+    }
+	
+	
+	// 성별
+	if($("input:radio[name=gender]:checked").length == 0){
+        $("#gender").text("*성별을 선택해주세요.");
+        $("[name=gender]").focus();
+        return false;
+    }
+	
+	// 핸드폰 번호
+	if(!phonNumberCheck.test($("[name=phone]").val())){
+		$("#phone").text("*정확하게 입력되었는지 확인해주세요.");
+        $("[name=phone]").focus();
+        return false;
+    }
+	
+	// 이메일
+	if(!emailCheck.test($("[name=email]").val())){
+		$("#email").text("*이메일 형식이 다릅니다.");
+        $("[name=email]").focus();
+        return false;
+    }
+	
+	// 주소
+	if($("[name=postnum]").val() == "" || $("[name=roadAddr]").val() == ""){
+        $("#addr").text("*주소를 입력해주세요.");
+        $("#bringAddr").focus();
+        return false;
+    }
+	
+	// 개인정보 이용약관
+	if($("[name=infoAgree]").is(":checked") == false){
+        $("#infoAgree").text("*이용약관에 동의해주세요.");
+        $("[name=infoAgree]").focus();
+        return false;
+    }
+	
+	return true;
 																																																											// ==
-																																																											// ""){
+}																																																										// ""){
 																																																											// alert("아이디
 																																																											// 입력바람");
 																																																											// $("#id").focus();

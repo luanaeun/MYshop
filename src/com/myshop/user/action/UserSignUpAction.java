@@ -39,7 +39,7 @@ public class UserSignUpAction implements Action{
 		System.out.println("status");
 		dto.setStatus(1);
 		System.out.println("infoagree");
-		dto.setInfoAgree(req.getParameterValues("agree")[0] == "true"? 1 : 0);
+		dto.setInfoAgree(req.getParameterValues("infoAgree")[0] == "true"? 1 : 0);
 		System.out.println("emailagree");
 		
 		dto.setEmailAgree(req.getParameter("emailAgree") == null ? 0 : 1);
