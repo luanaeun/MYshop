@@ -10,7 +10,7 @@
     	<script src="scripts/user_script/signUp.js"></script>
 
     	<title>로그인 / 회원가입 폼 템플릿</title>
-        <link href="css/user_css/signUp.css" rel="stylesheet" type="text/css">
+        <link href="css/user_css/updateUserInfo.css" rel="stylesheet" type="text/css">
     </head>
     
     <body>
@@ -18,9 +18,9 @@
 
         <div class="wrap">
             <div class="form-wrap">
-            	<h1 style="text-align: center; margin-top:30px">MYshop</h1>
+            	<h1 style="text-align: center; margin-top:30px">정보 수정</h1>
                 
-                <form id="register" action="./SignUpAction.us" onsubmit="return signUpCheckFunc()" class="input-group">
+                <form id="register" action="./UpdateUserInfoAction.us" onsubmit="return signUpCheckFunc()" class="input-group">
                 	
                 	<label>아이디</label><span id="id"></span><br>
                     <input type="text" class="input-field" name="id" placeholder="3~10자" minlength=3 maxlength=10 >   
@@ -30,8 +30,6 @@
                     <label>비밀번호</label><span id="pw"></span><br>
                     <input type="password" class="input-field" name="pw" placeholder="대문자+소문자+숫자+특수문자" minlength=8 maxlength=16><br>
                     
-                    <label>비밀번호 확인</label><span id="pwCheck"></span><br>
-                    <input type="password" class="input-field" name="pwCheck" minlength=8 maxlength=16><br>
                     
                     <label>이름</label><span id="name"></span><br>
                     <input type="text" class="input-field" name="name" minlength=1 maxlength=15><br>
@@ -61,11 +59,10 @@
 					<input type="hidden" id="jibunAdd" placeholder="지번주소"><br>
                     
                    	<br><br>
-                    <input type="checkbox" class="input-radio" name="infoAgree" value="true"> 이용약관 동의(필수)
-                    <span id="infoAgree"></span><br>
+                   
              		<input type="checkbox" class="input-radio" name="emailAgree" value="true"> 이메일 수신 동의(선택)<br>
              		
-                    <button class="submitbutton">회원가입</button>
+                    <button class="submitbutton">정보 수정 완료</button>
                 </form>
             </div>
         </div>

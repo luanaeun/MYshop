@@ -6,7 +6,7 @@ ul li {
 	cursor: pointer;
 	float : left;
 	text-align: center;
-	margin: auto 5px;	
+	margin: auto 10px;	
 }    
 
 a {
@@ -17,6 +17,7 @@ a {
 
 .header_top {
   height: 35px;
+  min-width: 700px;
   background: none repeat scroll 0 0 #F0F0E9;
 }
 
@@ -33,7 +34,6 @@ a {
 
 .top_li_nav a {
 	line-height: 20px;
-	margin-right: 15px;
 }
 
 .top_li_nav a:hover {

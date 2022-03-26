@@ -32,7 +32,22 @@ function searchPostNum() {
 			document.getElementById("jibunAdd").value = data.jibunAddress;
 		}
 	}).open();
-}																																// var
+}	
+
+
+// 아이디 중복 체크 버튼 함수
+function idCheckFunc() {
+	if($("[name=id]").val() == ""){
+        $("#id").text("*아이디를 입력해주세요");
+        $("[name=id]").focus();
+        return false;
+	} else {
+		var url = "./SignUpIdCheck.us?id="+$("[name=id]").val();
+		// history.pushState(null, null, url);
+		window.location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
+		// location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
+	}
+}
 																																																											// buf
 					
 
@@ -46,7 +61,7 @@ function signUpCheckFunc() {
 	var phonNumberCheck = RegExp(/^01[0179][0-9]{7,8}$/);
 	var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 	
-	
+	// 아이디
 	if($("[name=id]").val() == ""){
         $("#id").text("*아이디를 입력해주세요");
         $("[name=id]").focus();
@@ -58,6 +73,14 @@ function signUpCheckFunc() {
         $("[name=id]").focus();
         return false;
     }
+	
+	// 아이디 중복 체크 여부
+	if($("[name=idCheckHidden]").val() != "ok") {
+		$("#id").text("*아이디 중복체크를 해주세요.");
+		$("[name=id]").focus();
+		return false;
+	}
+	
 	
 	//비밀번호
 	if (!passwdCheck.test($("[name=pw]").val())) {

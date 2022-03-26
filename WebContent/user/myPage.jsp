@@ -13,7 +13,25 @@
   <div class="mypage-container">
   	<div class="default-info-box">
   		<img alt="" src="assets/user/defaultPerson.png" class="user-img">
-  		<table class="info-table01">
+  		<div class="statistics-box">
+  			<div>
+  				<p class="my-pcount-text">판매중</p>
+  				<p class="my-pcount" style="color: blue;">10</p>	
+  			</div>
+  			<div>
+  				<p class="my-pcount-text">배송 준비중</p>
+  				<p class="my-pcount" style="color: orange;">3</p>	
+  			</div>
+  			<div>
+  				<p class="my-pcount-text">판매 완료</p>
+  				<p class="my-pcount" style="color: #59DA50;">5</p>	
+  			</div>
+  		</div>
+  	</div>
+  	
+  	<br><hr><br>
+  	
+  	<table class="info-table01">
   			<colgroup>
           		<col width="20%"><col width="30%"><col width="20%"><col width="30%">
         	</colgroup>
@@ -31,35 +49,20 @@
   				<th>핸드폰 번호</th><td>어쩌고</td>
   				<th>성별</th><td>어쩌고</td>
   			</tr>
-			
-  		</table>
-  	</div>
-  	
-  	<div class="other-info-box">
-  		<table class="inf0-table02">
-  			<th>이름</th><th>이름</th>
-
   			
   			<tr>
-  				<th>이름</th><td>어쩌고</td>
-  				<th>이름</th><td>어쩌고</td>
-  			</tr>
-  			
-  			<tr>
-  				<th>이름</th><td>어쩌고</td>
-  				<th>이름</th><td>어쩌고</td>
-  			</tr>
-			
-  		</table>
+  				<th>주소</th><td>어쩌고</td>
+  			</tr>	
+  	</table>
+  	
+  	<div class="myBtn-box">
+  		<input type="button" class="my-button" value="정보 수정하기" onclick="location.href='./UpdateUserInfo.us'">
+  		<input type="button" class="my-button" value="비밀번호 변경" onclick="location.href='./DeleteUser.us'">
+  		<input type="button" class="my-button" value="회원 탈퇴" onclick="location.href='./DeleteUser.us'">
   	</div>
   	
-  	<hr>
   	
-  	<div class="statistics-box">
-  		<div>하나</div>
-  		<div>둘</div>
-  		<div>셋</div>
-  	</div>
+  	
   </div>
 
   <jsp:include page="../inc/footer.jsp"></jsp:include>

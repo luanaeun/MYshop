@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -96,6 +97,7 @@ public class UserDAO {
   
   
   
+  // 로그인 메서드
   public int userSignIn(UserDTO dto){
 	  int loginResult = -1;
 	  
@@ -110,6 +112,12 @@ public class UserDAO {
 			
 			if(rs.next()) {
 	 			if(dto.getPw().equals(rs.getString("user_pw")) ) {	
+	 				sql = "update myshop_user set user_lastlogin=? where user_id=?";
+	 				pstmt = con.prepareStatement(sql);
+	 				pstmt.setTimestamp(1, dto.getLastLogin());
+	 				pstmt.setString(2, dto.getId());
+	 				pstmt.executeUpdate();
+	 				
 	 				loginResult = 1;
 	 			} else {	
 	 				loginResult = 0;
@@ -128,8 +136,64 @@ public class UserDAO {
   }
   
   
+  // 아이디 중복체크 메서드
+  public int userIdCheck(String tempID){
+	  int result = 0;
+	  
+	  try {
+			con = getCon();
+			
+			sql = "select user_id from myshop_user where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, tempID);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+	 			result = 0;
+	 		} else {
+	 			result = 1;
+	 		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return result;
+  }
   
   
-}
+  
+  
+  // 회원 탈퇴 메서드
+  public int userDelete(Timestamp dropDay, String id, String pw){
+	  int result = 0;
+	  try {
+			con = getCon();
+			// 로그인할때처럼 비번이 맞는지 먼저 확인해야겠지..?
+			
+			
+			// 회원을 -> 탈퇴로 변경!!
+			sql = "update myshop_user set user_status=?, user_id=?, user_lastlogin=? where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, 2);
+			pstmt.setString(2, "탈퇴");
+			pstmt.setTimestamp(3, dropDay);
+			pstmt.setString(4, id);
+			result = pstmt.executeUpdate();
+			
+			System.out.println("회원탈퇴 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+	  return result;
+  }
+  
+  
+  
+} // DAO 끝
 	
 

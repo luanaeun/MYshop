@@ -35,8 +35,15 @@ public class UserFrontCtl extends HttpServlet{
 			forward.setPath("./user/signIn.jsp");
 			forward.setRedirect(false);
 			
-		} else if(command.equals("/SignInAction.us")) {	// 회원가입DB동작 
+		} else if(command.equals("/SignInAction.us")) {	// 로그인 DB동작 
 			action = new UserSignInAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/SignOut.us")) {	// 로그아웃 동작
+			action = new UserSignOutAction();	
 			try {
 				forward = action.execute(req, resp);	
 			} catch(Exception e) {
@@ -49,6 +56,13 @@ public class UserFrontCtl extends HttpServlet{
 			forward.setPath("./user/signUp.jsp");
 			forward.setRedirect(false);
 			
+		} else if(command.equals("/SignUpIdCheck.us")) {	//아이디 중복 확인
+			action = new UserIdCheckAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/SignUpAction.us")) {	// 회원가입DB동작 
 			action = new UserSignUpAction();	
 			try {
@@ -62,7 +76,24 @@ public class UserFrontCtl extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./user/myPage.jsp");
 			forward.setRedirect(false);
-			
+		} else if(command.equals("/UpdateUserInfo.us")) { // 유저 정보 변경 페이지
+			forward = new ActionForward();
+			forward.setPath("./user/updateUserInfo.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/UpdateUserInfoAction.us")) {	// 유저 정보 변경 액션
+			action = new UpdateUserInfoAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/DeleteUser.us")) {
+			action = new DeleteUserAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

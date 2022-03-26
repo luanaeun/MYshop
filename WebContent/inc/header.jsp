@@ -10,7 +10,7 @@
 
 <body>
 <%
-	String user_id = (String) request.getAttribute("user_id");
+	String user_id = (String) session.getAttribute("user_id");
 %>
 
 <div class="header_top">
@@ -24,9 +24,19 @@
 
 	<div class="top_right">
 		<ul class="top_li_nav">
-			<li><a href="${pageContext.request.contextPath}/MyPage.us">마이페이지</a></li>
-			<li><a href="${pageContext.request.contextPath}/SignIn.us">로그인</a></li>
-			<li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li>
+
+			
+			<%
+				if(user_id == null) {
+					%><li><a href="${pageContext.request.contextPath}/SignIn.us">로그인</a></li>
+					  <li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li><% 
+				} else {
+					%><li>${user_id} 님</li>
+					  <li><a href="${pageContext.request.contextPath}/MyPage.us">마이페이지</a></li>
+					  <li><a href="${pageContext.request.contextPath}/SignOut.us">로그아웃</a></li><% 
+				}
+			%>
+			
 			<li><a href="${pageContext.request.contextPath}/Preparing.pr">주문조회</a></li>
 			<li><a href="${pageContext.request.contextPath}/Preparing.pr">배송조회</a></li>
 		</ul>
