@@ -163,6 +163,52 @@ public class UserDAO {
   
   
   
+  // 유저 정보 가져오는 메서드
+  public UserDTO getUserInfo(String userid) {
+	  
+	  UserDTO dto = null;
+	  
+	  try {
+			con = getCon();
+			
+			sql = "select user_id, user_name, user_birth, user_gender, user_phone, user_email, "
+					+ "user_post, user_roadaddr, user_detailaddr, "
+					+ "user_buycount, user_pcount, user_wishcount, user_cartcount, user_qacount, user_reviewcount "
+					+ "from myshop_user where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new UserDTO();	// 객체는 미리만들지 말고 필요할때 생성하자!!
+				
+				dto.setId(rs.getString("user_id"));
+				dto.setName(rs.getString("user_name"));
+				dto.setBirth(rs.getString("user_birth"));
+				dto.setPhone(rs.getString("user_phone"));
+				dto.setEmail(rs.getString("user_email"));
+				dto.setGender(rs.getString("user_gender"));
+
+				dto.setPost(rs.getInt("user_post"));
+				dto.setRoadAddr(rs.getString("user_roadaddr"));
+				dto.setDetailAddr(rs.getString("user_detailaddr"));
+
+				dto.setBuyCount(rs.getInt("user_buycount"));
+				dto.setpCount(rs.getInt("user_pcount"));
+				dto.setWishCount(rs.getInt("user_wishcount"));
+				dto.setCartCount(rs.getInt("user_cartcount"));
+				dto.setQaCount(rs.getInt("user_qacount"));
+				dto.setReviewCount(rs.getInt("user_reviewcount"));
+		
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  return dto;
+  }
+  
   
   // 회원 탈퇴 메서드
   public int userDelete(Timestamp dropDay, String id, String pw){
@@ -191,6 +237,7 @@ public class UserDAO {
 	  
 	  return result;
   }
+  
   
   
   

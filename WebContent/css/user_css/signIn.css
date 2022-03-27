@@ -58,17 +58,19 @@ span {
     width: 100%;
     padding: 10px 0;
     margin: 5px 0;
+    padding-left: 5px;
     border: none;
     border-bottom: 1px solid #999;
     outline: none;
 /*     background: transparent; */
+    background: #FAF4C0;
 }
 
-.check-result {
-	color: #FF5E00;
-	font-size: 12px;
-	margin-left: 10px;
-}
+/* .check-result { */
+/* 	color: #FF5E00; */
+/* 	font-size: 12px; */
+/* 	margin-left: 10px; */
+/* } */
 
 .checkbox {
     margin: 30px 10px 30px 0;

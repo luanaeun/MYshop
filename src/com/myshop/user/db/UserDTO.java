@@ -29,8 +29,10 @@ public class UserDTO {
 	private int pCount;
 	private int qaCount;
 	private int reviewCount;
-	private int withCount;
+	private int wishCount;
 	private int cartCount;
+	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -151,11 +153,11 @@ public class UserDTO {
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
 	}
-	public int getWithCount() {
-		return withCount;
+	public int getWishCount() {
+		return wishCount;
 	}
-	public void setWithCount(int withCount) {
-		this.withCount = withCount;
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
 	}
 	public int getCartCount() {
 		return cartCount;
@@ -171,8 +173,8 @@ public class UserDTO {
 				+ birth + ", gender=" + gender + ", email=" + email + ", regdate=" + regdate + ", post=" + post
 				+ ", roadAddr=" + roadAddr + ", detailAddr=" + detailAddr + ", infoAgree=" + infoAgree + ", emailAgree="
 				+ emailAgree + ", status=" + status + ", lastLogin=" + lastLogin + ", buyCount=" + buyCount
-				+ ", pCount=" + pCount + ", qaCount=" + qaCount + ", reviewCount=" + reviewCount + ", withCount="
-				+ withCount + ", cartCount=" + cartCount + "]";
+				+ ", pCount=" + pCount + ", qaCount=" + qaCount + ", reviewCount=" + reviewCount + ", wishCount="
+				+ wishCount + ", cartCount=" + cartCount + "]";
 	}
 	
 	

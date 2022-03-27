@@ -1,8 +1,10 @@
 package com.myshop.user.action;
 
 
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,11 +29,18 @@ public class UserSignInAction implements Action{
 		UserDTO dto = new UserDTO();
 
 		dto.setId(req.getParameter("id"));
-		dto.setPw(req.getParameter("pw"));		
+		dto.setPw(req.getParameter("pw"));
 		dto.setLastLogin(new Timestamp(System.currentTimeMillis()));	// 마지막 로그인 날짜
 		
+		String rememberID = "";
+		try {
+			rememberID = req.getParameterValues("rememberID")[0];
+		} catch(Exception e) {
 		
+		}
+
 		System.out.println("저장한것: " + dto.toString());
+		System.out.println("아이디 저장 체크 여부: " + rememberID);
 
 		// DAO 객체 생성
 		UserDAO dao = new UserDAO();
@@ -40,8 +49,23 @@ public class UserSignInAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		if(result == 1) {
-			HttpSession se = req.getSession();
+			HttpSession se = req.getSession();		// 세션에 아이디 저장.
 			se.setAttribute("user_id", dto.getId());
+			
+			if(rememberID.length() > 0) {	//...? 이거 왜 안돼...???
+				System.out.println("쿠키값 설정하러~: " + rememberID);
+				Cookie cookie = new Cookie("rememberID", req.getParameter("id"));
+				res.addCookie(cookie); 		// 응답페더에 쿠키 추가
+				System.out.println("쿠키 저장 완료! => " + cookie.getValue());
+			} else {
+				Cookie[] cookies = req.getCookies();
+				for(int i=0; i<cookies.length; i++) {
+					if(cookies[i].getName().equals("rememberID")) {
+						cookies[i].setMaxAge(0);
+						res.addCookie(cookies[0]);
+					}
+				}	
+			}
 			forward.setPath("./Main.ma");
 			
 		} else if(result == 0) {

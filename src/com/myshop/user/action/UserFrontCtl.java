@@ -73,9 +73,12 @@ public class UserFrontCtl extends HttpServlet{
 		}
 		
 		else if(command.equals("/MyPage.us")) {	// 마이페이지
-			forward = new ActionForward();
-			forward.setPath("./user/myPage.jsp");
-			forward.setRedirect(false);
+			action = new GetUserInfoAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/UpdateUserInfo.us")) { // 유저 정보 변경 페이지
 			forward = new ActionForward();
 			forward.setPath("./user/updateUserInfo.jsp");

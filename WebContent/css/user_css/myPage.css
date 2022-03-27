@@ -3,6 +3,16 @@
     padding: 0;
     font-family: sans-serif;
 }
+h3 {
+	margin-top: 50px;
+}
+th {
+	background-color: #F0F0E9;
+}
+table, th,td {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
 
 .mypage-container {
 	padding: 5% 20%;
@@ -59,42 +69,59 @@
 	
 }
 
+
+/* 유저 구매 정보 테이블*/
+.purchase-table {
+	width: 900px;
+	height: 100px;
+	margin: 10px 0px 50px 0px;
+}
+.purchase-table td {
+	text-align: center;
+}
+
+
+/*유저 글 정보 박스*/
+.write-info-box {
+	height: 100px;
+	width: 900px;
+	min-width: 900px;
+}
+.write-info-box > div {
+	height: 100px;
+	width: 450px;
+	min-width: 440px;
+}
+.write-count {
+	height: 65px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+
 /*유저 정보들 */
 .info-table01 {
-	height: 300px;
+	height: 280px;
 	width: 900px;
 	min-width: 900px;
 	min-width: 700px;
-	border-collapse: collapse;
-	border-top: 1px solid gray;
+	margin-top: 10px;
 }
-.info-table01 tr {
-	border-bottom: 1px solid black;
+.info-table01 td {
+	text-align: center;
 }
-.info-table01 th {
-	border-right: 1px solid black;
-	background-color: #F0F0E9;
-}
-
-
-.prod-info-box {
-	display: left;
-	height: 200px;
-	width: 700px;
-	board: 1px solid black;
+.table-address {
+	height: 80px;
+	text-align: left;
+	margin-left: 20px;
 }
 
-.info-table02 {
-	height: 200px;
-	width: 90%;
-	border-collapse: collapse;
-	border-top: 1px solid black;
-}
+
 
 
 /* 버튼들 디자인*/
 .myBtn-box {
-	margin-top: 100px;
+	margin-top: 50px;
 	vertical-align: bottom;
 	text-align: right;
 }

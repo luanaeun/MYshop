@@ -6,6 +6,20 @@
 <script src="./scripts/jquery-3.6.0.js"></script>
 <script src="scripts/user_script/signIn.js"></script>
 
+<%
+	// 쿠키값 가져오기
+	String rememberID = "";
+	
+	Cookie[] cookie = request.getCookies();
+	
+	// 원하는 쿠키값 찾기
+	if(cookie !=  null) {
+		if(cookie[0].getName().equals("rememberID")){
+			rememberID = cookie[0].getValue();
+		}
+	}
+	System.out.println("쿠키: " + rememberID);
+%>
 <div>
   <jsp:include page="../inc/header.jsp"></jsp:include>
 
@@ -14,13 +28,11 @@
 	  <h1 style="text-align: center; margin-top:30px">로그인</h1>
 
 	  <form id="login" action="./SignInAction.us" class="input-group" method="post" onsubmit="return signInCheckFunc()">
-		<input type="text" name="id" class="input-field" placeholder="아이디"> 
-		<div id="id" class="check-result"></div>
+		<input type="text" name="id" class="input-field" placeholder="아이디" value=<%=rememberID %>> 
 		
 		<input type="password" name="pw" class="input-field" placeholder="비밀번호"> 
-		<div id="pw" class="check-result"></div>
 		
-		<input type="checkbox" class="checkbox" > 
+		<input type="checkbox" class="checkbox" name="rememberID" value="remember"> 
 		<span>아이디 기억하기</span>
 		
 		<div class="social-icons">
