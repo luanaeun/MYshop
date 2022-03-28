@@ -62,8 +62,9 @@ public class UserDAO {
 		sql = "insert into myshop_user(user_idx, user_id, user_pw, user_name, user_birth, user_gender, "
 				+ "user_phone, user_email, user_post, user_roadaddr, user_detailaddr, "
 				+ "user_rgdate, user_status, user_infoagree, user_emailagree, "
-				+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0)";
+				+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount, "
+				+ "user_psending, user_pcellok, user_ordercount) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0,0)";
 		
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, uNum);
@@ -121,6 +122,7 @@ public class UserDAO {
 	 				loginResult = 1;
 	 			} else {	
 	 				loginResult = 0;
+	 				
 	 			}
 	 		} else {	// 데이터가 없을때 -> 비회원
 	 			loginResult = -1;
@@ -173,7 +175,8 @@ public class UserDAO {
 			
 			sql = "select user_id, user_name, user_birth, user_gender, user_phone, user_email, "
 					+ "user_post, user_roadaddr, user_detailaddr, "
-					+ "user_buycount, user_pcount, user_wishcount, user_cartcount, user_qacount, user_reviewcount "
+					+ "user_buycount, user_pcount, user_wishcount, user_cartcount, user_qacount, user_reviewcount, "
+					+ "user_psending, user_pcellok, user_ordercount "
 					+ "from myshop_user where user_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userid);
@@ -199,6 +202,10 @@ public class UserDAO {
 				dto.setCartCount(rs.getInt("user_cartcount"));
 				dto.setQaCount(rs.getInt("user_qacount"));
 				dto.setReviewCount(rs.getInt("user_reviewcount"));
+				
+				dto.setpSending(rs.getInt("user_psending"));
+				dto.setpCellOk(rs.getInt("user_pcellok"));
+				dto.setOrderCount(rs.getInt("user_ordercount"));
 		
 			}	
 		} catch (Exception e) {

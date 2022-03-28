@@ -52,7 +52,8 @@ public class UserSignInAction implements Action{
 			HttpSession se = req.getSession();		// 세션에 아이디 저장.
 			se.setAttribute("user_id", dto.getId());
 			
-			if(rememberID.length() > 0) {	//...? 이거 왜 안돼...???
+			//if(rememberID == "true") //...? 이거 왜 안돼...???
+			if(rememberID.length() > 0) {	
 				System.out.println("쿠키값 설정하러~: " + rememberID);
 				Cookie cookie = new Cookie("rememberID", req.getParameter("id"));
 				res.addCookie(cookie); 		// 응답페더에 쿠키 추가
@@ -69,8 +70,10 @@ public class UserSignInAction implements Action{
 			forward.setPath("./Main.ma");
 			
 		} else if(result == 0) {
+			req.setAttribute("loginResult", 0);
 			forward.setPath("./SignIn.us");
 		} else {
+			req.setAttribute("loginResult", -1);
 			forward.setPath("./SignIn.us");
 		}
 		forward.setRedirect(true);

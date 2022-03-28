@@ -43,7 +43,7 @@ function idCheckFunc() {
         return false;
 	} else {
 		var url = "./SignUpIdCheck.us?id="+$("[name=id]").val();
-		// history.pushState(null, null, url);
+		// history.pushState(null, null, "./SignUpIdCheck.us?id="+$("[name=id]").val());
 		window.location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
 		// location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
 	}

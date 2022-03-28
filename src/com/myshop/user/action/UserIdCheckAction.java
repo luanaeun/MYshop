@@ -34,8 +34,9 @@ public class UserIdCheckAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		if(result == 1) {
-			req.setAttribute("idCheckResult", "ok");
-			forward.setPath("/SignUp.us");	
+			req.setAttribute("idCheckResult", "ok");	// 세션말고, 파라미터로 넘기고싶은데....
+			
+			forward.setPath("/SignUp.us?check=ok");	
 		} else {
 			req.setAttribute("idCheckResult", "no");
 			forward.setPath("/SignUp.us");

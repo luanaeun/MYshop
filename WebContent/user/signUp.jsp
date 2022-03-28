@@ -14,6 +14,9 @@
     </head>
     
     <body>
+    	<%
+    		String idCheckResult = (String)request.getAttribute("idCheckResult");
+    	%>
     	<jsp:include page="../inc/header.jsp"></jsp:include>
 
         <div class="wrap">
@@ -24,8 +27,18 @@
                 	
                 	<label>아이디</label><span id="id"></span><br>
                     <input type="text" class="input-field" name="id" placeholder="3~10자" minlength=3 maxlength=10 >   
-                    <input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
-                    <input type="hidden" name="idCheckHidden" value="ok">
+                    <%
+                    	if(idCheckResult == "ok") { %>
+                    		<input type="button" class="check-button" style="background-color: transparent;" name="idCheckBtn" value="✔" ><br>
+                    		<input type="hidden" name="idCheckHidden" value="ok">
+                    	<% } else if (idCheckResult == "no"){ %>
+                    		<input type="button" class="check-button" name="idCheckBtn" value="이미 있는 아이디" onclick="idCheckFunc()"><br>
+
+                    	<% } else { %>
+                			<input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
+                		<% } 
+                    %>
+                    
                     
                     <label>비밀번호</label><span id="pw"></span><br>
                     <input type="password" class="input-field" name="pw" placeholder="대문자+소문자+숫자+특수문자" minlength=8 maxlength=16><br>

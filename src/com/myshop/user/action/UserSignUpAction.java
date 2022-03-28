@@ -42,7 +42,7 @@ public class UserSignUpAction implements Action{
 		dto.setInfoAgree(req.getParameterValues("infoAgree")[0].length() > 0 ? 1 : 0);
 		System.out.println("emailagree");
 		
-		dto.setEmailAgree(req.getParameterValues("emailAgree")[0].length() > 0 ? 1 : 0);
+		dto.setEmailAgree(req.getParameter("emailAgree") == null ? 0 : 1);
 		System.out.println("날짜");
 		// 날짜 정보 저장
 		dto.setRegdate(new Timestamp(System.currentTimeMillis()));

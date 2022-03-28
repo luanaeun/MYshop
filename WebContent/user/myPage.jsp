@@ -24,11 +24,11 @@
   			</div>
   			<div>
   				<p class="my-pcount-text">배송 준비중</p>
-  				<p class="my-pcount" style="color: orange;">3</p>	
+  				<p class="my-pcount" style="color: orange;">${dto.pSending }</p>	
   			</div>
   			<div>
   				<p class="my-pcount-text">판매 완료</p>
-  				<p class="my-pcount" style="color: #59DA50;">5</p>	
+  				<p class="my-pcount" style="color: #59DA50;">${dto.pCellOk }</p>	
   			</div>
   		</div>
   	</div>
@@ -37,14 +37,13 @@
   	<h3>> 구매 관련 정보</h3>
   	<table class="purchase-table">
   		<tr>
-  			<th>위시리스트</th><th>장바구니</th><th>주문/베송</th><th>주문취소</th><th>구매완료</th> 
+  			<th>위시리스트</th><th>장바구니</th><th>주문/베송</th><th>구매완료</th> 
   		</tr>
   		<tr>
   			<td>${dto.wishCount }</td>
   			<td>${dto.cartCount }</td>
-  			<td>주문/베송</td>
-  			<td>주문취소</td>
-  			<td>구매 완료</td>
+  			<td>${dto.orderCount }</td>
+  			<td>${dto.buyCount }</td>
   		</tr>
   	</table>
   	
@@ -52,11 +51,11 @@
   	<div class="write-info-box">
   		<div>
   			<h3>> 후기~</h3>
-  			<p class="write-count" style="color: blue;">${dto.pCount }</p>	
+  			<p class="write-count">${dto.reviewCount }</p>	
   		</div>
   		<div>
   			<h3>> 고객센터</h3>
-  			<p class="write-count" style="color: orange;">3</p>	
+  			<p class="write-count">${dto.qaCount }</p>	
   		</div>
   	</div>
   	
@@ -89,8 +88,8 @@
   	</table>
   	
   	<div class="myBtn-box">
-  		<input type="button" class="my-button" value="정보 수정하기" onclick="location.href='./UpdateUserInfo.us'">
-  		<input type="button" class="my-button" value="비밀번호 변경" onclick="location.href='./DeleteUser.us'">
+  		<input type="button" class="my-button" value="정보 수정하기" onclick="location.href=' '">
+  		<input type="button" class="my-button" value="비밀번호 변경" onclick="location.href=' '">
   		<input type="button" class="my-button" value="회원 탈퇴" onclick="location.href='./DeleteUser.us'">
   	</div>
   	

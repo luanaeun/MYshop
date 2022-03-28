@@ -9,6 +9,7 @@
 <%
 	// 쿠키값 가져오기
 	String rememberID = "";
+	int loginResult = 3;
 	
 	Cookie[] cookie = request.getCookies();
 	
@@ -19,6 +20,14 @@
 		}
 	}
 	System.out.println("쿠키: " + rememberID);
+	
+	
+	// 로그인 로직 결과 가져오기
+	if(request.getAttribute("loginResult") != null) {
+		loginResult = (int)request.getAttribute("loginResult");
+	}
+	
+	
 %>
 <div>
   <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -31,6 +40,14 @@
 		<input type="text" name="id" class="input-field" placeholder="아이디" value=<%=rememberID %>> 
 		
 		<input type="password" name="pw" class="input-field" placeholder="비밀번호"> 
+		<%
+			if(loginResult == 0) { %>
+				<p class="loginResult-text">아이디나 비밀번호가 틀립니다.</p><br> <%
+			} else if(loginResult == -1) { %>
+				<p class="loginResult-text">비회원 입니다.</p><br> 
+		  <%}
+		%>	
+		
 		
 		<input type="checkbox" class="checkbox" name="rememberID" value="remember"> 
 		<span>아이디 기억하기</span>
@@ -46,25 +63,6 @@
 		<button class="submit">Login</button>
 	  </form>
 	</div>
-
-
-	<script>
-// 		var x = document.getElementById("login");
-// 		var y = document.getElementById("register");
-// 		var z = document.getElementById("btn");
-
-// 		function login() {
-// 			x.style.left = "50px";
-// 			y.style.left = "450px";
-// 			z.style.left = "0";
-// 		}
-
-// 		function register() {
-// 			x.style.left = "-400px";
-// 			y.style.left = "50px";
-// 			z.style.left = "110px";
-// 		}
-	</script>
 
 </div>
 

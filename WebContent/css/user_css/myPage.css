@@ -83,9 +83,10 @@ table, th,td {
 
 /*유저 글 정보 박스*/
 .write-info-box {
-	height: 100px;
+	height: 200px;
 	width: 900px;
 	min-width: 900px;
+	display: flex;
 }
 .write-info-box > div {
 	height: 100px;
@@ -96,6 +97,8 @@ table, th,td {
 	height: 65px;
 	border: 1px solid black;
 	text-align: center;
+	line-height: 65px;
+	font-size: 30px;
 }
 
 

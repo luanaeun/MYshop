@@ -4,6 +4,7 @@ package com.myshop.user.action;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,7 +42,14 @@ public class DeleteUserAction implements Action{
 		
 		res.setContentType("text/html; charset=UTF-8");
 		if(result == 1) {
-			se.invalidate();
+			se.invalidate();	// 세션값 삭제
+			Cookie[] cookies = req.getCookies();	// 쿠키 삭제
+			for(int i=0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("rememberID")) {
+					cookies[i].setMaxAge(0);
+					res.addCookie(cookies[0]);
+				}
+			}
 			forward.setPath("./Main.ma");
 		} else if(result == 0) {
 			PrintWriter out = res.getWriter();

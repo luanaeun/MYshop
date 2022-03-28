@@ -32,6 +32,10 @@ public class UserDTO {
 	private int wishCount;
 	private int cartCount;
 	
+	private int pSending;
+	private int pCellOk;
+	private int orderCount;
+	
 	
 	public int getIdx() {
 		return idx;
@@ -165,8 +169,24 @@ public class UserDTO {
 	public void setCartCount(int cartCount) {
 		this.cartCount = cartCount;
 	}
-	
-	
+	public int getpSending() {
+		return pSending;
+	}
+	public void setpSending(int pSending) {
+		this.pSending = pSending;
+	}
+	public int getpCellOk() {
+		return pCellOk;
+	}
+	public void setpCellOk(int pCellOk) {
+		this.pCellOk = pCellOk;
+	}
+	public int getOrderCount() {
+		return orderCount;
+	}
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
 	@Override
 	public String toString() {
 		return "UserDTO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", birth="
