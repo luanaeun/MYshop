@@ -30,7 +30,11 @@ public class UserFrontCtl extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/SignIn.us")) {			// 로그인
+		if(command.equals("/MngPage.us")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/managePage.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/SignIn.us")) {			// 로그인
 			forward = new ActionForward();
 			forward.setPath("./user/signIn.jsp");
 			forward.setRedirect(false);

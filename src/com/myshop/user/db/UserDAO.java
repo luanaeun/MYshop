@@ -63,8 +63,8 @@ public class UserDAO {
 				+ "user_phone, user_email, user_post, user_roadaddr, user_detailaddr, "
 				+ "user_rgdate, user_status, user_infoagree, user_emailagree, "
 				+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount, "
-				+ "user_psending, user_pcellok, user_ordercount) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0,0)";
+				+ "user_psending, user_pcellok, user_ordercount, user_isadmin) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0,0,?)";
 		
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, uNum);
@@ -84,6 +84,7 @@ public class UserDAO {
 		pstmt.setInt(13, dto.getStatus());
 		pstmt.setInt(14, dto.getInfoAgree());
 		pstmt.setInt(15, dto.getEmailAgree());
+		pstmt.setInt(16,  dto.getIsAdmin());
 		
 		pstmt.executeUpdate();
 		System.out.println("DAO: 회원가입 완료");

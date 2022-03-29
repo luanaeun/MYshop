@@ -35,7 +35,9 @@ public class UserDTO {
 	private int pSending;
 	private int pCellOk;
 	private int orderCount;
+	private int isAdmin;
 	
+	private String userimg;
 	
 	public int getIdx() {
 		return idx;
@@ -187,6 +189,22 @@ public class UserDTO {
 	public void setOrderCount(int orderCount) {
 		this.orderCount = orderCount;
 	}
+
+	public String getUserimg() {
+		return userimg;
+	}
+	public void setUserimg(String userimg) {
+		this.userimg = userimg;
+	}
+	public int getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(int isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "UserDTO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", birth="

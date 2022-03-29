@@ -1,4 +1,4 @@
-package com.myshop.product.action;
+package com.myshop.manage.action;
 
 import java.io.IOException;
 
@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.myshop.common.*;
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
+import com.myshop.user.action.UserSignInAction;
 
-public class ProductFrontCtl extends HttpServlet{
+public class ManageFrontCtl extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("ProductFrontCtl - doProcess()호출");
+		System.out.println("ManageFrontCtl - doProcess()호출");
 		
 		// 1. 가상 주소 계산 => .us로 끝나는 메핑된 주소를 가져온다. 
 		String reqURI = req.getRequestURI();
@@ -23,44 +24,25 @@ public class ProductFrontCtl extends HttpServlet{
 		String command = reqURI.substring(ctxPath.length());
 		System.out.println("command: " + command);
 		
-		System.out.println("C : 1.가상주소 계산 완료" + command);
+		System.out.println("C : 1.가상주소 계산 완료");
 		
 		
 		// 2. 가상주소 매핑
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/TodayNewProduct.pd")) {			
+		if(command.equals("/MngPage.am")) {
 			forward = new ActionForward();
-			forward.setPath("./product/productList.jsp");
+			forward.setPath("./admin/managePage.jsp");
 			forward.setRedirect(false);
-		} else if (command.equals("/ProductDetail.pd")){
-			forward = new ActionForward();
-			forward.setPath("./product/prodDetail.jsp");
-			forward.setRedirect(false);
-		}
-		  else if (command.equals("/AddProduct.pd")) {		// 상품 등록 페이지
-			forward = new ActionForward();
-			forward.setPath("./product/addProduct.jsp");
-			forward.setRedirect(false); 
-		} else if (command.equals("/AddProductAction.pd")) {	// 상품 등록 실제 페이지
-			action = new AddProductAction();
+		} else if(command.equals("/AddDetialCateAction.am")) {	// 로그인 DB동작 
+			action = new AddDetailCateAction();	
 			try {
 				forward = action.execute(req, resp);	
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/UpdateProduct.pd")) {		// 상품 수정 
-			forward = new ActionForward();
-			forward.setPath("./product/updateProduct.jsp");
-			forward.setRedirect(false);
-		} else if (command.equals("/DeleteroductAction.pd")) {	// 상품 삭제
-			action = new DeleteProductAction();
-			try {
-				forward = action.execute(req, resp);	
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
+		
 		}
 		
 		

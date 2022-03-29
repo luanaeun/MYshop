@@ -32,6 +32,7 @@
   			</div>
   		</div>
   	</div>
+  	<div class="addProd-box"><input type="button" class="my-button" value="제품 올리기" onclick="location.href='./AddProduct.pd'"></div>
   	
   	
   	<h3>> 구매 관련 정보</h3>

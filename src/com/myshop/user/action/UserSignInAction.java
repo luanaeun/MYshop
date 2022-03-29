@@ -52,22 +52,30 @@ public class UserSignInAction implements Action{
 			HttpSession se = req.getSession();		// 세션에 아이디 저장.
 			se.setAttribute("user_id", dto.getId());
 			
+			
+			if(dto.getId().toLowerCase().contains("admin") == true && dto.getIsAdmin() == 1) {
+				forward.setPath("./MngPage.am");
+			}
+			
 			//if(rememberID == "true") //...? 이거 왜 안돼...???
 			if(rememberID.length() > 0) {	
 				System.out.println("쿠키값 설정하러~: " + rememberID);
 				Cookie cookie = new Cookie("rememberID", req.getParameter("id"));
 				res.addCookie(cookie); 		// 응답페더에 쿠키 추가
 				System.out.println("쿠키 저장 완료! => " + cookie.getValue());
+				
+				forward.setPath("./Main.ma");
 			} else {
 				Cookie[] cookies = req.getCookies();
-				for(int i=0; i<cookies.length; i++) {
+				for(int i=0; i<cookies.length; i++) {	// 쿠키값 해제 동작
 					if(cookies[i].getName().equals("rememberID")) {
 						cookies[i].setMaxAge(0);
 						res.addCookie(cookies[0]);
 					}
-				}	
+				}
+				forward.setPath("./Main.ma");
 			}
-			forward.setPath("./Main.ma");
+			
 			
 		} else if(result == 0) {
 			req.setAttribute("loginResult", 0);

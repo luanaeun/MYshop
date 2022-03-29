@@ -70,6 +70,13 @@ table, th,td {
 }
 
 
+
+/* 제품 추가 컨테이너*/
+.addProd-box {
+	float: right;
+}
+
+
 /* 유저 구매 정보 테이블*/
 .purchase-table {
 	width: 900px;

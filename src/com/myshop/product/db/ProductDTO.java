@@ -13,6 +13,8 @@ public class ProductDTO {
 	private String gender;
 	private String email;
 	private Timestamp regdate;
+	
+	
 	public String getId() {
 		return id;
 	}

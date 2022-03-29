@@ -1,0 +1,19 @@
+textarea {
+	width: 80%;
+    height: 100px;
+}
+
+.addProd-container {
+	margin: 30px 15%;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.addImg-button {
+	width: 100px;
+	height: 100px;
+	background-color: gray;
+}
+.addImg-button > span {
+		
+}

@@ -10,7 +10,20 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-    <!-- 메인(Main)처리 컨트롤러 -->
+  
+  <!-- 매니저(Admin)처리 컨트롤러 -->
+  <servlet>
+	<servlet-name>ManageFrontCtl</servlet-name>
+	<servlet-class>com.myshop.manage.action.ManageFrontCtl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>ManageFrontCtl</servlet-name>
+	<url-pattern>*.am</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 메인(Main)처리 컨트롤러 -->
   <servlet>
 	<servlet-name>MainFrontCtl</servlet-name>
 	<servlet-class>com.myshop.main.MainFrontCtl</servlet-class>

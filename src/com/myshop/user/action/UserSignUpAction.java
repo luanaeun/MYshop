@@ -49,6 +49,13 @@ public class UserSignUpAction implements Action{
 
 		System.out.println("저장한것: " + dto.toString());
 		
+		// 관리자인지 확인
+		if(req.getParameter("id").toLowerCase().contains("admin") == true) {
+			dto.setIsAdmin(1);
+		} else {
+			dto.setIsAdmin(0);
+		}
+		
 		
 
 		// DAO 객체 생성. 실제 메서드 호출!!
