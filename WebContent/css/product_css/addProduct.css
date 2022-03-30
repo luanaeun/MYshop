@@ -1,3 +1,6 @@
+h4 {
+	clear: both;
+}
 textarea {
 	width: 80%;
     height: 100px;
@@ -9,11 +12,42 @@ textarea {
 	text-align: center;
 }
 
-.addImg-button {
-	width: 100px;
-	height: 100px;
-	background-color: gray;
+.img-warning {
+	font-size: 11px;
+	color: red;
 }
-.addImg-button > span {
-		
+.images-box {
+	float:left;
+/* 	border: 1px solid black; */
+	margin-left: 100px;
 }
+#addImg-input{
+	visibility: hidden;
+}
+.addImg-plus {
+	width: 80px;
+	height: 80px;
+	float: left;
+	background-color: #F0F0E9;
+	border-color: #eee;
+	padding: auto;
+	cursor: pointer;
+	font-weight: 900;
+	font-size: 50px;	
+	color: gray;
+}
+.addImg-input {
+	visibility: hidden;
+}
+
+추가한 이미지
+.image-show {
+	border: 1px solid black;
+	float: left;
+}
+
+
+
+
+
+

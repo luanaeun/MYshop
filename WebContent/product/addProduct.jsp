@@ -6,6 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/product_css/addProduct.css" rel="stylesheet" type="text/css">
 <link href="css/index.css" rel="stylesheet" type="text/css">
+
+<script src="./scripts/jquery-3.6.0.js"></script>
+<script src="scripts/prod_script/addProduct.js"></script>
+
 <title>MYshop</title>
 </head>
 <body>
@@ -16,10 +20,14 @@
 		<h1>제품 등록</h1>
 		
 		<h4>이미지 추가</h4>
-		<div class="addImg-button"><span>+</span></div>
-    	<input type="file" id="chooseImg" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-		
+		<div class="images-box" id="images-box">
+			<p id="img-warning" class="img-warning"></p>
+			<label for="addImg-input"><div class="addImg-plus">+</div></label>
+        	<input type="file" multiple id="addImg-input" name="addImg" accept="image/*" onchange="loadImage(this)">
 
+    	</div>
+
+	
 		<h4>상세 정보</h4>
 		<p><textarea placeholder="상세 정보 입력"></textarea></p>
 	
