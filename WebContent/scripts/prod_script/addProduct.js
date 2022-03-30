@@ -1,24 +1,3 @@
-//function loadImage(input) {
-//	console.log("선택한 파일들", input.files);
-//    var file = input.files[0];	//선택된 파일 가져오기
-//
-//  	//새로운 이미지 div 추가
-//    var newImage = document.createElement("img");
-//    newImage.setAttribute("class", 'img');
-//
-//    //이미지 source 가져오기
-//    newImage.src = URL.createObjectURL(file);   
-//
-//    newImage.style.width = "100%";
-//    newImage.style.height = "100%";
-//    newImage.style.objectFit = "contain";
-//
-//    //이미지를 image-show div에 추가
-//    var container = document.getElementById('image-show');
-//    container.appendChild(newImage);
-//};
-
-
 function loadImage(input) {
 	console.log("선택한 파일들", input.files);
 	let files = input.files;
@@ -38,10 +17,12 @@ function loadImage(input) {
 		    //이미지 source 가져오기
 		    newImage.src = URL.createObjectURL(temp);   
 		    
-		    newImage.style.width = "200px";
-		    newImage.style.height = "200px";
+		    newImage.style.width = "160px";
+		    newImage.style.height = "160px";
 		    newImage.style.float = "left";
-		    newImage.style.border = "1px solid #eee";
+		    newImage.style.border = "1px solid #BDBDBD";
+		    newImage.style.borderRadius = "10px";
+		    newImage.style.margin = "0px 5px";
 		    newImage.style.objectFit = "contain";
 
 		    //이미지를 image-show div에 추가
@@ -52,3 +33,9 @@ function loadImage(input) {
 	}
 	
 };
+
+
+
+function addProdCheck() {
+	
+}
