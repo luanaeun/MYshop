@@ -1,68 +1,143 @@
 package com.myshop.product.db;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class ProductDTO {
-	// member 테이블 정보를 한번에 저장하는 객체
+	// product_info 테이블 정보를 한번에 저장하는 객체
 	
-	private String id;
-	private String pw;
+	private int num;
+	private String userid;
+	
 	private String name;
-	private int phone;
-	private int birth;
-	private String gender;
-	private String email;
+	private int price;
+	private int stock;
+	private String category;
+	
+	private String deliDays;
+	private int deliCharge;
+	private String howDeli;
+	
+	private String content;
 	private Timestamp regdate;
+	private String ip;
 	
-	
-	public String getId() {
-		return id;
+	private String sumbnail;
+	private ArrayList images;
+
+	public String getUserid() {
+		return userid;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public String getPw() {
-		return pw;
+
+	public int getNum() {
+		return num;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+
+	public void setNum(int num) {
+		this.num = num;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPhone() {
-		return phone;
+
+	public int getPrice() {
+		return price;
 	}
-	public void setPhone(int phone) {
-		this.phone = phone;
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public int getBirth() {
-		return birth;
+
+	public int getStock() {
+		return stock;
 	}
-	public void setBirth(int birth) {
-		this.birth = birth;
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
-	public String getGender() {
-		return gender;
+
+	public String getCategory() {
+		return category;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getDeliDays() {
+		return deliDays;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setDeliDays(String deliDays) {
+		this.deliDays = deliDays;
 	}
+
+	public int getDeliCharge() {
+		return deliCharge;
+	}
+
+	public void setDeliCharge(int deliCharge) {
+		this.deliCharge = deliCharge;
+	}
+
+	public String getHowDeli() {
+		return howDeli;
+	}
+
+	public void setHowDeli(String howDeli) {
+		this.howDeli = howDeli;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public Timestamp getRegdate() {
 		return regdate;
 	}
+
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
+	public String getSumbnail() {
+		return sumbnail;
+	}
+
+	public void setSumbnail(String sumbnail) {
+		this.sumbnail = sumbnail;
+	}
+
+	public ArrayList getImages() {
+		return images;
+	}
+
+	public void setImages(ArrayList images) {
+		this.images = images;
+	}
 	
 	
+	
+
 }

@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.myshop.user.db.UserDTO;
@@ -99,22 +100,46 @@ public class ProductDAO {
   
   
   // 제품등록 메서드 
-  public void registerProduct(ProductDTO dto) {
-	System.out.println("DAO: registerProduct(dto) 호출");
+  public void addProduct(ProductDTO dto) {
+	System.out.println("DAO: addProduct(dto) 호출");
+	int pnum = 0;
 	
 	try {
 		con = getCon();
-		sql = "insert into itwill_member(id, pw, name, birth, gender, phone, email, regdate) "
-				+ "values(?,?,?,?,?,?,?,?)";
+		
+		sql = "select count(*) from product_info";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, dto.getId());
-		pstmt.setString(2, dto.getPw());
-		pstmt.setString(3, dto.getName());
-		pstmt.setInt(4, dto.getBirth());
-		pstmt.setString(5, dto.getGender());
-		pstmt.setInt(6, dto.getPhone());
-		pstmt.setString(7, dto.getEmail());
-		pstmt.setTimestamp(8, dto.getRegdate());
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			pnum = rs.getInt(1)+1;
+		}
+		
+		sql = "insert into product_info values(?,?,?,?,?,?,now(), ?,?,0,0, ?,?,?,?, ?,?,?,?)";
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setInt(1, pnum);
+		pstmt.setString(2, dto.getUserid());
+		pstmt.setString(3, dto.getCategory());
+		pstmt.setString(4, dto.getName());
+		pstmt.setInt(5, dto.getPrice());
+		pstmt.setInt(6, dto.getStock());
+		
+		pstmt.setString(7, dto.getSumbnail());
+		pstmt.setString(8, dto.getContent());
+		// p_viewcount, p_wishcount 이 두개는 0으로 저장. 
+		
+		
+		int len = dto.getImages().size();
+		for(int i=0; i<4; i++) {
+			System.out.printf("리스트 길이: %d, i값: %d, j값: %d", len, i, i+9);
+			if(i <= len) { pstmt.setString(i+9, (String)dto.getImages().get(i)); }
+			else { pstmt.setString(i+9, ""); }
+		}
+		
+		pstmt.setInt(13, dto.getDeliCharge());
+		pstmt.setString(14, dto.getHowDeli());
+		pstmt.setString(15, dto.getDeliDays());
+		pstmt.setString(16, dto.getIp());
 		
 		pstmt.executeUpdate();
 		System.out.println("DAO: 제품등록 완료");
@@ -124,7 +149,7 @@ public class ProductDAO {
 	} finally {
 		closeDB();
 	}
-	System.out.println("DAO : registerProduct() 끝!");
+	System.out.println("DAO : AddProduct() 끝!");
   }
 	
   

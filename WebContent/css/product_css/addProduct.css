@@ -3,6 +3,10 @@ h4 {
 	clear: both; 
 	margin: 50px 0px 10px 100px
 }
+p {
+	text-align: left; 
+	margin-left: 110px; 
+}
 textarea {
 	width: 830px;
     height: 200px;
@@ -21,7 +25,13 @@ textarea {
 	border: 1px solid #D5D5D5;
 	text-align: center;
 }
-.warning-text { font-size: 11px; color: red; text-align: left; margin-left: 100px; }
+.warning-text { 
+	font-size: 11px; 
+	color: red; 
+	
+	
+	margin-top: 10px;
+}
 
 
 
@@ -60,10 +70,10 @@ table,th,td {
 	border: 1px solid gray;
 }
 table {
-	margin: 50px auto 20px auto;
+	margin: 5px auto 20px auto;
 	width: 850px;
 	min-width: 800px;
-	height: 150px;
+	height: 200px;
 }
 table input, select {
 	height: 90%;

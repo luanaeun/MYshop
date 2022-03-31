@@ -29,10 +29,12 @@
 		<h1>제품 등록</h1>
 		
 		<h4>이미지 추가</h4>
+		<p>제일 처음 이미지는 썸네일로 활용됩니다.</p>
 		<p id="img-warning" class="warning-text"></p>
 		<div class="images-box" id="images-box">
 			<label for="addImg-input"><div class="addImg-plus">+</div></label>
         	<input type="file" multiple id="addImg-input" name="addImg" accept="image/*" onchange="loadImage(this)">
+        	<input type="hidden" name="fileNames" value1="" value2="" value3="" value4="" value5="">
     	</div>
 
 		<p id="info-warning" class="warning-text"></p>
@@ -40,18 +42,12 @@
 			<colgroup>
           		<col width="20%"><col width="30%"><col width="20%"><col width="30%">
         	</colgroup>
-			<tr>
-				<th class="twrite">가격</th>
-				<td><input type="text" name="" value="" placeholder="숫자만 입력"></td>
-				<th class="twrite">수량</th>
-				<td><input type="text" name="" value=""></td>
-			</tr>
-			<tr>
-				<th class="twrite">배송비</th>
-				<td><input type="text" name="" value=""></td>
-				<th class="twrite">카테고리</th>
+        	<tr>
+				<th>*제품명</th>
+				<td><input type="text" name="name" minlength="2" maxlength='10' placeholder="2~10글자"></td>
+				<th>*카테고리</th>
 				<td>
-					<select>
+					<select name="category">
 						<option value="">--선택하기--</option>
 						<%
 							if(cateList != null) {
@@ -62,10 +58,10 @@
 			    						//ArrayList detailList = (ArrayList) cateList.get(i);
 			    						%><option disabled class="select-option"><%=i %></option><% 
 										for(Object j : detailList) {
-											%><option style="padding-left: 10px;"><%=j %></option><% 
+											%><option name="<%=j%>"><%=j %></option><% 
 										}
 			    					} else {
-			    						%><option class="select-option"><%=i %></option><% 
+			    						%><option class="select-option" name="<%=i%>"><%=i %></option><% 
 			    					}	
 			    				}
 							}
@@ -74,9 +70,21 @@
 				</td>
 			</tr>
 			<tr>
+				<th>*가격</th>
+				<td><input type="text" name="price" placeholder="숫자만 입력"></td>
+				<th>*수량</th>
+				<td><input type="text" name="stock" ></td>
+			</tr>
+			<tr>
+				<th>*배송비</th>
+				<td><input type="text" name="deliveryCharge" value=""></td>
+				<th>출고기간</th>
+				<td><input type="text" name="deliDays" maxlength='20' placeholder="ex) 3~5일 뒤"></td>
+			</tr>
+			<tr>
 				<th class="twrite">배송조건</th>
 				<td colspan="3">
-					<input type="text" name="" value="" placeholder="ex) 20,000원 이상 무료배송">
+					<input type="text" name="howDeli" maxlength="20" placeholder="ex) 20,000원 이상 무료배송">
 				</td>
 				
 			</tr>
@@ -84,7 +92,7 @@
 		
 		
 		<h4>상세 정보</h4>
-		<p><textarea placeholder="상세 정보 입력"></textarea></p>
+		<p><textarea placeholder="상세 정보 입력" name="detailInfo"></textarea></p>
 
 
 		<div>
