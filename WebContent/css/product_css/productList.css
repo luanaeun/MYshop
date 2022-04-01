@@ -43,27 +43,33 @@ a{
     float: left;
     width: 230px;
     height: 300px;
-    border: 1px solid black;
+    border: 1px solid gray;
+    border-radius: 20px;
     margin-left: 20px;
     margin-top: 20px;
 
 }
-
-.image {
+.clothes-box > img {
     width: 100%;
     height: 70%;
     border-radius: 20px;
-    border: 1px solid black;
+/*     border: 1px solid black; */
+}
+.clothes-box > p {
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 .box-text{
-    width: 60%;
-    border: 1px solid black;
-    
+	display: flex;  
+	margin-top: 5px;  
+	margin-left: 10px;
+}
+.box-text > p {
+	width: 80%;
 }
 
-.like-icon {
-    float: left;
-    font-size: 27pt;
-
+.wish-icon {
+   width: 45px;
+   height: 45px;
 }

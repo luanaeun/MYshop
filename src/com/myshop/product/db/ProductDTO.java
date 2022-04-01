@@ -24,6 +24,9 @@ public class ProductDTO {
 	
 	private String sumbnail;
 	private ArrayList images;
+	
+	private int viewCount;
+	private int wishCount;
 
 	public String getUserid() {
 		return userid;
@@ -135,6 +138,29 @@ public class ProductDTO {
 
 	public void setImages(ArrayList images) {
 		this.images = images;
+	}
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductDTO [num=" + num + ", userid=" + userid + ", name=" + name + ", price=" + price + ", stock="
+				+ stock + ", category=" + category + ", deliDays=" + deliDays + ", deliCharge=" + deliCharge
+				+ ", howDeli=" + howDeli + ", content=" + content + ", regdate=" + regdate + ", ip=" + ip
+				+ ", sumbnail=" + sumbnail + ", images=" + images + "]";
 	}
 	
 	

@@ -46,12 +46,32 @@ public class AddProductAction implements Action{
 		dto.setDeliCharge(Integer.parseInt(multi.getParameter("deliveryCharge")));
 		dto.setDeliDays(multi.getParameter("deliDays"));
 		dto.setHowDeli(multi.getParameter("howDeli"));
-		dto.setContent(multi.getParameter("content"));
 		dto.setIp(req.getRemoteAddr());
 		
-		String[] s = multi.getParameterValues("fileNames");
-		System.out.println("대체 파일이 어떻게 되있길래" + Arrays.toString(s));
+		dto.setSumbnail(multi.getParameter("img01"));
+
 		
+		ArrayList fileNames = new ArrayList<>();
+		fileNames.add(multi.getParameter("img02"));
+		fileNames.add(multi.getParameter("img03"));
+		fileNames.add(multi.getParameter("img04"));
+		fileNames.add(multi.getParameter("img05"));
+		dto.setImages(fileNames);
+		
+		System.out.println("저장할 것: " + dto.toString());
+		
+		// 3번째 시도
+//		System.out.println("대체 파일이 어떻게 되있길래" + multi.getParameterValues("fileNames")[0]);
+//		String[] fileArray = multi.getParameterValues("fileNames");
+//		System.out.println("대체 파일이 어떻게 되있길래..?" + Arrays.toString(fileArray));
+//		ArrayList<String> fileNames = new ArrayList<>(Arrays.asList(fileArray));
+//		dto.setSumbnail(fileNames.get(0));
+//		
+//		fileNames.remove(0);
+//		dto.setImages(fileNames);
+//		System.out.println("저장할 것: " + dto.toString());
+		
+		// 2번째 시도
 //		System.out.println(multi.getParameter("fileNames"));
 //		String[] fileArray = multi.getParameter("fileNames").split("|");
 //		System.out.println("대체 파일이 어떻게 되있길래" + Arrays.toString(fileArray));
@@ -69,6 +89,7 @@ public class AddProductAction implements Action{
 //		Map map = new HashMap();
 //		Collections enu = (Collections) multi.getFileNames();
 		
+		// 첫 번째 시도
 		// 음... 파일 여러개 가져오는거 어케하지...?
 		// Enumeration en = multi.getFileNames();
 		// System.out.println("이넘" + en);
@@ -90,14 +111,14 @@ public class AddProductAction implements Action{
 
 		
 		// 페이지 이동
-//		ActionForward forward = new ActionForward();
-//		forward.setPath("./TodayNewProduct.pd");
-//		forward.setRedirect(true);
-//		
-//		System.out.println("M: 글쓰기 완료후 페이지 정보를 Ctl로 리턴");
-//		
-//		return forward;
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setPath("./TodayNewProduct.pd");
+		forward.setRedirect(true);
+		
+		System.out.println("M: 글쓰기 완료후 페이지 정보를 Ctl로 리턴");
+		
+		return forward;
+
 	
 	}
 	

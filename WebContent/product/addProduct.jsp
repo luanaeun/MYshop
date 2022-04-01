@@ -34,7 +34,11 @@
 		<div class="images-box" id="images-box">
 			<label for="addImg-input"><div class="addImg-plus">+</div></label>
         	<input type="file" multiple id="addImg-input" name="addImg" accept="image/*" onchange="loadImage(this)">
-        	<input type="hidden" name="fileNames" value1="" value2="" value3="" value4="" value5="">
+        	<input type="hidden" name="img01" value="">
+        	<input type="hidden" name="img02" value="">
+        	<input type="hidden" name="img03" value="">
+        	<input type="hidden" name="img04" value="">
+        	<input type="hidden" name="img05" value="">
     	</div>
 
 		<p id="info-warning" class="warning-text"></p>
@@ -44,7 +48,7 @@
         	</colgroup>
         	<tr>
 				<th>*제품명</th>
-				<td><input type="text" name="name" minlength="2" maxlength='10' placeholder="2~10글자"></td>
+				<td><input type="text" name="name" minlength="2" maxlength='16' placeholder="2~10글자"></td>
 				<th>*카테고리</th>
 				<td>
 					<select name="category">
@@ -92,7 +96,7 @@
 		
 		
 		<h4>상세 정보</h4>
-		<p><textarea placeholder="상세 정보 입력" name="detailInfo"></textarea></p>
+		<p><textarea placeholder="상세 정보 입력" name="content"></textarea></p>
 
 
 		<div>

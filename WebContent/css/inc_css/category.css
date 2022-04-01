@@ -2,6 +2,7 @@
 
 .header_bottom{
 	height: 80px;
+	min-width: 800px;
 	border-bottom: 1px solid #999;
 	display: flex;
     align-items: center;

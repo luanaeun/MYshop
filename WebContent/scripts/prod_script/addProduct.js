@@ -1,12 +1,16 @@
+let num = 1;
+
 function loadImage(input) {
 	console.log("선택한 파일들", input.files);
 	let fileNames = [];
 	let files = input.files;
 	
+	
 	if(files.length > 5){
 		$("#img-warning").text("* 이미지는 5개까지만 선택할 수 있습니다.");
 	} else {
 		for(let i=0; i<files.length; i++) {
+			console.log("넘: " , num)
 			var temp = input.files[i];
 			console.log("파일이름:", temp.name)
 			
@@ -32,12 +36,30 @@ function loadImage(input) {
 		    container.appendChild(newImage);
 		    
 		    fileNames.push(temp.name);
+//		    $('input[name=fileNames]').val(temp.name);
+		    $('input[name=img0'+num+']').val(temp.name);
 		    console.log(fileNames);
+		    
+		    num += 1;
 		}
+		
 	}
+	console.log($('input[name=img01]').val());
+	console.log($('input[name=img02]').val());
+	console.log($('input[name=img03]').val());
+	console.log($('input[name=img04]').val());
+	console.log($('input[name=img05]').val());
+//	$('input[name=img02]').val(fileNames[1]);
+//	$('input[name=img03]').val(fileNames[2]);
+//	$('input[name=img04]').val(fileNames[3]);
+//	$('input[name=img05]').val(fileNames[4]);
 //	console.log("최종 파일 이름들:", fileNames);
-	$('input[name=fileNames]').val(fileNames);
-	console.log("인풋값: ", $('input[name=fileNames]').val());
+	//$('input[name=fileNames]').val(fileNames);
+//	for(let i=0; i<fileNames; i++) {
+//		let s = value + (i+1);
+//		$('input[name=fileNames]').attr("value", fileNames[i]);
+//	}
+//	console.log("인풋값: ", $('input[name=fileNames]').val());
 };
 
 
@@ -45,9 +67,20 @@ function loadImage(input) {
 function addProdCheck() {
 	let isNmberCheck = /\d/;
 	
-	if($("[name=addImg]").val() == ""){
+	if($("[name=img01]").val() == ""){
 		$("#img-warning").text("* 이미지가 최소1 개 이상 있어야 합니다.");
         $("#img-warning").focus();
+        return false;
+    }
+	
+	if($("[name=name]").val() == ""){
+        $("#info-warning").text(" * 제훔명을 입력해주세요.");
+        $("[name=name]").focus();
+        return false;
+    }
+	if($("[name=name]").val().length > 16){
+        $("#info-warning").text(" * 16이상 입력할 수 없습니다.");
+        $("[name=name]").focus();
         return false;
     }
 	

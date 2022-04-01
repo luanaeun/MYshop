@@ -31,13 +31,19 @@ public class ProductFrontCtl extends HttpServlet{
 		ActionForward forward = null;
 		
 		if(command.equals("/TodayNewProduct.pd")) {			
-			forward = new ActionForward();
-			forward.setPath("./product/productList.jsp");
-			forward.setRedirect(false);
-		} else if (command.equals("/ProductDetail.pd")){
-			forward = new ActionForward();
-			forward.setPath("./product/prodDetail.jsp");
-			forward.setRedirect(false);
+			action = new GetTodayProductAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ProductDetail.pd")){	// 제품 세부정보
+			action = new GetProductDetailAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		  else if (command.equals("/AddProduct.pd")) {		// 상품 등록 페이지
 			  action = new BringCateAction();
@@ -65,6 +71,15 @@ public class ProductFrontCtl extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
+		
+		  else if(command.equals("/AddWishAction.pd")) {	// 위시리스트 추가
+			action = new AddWishListAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		  }
 		
 		
 		// 3. 페이지 이동

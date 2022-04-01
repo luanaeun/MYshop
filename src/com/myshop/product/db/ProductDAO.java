@@ -14,6 +14,7 @@ import javax.naming.InitialContext;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.myshop.board.db.NoticeDTO;
 import com.myshop.user.db.UserDTO;
 
 public class ProductDAO {
@@ -153,4 +154,149 @@ public class ProductDAO {
   }
 	
   
+  // 제품 가져오기 메서드
+  public ArrayList getProductList() {
+	System.out.println("DAO: 제품 가져오는 메소드 들어옴!");
+	ArrayList prodList = new ArrayList();
+		
+		try {
+			con = getCon();
+			// 글 자르기: limit
+			// 글 정렬: re_ref(내림차순) / re_seq(오름차순)
+			// sql = "select * from myshop_notice order by re_ref desc, re_seq asc limit ?,?";
+			sql = "select * from product_info order by p_rgdate desc";
+			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, startRow -1);
+//			pstmt.setInt(2, pageSize);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
+				ProductDTO dto = new ProductDTO();
+				
+				dto.setNum(rs.getInt("p_idx"));
+				dto.setUserid(rs.getString("p_userid"));
+				
+				dto.setName(rs.getString("p_name"));
+				dto.setPrice(rs.getInt("p_price"));
+				dto.setCategory(rs.getString("p_category"));
+				dto.setStock(rs.getInt("p_stock"));
+				dto.setContent(rs.getString("p_content"));
+				dto.setRegdate(rs.getTimestamp("p_rgdate"));
+				
+				dto.setDeliCharge(rs.getInt("p_delicharge"));
+				dto.setDeliDays(rs.getString("p_delidays"));
+				dto.setHowDeli(rs.getString("p_howdelivery"));
+				
+				dto.setIp(rs.getString("p_userid"));
+				
+				dto.setSumbnail(rs.getString("p_sumbnail"));
+				
+				ArrayList images = new ArrayList<>();
+				images.add(rs.getString("p_img01"));
+				images.add(rs.getString("p_img02"));
+				images.add(rs.getString("p_img03"));
+				images.add(rs.getString("p_img04"));
+				dto.setImages(images);
+				
+				dto.setViewCount(rs.getInt("p_viewcount"));
+				dto.setWishCount(rs.getInt("p_wishcount"));
+				
+				// List 한칸에 저장.
+				prodList.add(dto);
+			}
+			System.out.println("DAO: 제품 목록 가져오기 완료(List)");
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+	  
+	  return prodList;
+  }
+  
+  
+  // 제퓸 조회수 증가 메서드
+  public void updateProductView(int num) {
+	System.out.println("조회수 증가 메서드 호출");
+	try {
+		con = getCon();
+		sql = "update product_info set p_viewcount = p_viewcount + 1 where p_idx=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		pstmt.executeUpdate();
+			
+		System.out.println("DAO: 조회수 1증가 완료!");
+			
+	} catch(Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+  }
+  
+  
+  
+  // 제품 세부 정보 가져오기
+  public ProductDTO getDetailProduct(int num) {
+	  System.out.println("제품 세부 정보 가져오는 메서드");
+	  ProductDTO dto = null;
+	  
+	  try {
+		con = getCon();
+		sql = "select * from product_info where p_idx = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		rs = pstmt.executeQuery();
+			
+		if(rs.next()) {
+			dto = new ProductDTO();
+				
+			dto.setNum(rs.getInt("p_idx"));
+			dto.setUserid(rs.getString("p_userid"));
+				
+			dto.setName(rs.getString("p_name"));
+			dto.setPrice(rs.getInt("p_price"));
+			dto.setCategory(rs.getString("p_category"));
+			dto.setStock(rs.getInt("p_stock"));
+			dto.setContent(rs.getString("p_content"));
+			dto.setRegdate(rs.getTimestamp("p_rgdate"));
+				
+			dto.setDeliCharge(rs.getInt("p_delicharge"));
+			dto.setDeliDays(rs.getString("p_delidays"));
+			dto.setHowDeli(rs.getString("p_howdelivery"));
+				
+			dto.setIp(rs.getString("p_userid"));
+				
+			dto.setSumbnail(rs.getString("p_sumbnail"));
+				
+			ArrayList images = new ArrayList<>();
+			images.add(rs.getString("p_img01"));
+			images.add(rs.getString("p_img02"));
+			images.add(rs.getString("p_img03"));
+			images.add(rs.getString("p_img04"));
+			dto.setImages(images);
+				
+			dto.setViewCount(rs.getInt("p_viewcount"));
+			dto.setWishCount(rs.getInt("p_wishcount"));
+		}
+		System.out.println("가져온거: " + dto);
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+	return dto;
+  }
+
+  
 } // 전체 메서드
+
+  
+  
+  
+  
+  
+

@@ -17,7 +17,7 @@ a {
 
 .header_top {
   height: 35px;
-  min-width: 700px;
+  min-width: 800px;
   background: none repeat scroll 0 0 #F0F0E9;
 }
 
@@ -61,6 +61,7 @@ a {
 
 .header-middle {
 	height: 80px;
+	min-width: 800px;
 /* 	border: 1px solid black; */
 	border-bottom: 1px solid #999;
 	background: none repeat scroll 0 0 #fff;
