@@ -6,6 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/user_css/myPage.css" rel="stylesheet" type="text/css">
+
+<script src="./scripts/jquery-3.6.0.js"></script>
+<script src="scripts/user_script/myPage.js"></script>
+    	
 <title>MyPage</title>
 </head>
 <body>
@@ -89,11 +93,27 @@
   	</table>
   	
   	<div class="myBtn-box">
-  		<input type="button" class="my-button" value="정보 수정하기" onclick="location.href=' '">
+  		<input type="button" class="my-button" value="정보 수정하기" onclick="showModal()">
   		<input type="button" class="my-button" value="비밀번호 변경" onclick="location.href=' '">
   		<input type="button" class="my-button" value="회원 탈퇴" onclick="location.href='./DeleteUser.us'">
   	</div>
   	
+  	
+	<!-- 모달 창 만들기 -->
+  	<div id="myModal" class="modal">
+      <div class="modal-content">
+                <p style="text-align: center; line-height: 1.5;">
+                	<span style="font-size: 14pt;">비밀번호 입력</span>
+                </p>
+                <input type="password" >
+            <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;" >
+                     닫기
+                </span>
+            </div>
+      </div>
+    </div>
+
   	
   	
   </div>

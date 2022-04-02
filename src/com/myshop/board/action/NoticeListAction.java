@@ -58,7 +58,7 @@ public class NoticeListAction implements Action {
 		int pageCount = result/pageSize + (result%pageSize==0? 0:1);
 		
 		// 한번에 보여줄 페이지 블럭의 개수
-		int pageBlock = 2;
+		int pageBlock = 2; 
 		
 		// 시작페이지 번호(블럭): 만약 페이지가 1~10사이면 페이지 블럭=?1. 
 		// 페이지 블럭이 옆으로 안넘어간다는 말. => (15-1)/

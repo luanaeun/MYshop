@@ -74,6 +74,8 @@ th { text-align: center; }
 .pdetail-box > img {
 	width: 700px;
 	height: 700px;
+	margin: 10px 0px;
+    border-radius: 5px
 }
 
 

@@ -17,13 +17,19 @@
 <body>
 <%
 	ArrayList productList = (ArrayList) request.getAttribute("prodList");
+
+	String pageNum = (String) request.getAttribute("pageNum");
+	int pageCount = (int) request.getAttribute("pageCount");
+	int pageBlock = (int) request.getAttribute("pageBlock");
+	int startPage = (int) request.getAttribute("startPage");
+	int endPage = (int) request.getAttribute("endPage");
 %>
   <jsp:include page="../inc/header.jsp"></jsp:include>
   <jsp:include page="../inc/category.jsp"></jsp:include>
   
 
   <div class="productList-container">
-  <div class="right-bar">
+  	<div class="right-bar">
   
         <h2 class="right-title">오른쪽 제목</h2>
 
@@ -90,6 +96,32 @@
             </div>
             <div style="float:left"><p class="like-icon">♡</p></div>
         </div>
+        
+        
+       	<div class="page_control">
+			<%
+					// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
+				if (startPage > pageBlock) {
+			%><a href="./BoardList.bo?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+			<%
+				}
+			%>
+
+			<%
+				for (int i = startPage; i <= endPage; i++) {
+			%><a href="./BoardList.bo?pageNum=<%=i%>">[<%=i%>]</a>
+			<%
+				}
+			%>
+
+			<%
+				if (endPage < pageCount) {
+			%><a href="./BoardList.bo?pageNum=<%=startPage + pageBlock%>">[Next]</a>
+			<%
+			}
+			%>
+
+		</div>
 
     </div>
   </div>

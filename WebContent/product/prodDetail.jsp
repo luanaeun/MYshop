@@ -15,7 +15,7 @@
   <jsp:include page="../inc/header.jsp"></jsp:include>
   <jsp:include page="../inc/category.jsp"></jsp:include>
   <%
-	ProductDTO dto = new ProductDTO();
+	ProductDTO dto = (ProductDTO)request.getAttribute("dto");
   %>
   
   <div class="pdetail-container">
@@ -66,11 +66,14 @@
 		</p>
 		<%
 			ArrayList images = dto.getImages();
+			String s = "";
 			System.out.println("배열에 잘 있니?" + images);
 			for(int i=0; i<images.size(); i++) {
-				
-					%><img src="./productImgs/${images.get(i) }"><%
-				
+				s = (String)images.get(i);		
+				System.out.println("s: " + s);
+				if(s.length() > 0) {
+					%><img src="./productImgs/<%=s %>"><%
+				}
 			}
 		%>
 		
