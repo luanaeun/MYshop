@@ -25,8 +25,9 @@ public class UpdateUserInfoAction implements Action{
 		// 전달해준 파라미터 저장(액션태그X)
 		UserDTO dto = new UserDTO();
 		System.out.println("id");
+		
+		dto.setIdx(Integer.parseInt(req.getParameter("user_idx")));
 		dto.setId(req.getParameter("id"));
-		dto.setPw(req.getParameter("pw"));
 		dto.setName(req.getParameter("name"));
 		dto.setBirth(req.getParameter("birth"));
 		dto.setPhone(req.getParameter("phone"));
@@ -38,14 +39,10 @@ public class UpdateUserInfoAction implements Action{
 		dto.setDetailAddr(req.getParameter("detailAddr"));
 		System.out.println("status");
 		dto.setStatus(1);
-		System.out.println("infoagree");
-		dto.setInfoAgree(req.getParameterValues("infoAgree")[0] == "true"? 1 : 0);
-		System.out.println("emailagree");
 		
+		System.out.println("emailagree");
 		dto.setEmailAgree(req.getParameter("emailAgree") == null ? 0 : 1);
-		System.out.println("날짜");
-		// 날짜 정보 저장
-		dto.setRegdate(new Timestamp(System.currentTimeMillis()));
+
 
 		System.out.println("저장한것: " + dto.toString());
 		
@@ -53,13 +50,10 @@ public class UpdateUserInfoAction implements Action{
 
 		// DAO 객체 생성. 실제 메서드 호출!!
 		UserDAO dao = new UserDAO();
-		
-		
-		// 회원가입 메서드 호출
-		dao.userSignUp(dto);
+		dao.updateUserInfo(dto);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./SignIn.us");
+		forward.setPath("./MyPage.us");
 		forward.setRedirect(true); //이동방법 설정.주소가 login으로 바껴야하니까 true를 한다. 
 		
 		System.out.println("M : 페이지 정보를 컨트롤러 페이지로");

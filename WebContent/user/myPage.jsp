@@ -93,24 +93,27 @@
   	</table>
   	
   	<div class="myBtn-box">
-  		<input type="button" class="my-button" value="정보 수정하기" onclick="showModal()">
-  		<input type="button" class="my-button" value="비밀번호 변경" onclick="location.href=' '">
-  		<input type="button" class="my-button" value="회원 탈퇴" onclick="location.href='./DeleteUser.us'">
+  		<input type="button" class="my-button" value="정보 수정하기" onclick="showModal('info-update')">
+  		<input type="button" class="my-button" value="비밀번호 변경" onclick="showModal('pw-update')">
+  		<input type="button" class="my-button" value="회원 탈퇴" onclick="showModal('delete')">
   	</div>
   	
   	
 	<!-- 모달 창 만들기 -->
   	<div id="myModal" class="modal">
       <div class="modal-content">
-                <p style="text-align: center; line-height: 1.5;">
-                	<span style="font-size: 14pt;">비밀번호 입력</span>
-                </p>
-                <input type="password" >
-            <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
-                <span class="pop_bt" style="font-size: 13pt;" >
-                     닫기
-                </span>
-            </div>
+      	 <form action="./UserpwCheck.us" method="post" onsubmit="return pwWriteCheck();">
+         	<p class="x-box" onClick="close_pop();"><span>X</span></p>
+         	<input type="hidden" name="what">
+
+		 	<p style="color: red; font-size: 11pt;" name="warnning-text"></p>
+         	<p class="pw-text" name="modal-text"></p>
+         
+         	<input type="password" class="modal-pw" name="pw"><br>
+            
+         	<input type="submit" class="modal-submit" value="확인">
+<!--          	<div class="modal-submit">확인</div> -->
+         </form>  
       </div>
     </div>
 

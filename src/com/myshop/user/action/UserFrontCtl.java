@@ -30,11 +30,20 @@ public class UserFrontCtl extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/MngPage.us")) {
+		if(command.equals("/MngPage.us")) {			// 관리자 페이지
 			forward = new ActionForward();
 			forward.setPath("./admin/managePage.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/SignIn.us")) {			// 로그인
+		} else if(command.equals("/UserpwCheck.us")) {		// 비밀번호 체크 페이지
+			action = new UserpwCheckAction();
+			try{
+				forward = action.execute(req, resp);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/SignIn.us")) {		// 로그인 페이지
 			forward = new ActionForward();
 			forward.setPath("./user/signIn.jsp");
 			forward.setRedirect(false);
@@ -84,6 +93,12 @@ public class UserFrontCtl extends HttpServlet{
 				e.printStackTrace();
 			}
 		} else if(command.equals("/UpdateUserInfo.us")) { // 유저 정보 변경 페이지
+			action = new UpdateGetUserAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 			forward = new ActionForward();
 			forward.setPath("./user/updateUserInfo.jsp");
 			forward.setRedirect(false);
@@ -94,7 +109,7 @@ public class UserFrontCtl extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/DeleteUser.us")) {
+		} else if(command.equals("/DeleteUser.us")) {		// 회원 탈퇴 동작
 			action = new DeleteUserAction();	
 			try {
 				forward = action.execute(req, resp);	

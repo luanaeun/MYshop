@@ -174,7 +174,7 @@ public class UserDAO {
 	  try {
 			con = getCon();
 			
-			sql = "select user_id, user_name, user_birth, user_gender, user_phone, user_email, "
+			sql = "select user_idx, user_id, user_name, user_birth, user_gender, user_phone, user_email, "
 					+ "user_post, user_roadaddr, user_detailaddr, "
 					+ "user_buycount, user_pcount, user_wishcount, user_cartcount, user_qacount, user_reviewcount, "
 					+ "user_psending, user_pcellok, user_ordercount "
@@ -186,12 +186,14 @@ public class UserDAO {
 			if(rs.next()) {
 				dto = new UserDTO();	// 객체는 미리만들지 말고 필요할때 생성하자!!
 				
+				dto.setIdx(rs.getInt("user_idx"));
 				dto.setId(rs.getString("user_id"));
 				dto.setName(rs.getString("user_name"));
 				dto.setBirth(rs.getString("user_birth"));
 				dto.setPhone(rs.getString("user_phone"));
 				dto.setEmail(rs.getString("user_email"));
 				dto.setGender(rs.getString("user_gender"));
+				System.out.println("DAO에서 성별 나오는지: " + dto.getGender());
 
 				dto.setPost(rs.getInt("user_post"));
 				dto.setRoadAddr(rs.getString("user_roadaddr"));
@@ -246,6 +248,82 @@ public class UserDAO {
 	  return result;
   }
   
+  
+  // 유저 정보 수정 메서드
+  public void updateUserInfo(UserDTO dto) {
+	  System.out.println("DAO: updateUserInfo() 호출");
+		int uNum = 0;
+		
+		try {
+			con = getCon();
+					
+			sql = "insert into myshop_user(user_id, user_name, user_birth, user_gender, "
+					+ "user_phone, user_email, user_post, user_roadaddr, user_detailaddr, "
+					+ "user_rgdate, user_status, user_infoagree, user_emailagree, "
+					+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount, "
+					+ "user_psending, user_pcellok, user_ordercount, user_isadmin) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0,0,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getBirth());
+			pstmt.setString(4, dto.getGender());
+			
+			pstmt.setString(7, dto.getPhone());
+			pstmt.setString(8, dto.getEmail());
+			pstmt.setInt(9, dto.getPost());
+			pstmt.setString(10, dto.getRoadAddr());
+			pstmt.setString(11, dto.getDetailAddr());
+			
+			pstmt.setTimestamp(12, dto.getRegdate());
+			pstmt.setInt(13, dto.getStatus());
+			pstmt.setInt(14, dto.getInfoAgree());
+			pstmt.setInt(15, dto.getEmailAgree());
+			pstmt.setInt(16,  dto.getIsAdmin());
+			
+			pstmt.executeUpdate();
+			System.out.println("DAO: 회원가입 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		System.out.println("DAO : updateUserInfo() 끝!");
+		
+  }
+  
+  
+  // 비밀번호가 맞는지 체크 메서드
+  public int userPwCheck(UserDTO dto) {
+	  int result = 0;
+	  try {
+			con = getCon();
+			
+			sql = "select user_pw from myshop_user where user_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(dto.getPw().equals(rs.getString("user_pw"))) {
+					result = 1;
+				} else {
+					result = 0;
+				}
+	 		} else {
+	 			result = -1;
+	 		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+	  return result;
+  }
   
   
   
