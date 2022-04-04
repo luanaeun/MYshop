@@ -11,28 +11,39 @@
     	<script src="scripts/user_script/updateUserInfo.js"></script>
 
     	<title>로그인 / 회원가입 폼 템플릿</title>
-        <link href="css/user_css/updateUserInfo.css" rel="stylesheet" type="text/css">
+        <link href="css/user_css/signUp.css" rel="stylesheet" type="text/css">
     </head>
     
     <body>
-    	<jsp:include page="../inc/header.jsp"></jsp:include>
     	<%
+    		String idCheckResult = (String)request.getAttribute("idCheckResult");
     		UserDTO dto = new UserDTO();
-    		String idx = request.getParameter("idx");
+    		String g = dto.getGender();
+    		System.out.println("성별: " + g);
     	%>
+    	<jsp:include page="../inc/header.jsp"></jsp:include>
 
         <div class="wrap">
             <div class="form-wrap">
-            	<h1 style="text-align: center; margin-top:30px">정보 수정</h1>
+            	<h1 style="text-align: center; margin-top:30px">MYshop</h1>
                 
                 <form id="register" action="./UpdateUserInfoAction.us" onsubmit="return signUpCheckFunc()" class="input-group">
                 	
-                	<input type="hidden" name="user_idx" value="${idx }">
-                	
                 	<label>아이디</label><span id="id"></span><br>
                     <input type="text" class="input-field" name="id" value="${dto.id }" placeholder="3~10자" minlength=3 maxlength=10 >   
-                    <input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
-                    <input type="hidden" name="idCheckHidden" value="ok">
+                    <%
+                    	if(idCheckResult == "ok") { %>
+                    		<input type="button" class="check-button" style="background-color: transparent;" name="idCheckBtn" value="✔" ><br>
+                    		<input type="hidden" name="idCheckHidden" value="ok">
+                    	<% } else if (idCheckResult == "no"){ %>
+                    		<input type="button" class="check-button" name="idCheckBtn" value="이미 있는 아이디" onclick="idCheckFunc()"><br>
+
+                    	<% } else { %>
+                			<input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
+                		<% } 
+                    %>
+                    
+                
                     
                     <label>이름</label><span id="name"></span><br>
                     <input type="text" class="input-field" name="name" value="${dto.name }" minlength=1 maxlength=15><br>
@@ -42,46 +53,20 @@
                     
                     
                     <label>성별</label><span id="gender"></span><br>
-                    
-                	<%
-                	
-//                 	String gender = dto.getBirth();
-//             		System.out.println("성별 나와?" + gender);
+                    <input type="radio" class="input-radio" name="gender" value="남">남
+                    <input type="radio" class="input-radio" name="gender" value="여">여
+                    <input type="radio" class="input-radio" name="gender" value="비공개">선택안함<br>
 
-					// gender 정보 안가져와져서 일단 보류!!
-					String gender = "남";
-            		
-            		
-                	if(gender.equals("남")) {
-                		%>
-                			<input type="radio" class="input-radio" name="gender" value="남"  checked="on">남
-                			<input type="radio" class="input-radio" name="gender" value="여">여
-                			<input type="radio" class="input-radio" name="gender" value="비공개">선택안함<br>
-                		<%
-                	} else if (gender.equals("여")) {
-                		%>
-                			<input type="radio" class="input-radio" name="gender" value="남">남
-                			<input type="radio" class="input-radio" name="gender" value="여" checked="on">여
-                			<input type="radio" class="input-radio" name="gender" value="비공개">선택안함<br>
-                		<%
-                	} else {
-                		%>
-                			<input type="radio" class="input-radio" name="gender" value="남">남
-                			<input type="radio" class="input-radio" name="gender" value="여">여
-                			<input type="radio" class="input-radio" name="gender" value="비공개" checked="on">선택안함<br>
-                		<%
-                	}
-                	%>
-                                       
+                    
                     <label>핸드폰 번호</label><span id="phone"></span><br>
                     <input type="text" class="input-field" name="phone" value="${dto.phone }" placeholder="-없이 숫자만 입력">
-                    <input type="button" class="check-button" name="phoneCheck" value="인증번호받기" class="check-button"><br>
+<!--                     <input type="button" class="check-button" name="phoneCheck" value="인증번호받기" class="check-button"><br> -->
                     
                     <label>이메일</label><span id="email"></span><br>
-                    <input type="text" class="input-field" name="email" value="<%=dto.getEmail()%>"><br>
+                    <input type="text" class="input-field" name="email" value="${dto.email }"><br>
                     
                     <label>주소</label><span id="addr"></span><br>
-                    <input type="text" class="input-addr" id="postnum" name="post" placeholder="우편번호" value="${dto.post }" style="width:150px;">
+                    <input type="text" class="input-addr" id="postnum" name="post" value="${dto.post }" placeholder="우편번호" style="width:150px;">
 					<input type="button" onclick="searchPostNum()" value="주소 가져오기" class="check-button" id="bringAddr"><br>
 					
 					<input type="text" id="roadAddr" placeholder="도로명주소" name="roadAddr" value="${dto.roadAddr }" class="input-addr"><br>
@@ -89,10 +74,10 @@
 					<input type="hidden" id="jibunAdd" placeholder="지번주소"><br>
                     
                    	<br><br>
-                   
+                    
              		<input type="checkbox" class="input-radio" name="emailAgree" value="true"> 이메일 수신 동의(선택)<br>
              		
-                    <button class="submitbutton">정보 수정 완료</button>
+                    <button class="submitbutton">회원가입</button>
                 </form>
             </div>
         </div>

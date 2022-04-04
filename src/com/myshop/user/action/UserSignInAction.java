@@ -48,17 +48,16 @@ public class UserSignInAction implements Action{
 		System.out.println("로그인 함수 결과: " + result);
 		
 		ActionForward forward = new ActionForward();
+		HttpSession se = req.getSession();
 		if(result == 1) {
-			HttpSession se = req.getSession();		// 세션에 아이디 저장.
-			se.setAttribute("user_id", dto.getId());
+			se.setAttribute("user_id", dto.getId()); // 세션에 아이디 저장.
 			
 			
 			if(dto.getId().toLowerCase().contains("admin") == true && dto.getIsAdmin() == 1) {
 				forward.setPath("./MngPage.am");
 			}
 			
-			//if(rememberID == "true") //...? 이거 왜 안돼...???
-			if(rememberID.length() > 0) {	
+			if(rememberID.equals("remember")) {	
 				System.out.println("쿠키값 설정하러~: " + rememberID);
 				Cookie cookie = new Cookie("rememberID", req.getParameter("id"));
 				res.addCookie(cookie); 		// 응답페더에 쿠키 추가
@@ -78,11 +77,9 @@ public class UserSignInAction implements Action{
 			
 			
 		} else if(result == 0) {
-			req.setAttribute("loginResult", 0);
-			forward.setPath("./SignIn.us");
+			forward.setPath("./SignIn.us?r=" + result);
 		} else {
-			req.setAttribute("loginResult", -1);
-			forward.setPath("./SignIn.us");
+			forward.setPath("./SignIn.us?r=" + result);
 		}
 		forward.setRedirect(true);
 		

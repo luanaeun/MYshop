@@ -26,6 +26,8 @@ public class UpdateUserInfoAction implements Action{
 		UserDTO dto = new UserDTO();
 		System.out.println("id");
 		
+		System.out.println("dto에 셋팅하기 전에 값이 나오는지" + dto.getId());
+		
 		dto.setIdx(Integer.parseInt(req.getParameter("user_idx")));
 		dto.setId(req.getParameter("id"));
 		dto.setName(req.getParameter("name"));

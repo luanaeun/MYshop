@@ -9,7 +9,7 @@
 <%
 	// 쿠키값 가져오기
 	String rememberID = "";
-	int loginResult = 3;
+	//String loginResult = "3";
 	
 	Cookie[] cookie = request.getCookies();
 	
@@ -20,12 +20,7 @@
 		}
 	}
 	System.out.println("쿠키: " + rememberID);
-	
-	
-	// 로그인 로직 결과 가져오기
-	if(request.getAttribute("loginResult") != null) {
-		loginResult = (int)request.getAttribute("loginResult");
-	}
+
 	
 	
 %>
@@ -41,15 +36,38 @@
 		
 		<input type="password" name="pw" class="input-field" placeholder="비밀번호"> 
 		<%
-			if(loginResult == 0) { %>
-				<p class="loginResult-text">아이디나 비밀번호가 틀립니다.</p><br> <%
-			} else if(loginResult == -1) { %>
-				<p class="loginResult-text">비회원 입니다.</p><br> 
-		  <%}
+		
+			// 로그인 로직 결과 가져오기
+			int loginResult = 3;
+			try {
+				loginResult = Integer.parseInt(request.getParameter("r"));
+			} catch(Exception e) {
+				loginResult = 3;
+			}
+			
+			System.out.println("로그인 로직 결과는? " + loginResult);
+			
+			if(loginResult == 0) {
+				%>
+					<p class="loginResult-text">아이디나 비밀번호가 틀립니다.</p><br> 
+				<%		
+			} else if(loginResult == -1) { 
+				%>
+					<p class="loginResult-text">비회원 입니다.</p><br> 
+				<%
+		    } else {
+		    	%><p></p><%
+		    }
+			
 		%>	
 		
-		
-		<input type="checkbox" class="checkbox" name="rememberID" value="remember"> 
+		<%
+			if(rememberID == "") {
+				%><input type="checkbox" class="checkbox" name="rememberID" value="remember"><%
+			} else {
+				%><input type="checkbox" class="checkbox" name="rememberID" value="remember" checked="on"><%
+			}
+		%>
 		<span>아이디 기억하기</span>
 		
 		<div class="social-icons">
