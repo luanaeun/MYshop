@@ -17,33 +17,24 @@
     <body>
     	<%
     		String idCheckResult = (String)request.getAttribute("idCheckResult");
-    		UserDTO dto = new UserDTO();
+    		UserDTO dto = (UserDTO) request.getAttribute("dto");
     		String g = dto.getGender();
     		System.out.println("성별: " + g);
+    		
+    		int emailAgree = dto.getEmailAgree();
     	%>
     	<jsp:include page="../inc/header.jsp"></jsp:include>
-
+		
         <div class="wrap">
             <div class="form-wrap">
             	<h1 style="text-align: center; margin-top:30px">MYshop</h1>
                 
-                <form id="register" action="./UpdateUserInfoAction.us" onsubmit="return signUpCheckFunc()" class="input-group">
+                <form id="register" action="./UpdateUserInfoAction.us" onsubmit="return signUpCheckFunc()" method="post" class="input-group">
                 	
                 	<label>아이디</label><span id="id"></span><br>
                     <input type="text" class="input-field" name="id" value="${dto.id }" placeholder="3~10자" minlength=3 maxlength=10 >   
-                    <%
-                    	if(idCheckResult == "ok") { %>
-                    		<input type="button" class="check-button" style="background-color: transparent;" name="idCheckBtn" value="✔" ><br>
-                    		<input type="hidden" name="idCheckHidden" value="ok">
-                    	<% } else if (idCheckResult == "no"){ %>
-                    		<input type="button" class="check-button" name="idCheckBtn" value="이미 있는 아이디" onclick="idCheckFunc()"><br>
-
-                    	<% } else { %>
-                			<input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
-                		<% } 
-                    %>
-                    
-                
+         
+                	<input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
                     
                     <label>이름</label><span id="name"></span><br>
                     <input type="text" class="input-field" name="name" value="${dto.name }" minlength=1 maxlength=15><br>
@@ -53,13 +44,33 @@
                     
                     
                     <label>성별</label><span id="gender"></span><br>
-                    <input type="radio" class="input-radio" name="gender" value="남">남
-                    <input type="radio" class="input-radio" name="gender" value="여">여
-                    <input type="radio" class="input-radio" name="gender" value="비공개">선택안함<br>
+                    <%
+                    	if(g.equals("남")) {
+                    		%>
+                    			<input type="radio" class="input-radio" name="gender" value="남" checked="on">남
+                    			<input type="radio" class="input-radio" name="gender" value="여">여
+                    			<input type="radio" class="input-radio" name="gender" value="비공개">선택안함<br>
+                    		<% 
+                    	} else if(g.equals("여")) {
+                    		%>
+                			<input type="radio" class="input-radio" name="gender" value="남">남
+                			<input type="radio" class="input-radio" name="gender" value="여" checked="on">여
+                			<input type="radio" class="input-radio" name="gender" value="비공개">선택안함<br>
+                			<%
+                    	} else {
+                    		%>
+                			<input type="radio" class="input-radio" name="gender" value="남">남
+                			<input type="radio" class="input-radio" name="gender" value="여" >여
+                			<input type="radio" class="input-radio" name="gender" value="비공개" checked="on">선택안함<br>
+                			<%
+                    	}
+                    
+                    %>
+                    
 
                     
                     <label>핸드폰 번호</label><span id="phone"></span><br>
-                    <input type="text" class="input-field" name="phone" value="${dto.phone }" placeholder="-없이 숫자만 입력">
+                    <input type="text" class="input-field" name="phone" value="${dto.phone }" placeholder="-없이 숫자만 입력"><br>
 <!--                     <input type="button" class="check-button" name="phoneCheck" value="인증번호받기" class="check-button"><br> -->
                     
                     <label>이메일</label><span id="email"></span><br>
@@ -75,7 +86,14 @@
                     
                    	<br><br>
                     
-             		<input type="checkbox" class="input-radio" name="emailAgree" value="true"> 이메일 수신 동의(선택)<br>
+                    <%
+                    	if(emailAgree == 1) {
+                    		%><input type="checkbox" class="input-radio" name="emailAgree" value="true" checked="on"> 이메일 수신 동의(선택)<br><%
+                    	} else {
+                    		%><input type="checkbox" class="input-radio" name="emailAgree" value="true"> 이메일 수신 동의(선택)<br><%
+                    	}
+                    %>
+             		
              		
                     <button class="submitbutton">회원가입</button>
                 </form>

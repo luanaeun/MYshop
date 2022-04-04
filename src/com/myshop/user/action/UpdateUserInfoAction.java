@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
@@ -26,9 +27,10 @@ public class UpdateUserInfoAction implements Action{
 		UserDTO dto = new UserDTO();
 		System.out.println("id");
 		
-		System.out.println("dto에 셋팅하기 전에 값이 나오는지" + dto.getId());
+		HttpSession se = req.getSession();
+		String original_id = (String)se.getAttribute("user_id");
 		
-		dto.setIdx(Integer.parseInt(req.getParameter("user_idx")));
+	
 		dto.setId(req.getParameter("id"));
 		dto.setName(req.getParameter("name"));
 		dto.setBirth(req.getParameter("birth"));
@@ -39,10 +41,8 @@ public class UpdateUserInfoAction implements Action{
 		dto.setPost(Integer.parseInt(req.getParameter("post")));
 		dto.setRoadAddr(req.getParameter("roadAddr"));
 		dto.setDetailAddr(req.getParameter("detailAddr"));
-		System.out.println("status");
-		dto.setStatus(1);
 		
-		System.out.println("emailagree");
+		System.out.println("emailagree: " + req.getParameter("emailAgree"));
 		dto.setEmailAgree(req.getParameter("emailAgree") == null ? 0 : 1);
 
 
@@ -52,11 +52,19 @@ public class UpdateUserInfoAction implements Action{
 
 		// DAO 객체 생성. 실제 메서드 호출!!
 		UserDAO dao = new UserDAO();
-		dao.updateUserInfo(dto);
+		int result = dao.updateUserInfo(dto, original_id);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./MyPage.us");
-		forward.setRedirect(true); //이동방법 설정.주소가 login으로 바껴야하니까 true를 한다. 
+		if(result == 1) {
+			se.setAttribute("user_id", req.getParameter("id"));
+			forward.setPath("./MyPage.us");
+			forward.setRedirect(true); //이동방법 설정.주소가 login으로 바껴야하니까 true를 한다. 
+		} else {
+			forward.setPath("./UpdateUserInfo.us");		// 정보변경이 잘 되지 않았을 때.
+			forward.setRedirect(true);
+		}
+		
+		
 		
 		System.out.println("M : 페이지 정보를 컨트롤러 페이지로");
 		

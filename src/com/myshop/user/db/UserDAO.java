@@ -250,49 +250,43 @@ public class UserDAO {
   
   
   // 유저 정보 수정 메서드
-  public void updateUserInfo(UserDTO dto) {
-	  System.out.println("DAO: updateUserInfo() 호출");
-		int uNum = 0;
+  public int updateUserInfo(UserDTO dto, String original_id) {
+	System.out.println("DAO: updateUserInfo() 호출");
+	int result = 0;
+	try {
+		con = getCon();
 		
-		try {
-			con = getCon();
-					
-			sql = "insert into myshop_user(user_id, user_name, user_birth, user_gender, "
-					+ "user_phone, user_email, user_post, user_roadaddr, user_detailaddr, "
-					+ "user_rgdate, user_status, user_infoagree, user_emailagree, "
-					+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount, "
-					+ "user_psending, user_pcellok, user_ordercount, user_isadmin) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0,0,?)";
+		sql = "update myshop_user set user_id=?, user_name=?, user_birth=?, user_gender=?, "
+				+ "user_phone=?, user_email=?, user_post=?, user_roadaddr=?, user_detailaddr=?, user_emailagree=? "
+				+ "where user_id=?";
+
+		pstmt = con.prepareStatement(sql);
 			
-			pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, dto.getId());
+		pstmt.setString(2, dto.getName());
+		pstmt.setString(3, dto.getBirth());
+		pstmt.setString(4, dto.getGender());
 			
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getName());
-			pstmt.setString(3, dto.getBirth());
-			pstmt.setString(4, dto.getGender());
-			
-			pstmt.setString(7, dto.getPhone());
-			pstmt.setString(8, dto.getEmail());
-			pstmt.setInt(9, dto.getPost());
-			pstmt.setString(10, dto.getRoadAddr());
-			pstmt.setString(11, dto.getDetailAddr());
-			
-			pstmt.setTimestamp(12, dto.getRegdate());
-			pstmt.setInt(13, dto.getStatus());
-			pstmt.setInt(14, dto.getInfoAgree());
-			pstmt.setInt(15, dto.getEmailAgree());
-			pstmt.setInt(16,  dto.getIsAdmin());
-			
-			pstmt.executeUpdate();
-			System.out.println("DAO: 회원가입 완료");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		System.out.println("DAO : updateUserInfo() 끝!");
+		pstmt.setString(5, dto.getPhone());
+		pstmt.setString(6, dto.getEmail());
+		pstmt.setInt(7, dto.getPost());
+		pstmt.setString(8, dto.getRoadAddr());
+		pstmt.setString(9, dto.getDetailAddr());
+		pstmt.setInt(10, dto.getEmailAgree());
 		
+		pstmt.setString(11, original_id);
+			
+		pstmt.executeUpdate();
+		System.out.println("DAO: 회원정보 수정 완료");
+		result = 1;
+			
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+	System.out.println("DAO : updateUserInfo() 끝!");
+	return result;
   }
   
   

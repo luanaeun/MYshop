@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
+import com.myshop.main.action.MainBringCateAction;
 
 public class MainFrontCtl extends HttpServlet {
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,9 +30,15 @@ public class MainFrontCtl extends HttpServlet {
 		ActionForward forward = null;
 		
 		if(command.equals("/Main.ma")) {
-			forward = new ActionForward();
-			forward.setPath("./main/main.jsp");
-			forward.setRedirect(false);
+			action = new MainBringCateAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+//			forward = new ActionForward();
+//			forward.setPath("./main/main.jsp");
+//			forward.setRedirect(false);
 		}
 		
 		

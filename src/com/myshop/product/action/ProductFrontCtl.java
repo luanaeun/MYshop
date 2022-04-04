@@ -46,12 +46,12 @@ public class ProductFrontCtl extends HttpServlet{
 			}
 		}
 		  else if (command.equals("/AddProduct.pd")) {		// 상품 등록 페이지
-			  action = new BringCateAction();
-				try {
-					forward = action.execute(req, resp);	
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
+			action = new BringCateAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/AddProductAction.pd")) {	// 상품 등록 실제 페이지
 			action = new AddProductAction();
 			try {

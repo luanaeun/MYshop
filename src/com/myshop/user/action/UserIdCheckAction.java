@@ -1,6 +1,7 @@
 package com.myshop.user.action;
 
 
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,29 +24,27 @@ public class UserIdCheckAction implements Action{
 		// 한글처리
 		req.setCharacterEncoding("UTF-8");
 
-		// 전달해준 파라미터 저장(액션태그X)
-		String tempID = req.getParameter("id");
+		// 전달해준 파라미터 저장(Ajax)
+		String tempID = req.getParameter("userid");
+		System.out.println("확인 할 아이디: " + tempID);
 
 		// DAO 객체 생성
 		UserDAO dao = new UserDAO();
 		int result = dao.userIdCheck(tempID);
-		System.out.println("아이디 중복 체크 결과: " + result);
+		System.out.println("Action에서 아이디 중복 체크 결과: " + result);
 		
-		ActionForward forward = new ActionForward();
-		
-		if(result == 1) {
-			req.setAttribute("idCheckResult", "ok");	// 세션말고, 파라미터로 넘기고싶은데....
-			
-			forward.setPath("/SignUp.us?check=ok");	
+
+		PrintWriter out = res.getWriter();
+		if(result == 1) {	
+			out.print(result);
 		} else {
-			req.setAttribute("idCheckResult", "no");
-			forward.setPath("/SignUp.us");
+			out.print(result);
 		} 
-		forward.setRedirect(false);
+
 				
 		System.out.println("M : 아이디 중복 확인했으니까 다시 가입 페이지로!");
 		
-		return forward;
+		return null;
 
 	}
 

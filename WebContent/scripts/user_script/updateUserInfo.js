@@ -37,17 +37,41 @@ function searchPostNum() {
 
 // 아이디 중복 체크 버튼 함수
 function idCheckFunc() {
-	if($("[name=id]").val() == ""){
+	let userid = $("[name=id]").val();
+
+	if(userid == ""){
         $("#id").text("*아이디를 입력해주세요");
         $("[name=id]").focus();
         return false;
-	} else {
-		var url = "./SignUpIdCheck.us?id="+$("[name=id]").val();
+	} 
+	$.ajax({
+			async: true,
+			type : 'POST',
+			data: {'userid' : userid },
+			url : "./SignUpIdCheck.us",
+            success : function(result) {
+            	console.log("로그인 중복 결과: ", result);
+                if (result == 0) {
+                	$("#id").text("*이미 사용중인 아이디입니다.");
+                	$('[name=idCheckBtn]').val("중복확인");
+                	$("[name=id]").focus();
+                    
+                } else {
+                	$("#id").text("");
+                	$('[name=idCheckBtn]').val("사용가능✔");
+                }
+            },
+            error : function(error) {
+                alert("error : " + error);
+            }
+			
+		});
+		//var url = "./SignUpIdCheck.us?id="+$("[name=id]").val();
 		// history.pushState(null, null, "./SignUpIdCheck.us?id="+$("[name=id]").val());
 		
-		window.location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
+		//window.location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
 		// location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
-	}
+	
 }
 																																																											// buf
 					
@@ -76,28 +100,12 @@ function signUpCheckFunc() {
     }
 	
 	// 아이디 중복 체크 여부
-	if($("[name=idCheckHidden]").val() != "ok") {
+	if($("[name=idCheckBtn]").val() != "사용가능✔") {
 		$("#id").text("*아이디 중복체크를 해주세요.");
 		$("[name=id]").focus();
 		return false;
 	}
 	
-	
-	//비밀번호
-	if (!passwdCheck.test($("[name=pw]").val())) {
-		$("#pw").text("*대소문자,특수문자 포함 8~16자로 입력.");
-		$("[name=pw]").val("");
-		$("[name=pw]").focus();
-		return false;
-	}
-	
-	// 비번 확인
-	if ($("[name=pw]").val() !== $("[name=pwCheck]").val()) {
-		$("#pwCheck").text("*비밀번호가 다릅니다.");
-		$("[name=pwCheck]").val("");
-		$("[name=pwCheck]").focus();
-		return false;
-	}
 	
 	// 이름
 	if(!nameCheck.test($("[name=name]").val())){
@@ -142,12 +150,6 @@ function signUpCheckFunc() {
         return false;
     }
 	
-	// 개인정보 이용약관
-	if($("[name=infoAgree]").is(":checked") == false){
-        $("#infoAgree").text("*이용약관에 동의해주세요.");
-        $("[name=infoAgree]").focus();
-        return false;
-    }
 	
 	return true;
 																																																											// ==

@@ -37,20 +37,41 @@ function searchPostNum() {
 
 // 아이디 중복 체크 버튼 함수
 function idCheckFunc() {
-	if($("[name=id]").val() == ""){
+	let userid = $("[name=id]").val();
+	console.log("확인할 아이디1:", userid);
+	if(userid == ""){
         $("#id").text("*아이디를 입력해주세요");
         $("[name=id]").focus();
         return false;
-	} else {
-		var url = "./SignUpIdCheck.us?id="+$("[name=id]").val();
-		// history.pushState(null, null, "./SignUpIdCheck.us?id="+$("[name=id]").val());
-		window.location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
-		// location.href="./SignUpIdCheck.us?id="+$("[name=id]").val();
-	}
-}
-																																																											// buf
-					
+	} 
+	$.ajax({
+			async: true,
+			type : 'POST',
+			data: {'userid' : userid },
+			url : "./SignUpIdCheck.us",
+            success : function(result) {
+            	console.log("로그인 중복 결과: ", result);
+                if (result == 0) {
+                	$("#id").text("*이미 사용중인 아이디입니다.");
+                	$('[name=idCheckBtn]').val("중복확인");
+                	$("[name=id]").focus();
+                    
+                } else {
+                	$("#id").text("");
+                	$('[name=idCheckBtn]').val("사용가능✔");
+                }
+            },
+            error : function(error) {
+                alert("error : " + error);
+            }
+			
+		});
 
+	
+}
+
+																																																											// buf
+				
 // 회원가입 유효성 검사 함수.
 
 function signUpCheckFunc() {

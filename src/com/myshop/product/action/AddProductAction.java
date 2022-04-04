@@ -85,7 +85,9 @@ public class AddProductAction implements Action{
 //		System.out.println("이 결과는?" + multi.getFile("addImg"));
 //		System.out.println("이 결과는2?" + multi.getFileNames());
 		
-		//Enumeration<String> En = multi.getFileNames();
+//		Enumeration<String> en = multi.getFileNames();
+//		
+//		System.out.println("en: " + en);
 //		Map map = new HashMap();
 //		Collections enu = (Collections) multi.getFileNames();
 		
@@ -96,13 +98,13 @@ public class AddProductAction implements Action{
 		//
 		// ArrayList tempList = new ArrayList<>();
 		//
-		// while(en.hasMoreElements()) {
-		// System.out.println("에이"+ (String)en.nextElement());
-		// String a = (String) en.nextElement();
-		// System.out.println(multi.getFilesystemName("addImg"));
-		//// System.out.println("제발.." + b);
-		//// tempList.add(b);
-		// }
+//		 while(en.hasMoreElements()) {
+//		 System.out.println("에이"+ (String)en.nextElement());
+//		 String a = (String) en.nextElement();
+//		 System.out.println(multi.getFilesystemName("addImg"));
+//		// System.out.println("제발.." + b);
+//		// tempList.add(b);
+//		 }
 
 
 		// 제품 등록 메서드 호출

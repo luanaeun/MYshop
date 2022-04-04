@@ -1,8 +1,8 @@
 /* ---------------category.jsp--------------- */
 
 .header_bottom{
-	height: 80px;
-	min-width: 800px;
+	height: 40px;
+	min-width: 1500px;
 	border-bottom: 1px solid #999;
 	display: flex;
     align-items: center;
@@ -11,11 +11,10 @@
 
  
 .cate-list li {
-	height: 50px;
-	width: 110px;
-	border: 1px solid black;
-	line-height: 50px;
-	margin: auto 20px;
+	height: 30px;
+	width: 90px;
+/* 	border: 1px solid black; */
+	line-height: 30px;
 }
 
 .dropdown {
@@ -28,8 +27,9 @@
   position : absolute;
   z-index : 1; /*다른 요소들보다 앞에 배치*/
   font-weight: 400;
-  background-color: #f9f9f9;
-  min-width : 110px;
+/*   background-color: #f9f9f9; */
+  background-color: #F0F0E9;
+  min-width : 100px;
 }
 
 .dropdown-box a {
@@ -43,7 +43,7 @@
 
 
 .dropdown-box a:hover{
-  background-color : #ececec
+  background-color : #D4F4FA
 }
 
 .dropdown:hover .dropdown-box {

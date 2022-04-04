@@ -145,6 +145,14 @@ public class ProductDAO {
 		pstmt.executeUpdate();
 		System.out.println("DAO: 제품등록 완료");
 		
+		
+		// 유저 정보에서 내 상품 개수 +1 하기
+		sql = "update myshop_user set user_pcount = user_pcount + 1 where user_id=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, dto.getUserid());
+		pstmt.executeUpdate();
+		
+		
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
