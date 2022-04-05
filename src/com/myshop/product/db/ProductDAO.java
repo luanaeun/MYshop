@@ -108,7 +108,7 @@ public class ProductDAO {
 	try {
 		con = getCon();
 		
-		sql = "select count(*) from product_info";
+		sql = "select max(p_idx) from product_info";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
@@ -162,20 +162,43 @@ public class ProductDAO {
   }
 	
   
+  
+  // 제품 총 개수 구하기 메서드
+  public int getProductCount(String detail) {
+	int result = 0;
+	try {
+		con = getCon();
+		sql = "select count(*) from product_info where DATE_FORMAT(p_rgdate, '%Y-%m-%d')=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, detail);
+		System.out.println("DAO : 쿼리 완성본: " + sql);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			result = rs.getInt(1); //만약 컬럼명으로 스고싶으면 "count(*)"이렇게 쓰면된다. 
+		}
+		System.out.println("DAO : 오늘 들어온 상품 총 개수 - " + result);
+			
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}		
+		return result;
+  }
+  
+  
   // 제품 가져오기 메서드
-  public ArrayList getProductList() {
+  public ArrayList getProductList(int startRow, int pageSize) {
 	System.out.println("DAO: 제품 가져오는 메소드 들어옴!");
 	ArrayList prodList = new ArrayList();
 		
 		try {
 			con = getCon();
-			// 글 자르기: limit
-			// 글 정렬: re_ref(내림차순) / re_seq(오름차순)
-			// sql = "select * from myshop_notice order by re_ref desc, re_seq asc limit ?,?";
-			sql = "select * from product_info order by p_rgdate desc";
+
+			sql = "select * from product_info order by p_rgdate desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, startRow -1);
-//			pstmt.setInt(2, pageSize);
+			pstmt.setInt(1, startRow -1);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -224,6 +247,7 @@ public class ProductDAO {
 	  
 	  return prodList;
   }
+  
   
   
   // 제퓸 조회수 증가 메서드
@@ -299,6 +323,88 @@ public class ProductDAO {
 	return dto;
   }
 
+  
+  // 제품 수정 메서드
+  public void updateProduct(ProductDTO dto) {
+	System.out.println("DAO: updateProduct(dto) 호출");
+	int pnum = 0;
+		
+	try {
+		con = getCon();
+			
+		sql = "update product_info set p_category=?, p_name=?, p_price=?, p_stock=?, p_rgdate=now(), p_sumbnail=?, p_content=?, "
+				+ "p_img01=?, p_img02=?, p_img03=?, p_img04=?, p_delicharge=?, p_howdelivery=?, p_delidays=? p_ip=?"
+				+ "where p_idx=?";      
+		pstmt = con.prepareStatement(sql);
+			
+		pstmt.setString(1, dto.getCategory());
+		pstmt.setString(2, dto.getName());
+		pstmt.setInt(3, dto.getPrice());
+		pstmt.setInt(4, dto.getStock());
+			
+		pstmt.setString(5, dto.getSumbnail());
+		pstmt.setString(6, dto.getContent());
+		
+			
+		int len = dto.getImages().size();
+		int i = 0;
+		for(i=0; i<len; i++) {
+			System.out.printf("리스트 길이: %d, i값: %d, j값: %d", len, i, i+9);
+			if(i <= len) { pstmt.setString(i+7, (String)dto.getImages().get(i)); }
+		}
+		int j = i+7;
+			
+		pstmt.setInt(j+1, dto.getDeliCharge());
+		pstmt.setString(j+2, dto.getHowDeli());
+		pstmt.setString(j+3, dto.getDeliDays());
+		pstmt.setString(j+4, dto.getIp());
+			
+		pstmt.executeUpdate();
+		System.out.println("DAO: 제품수정 완료");
+			
+			
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+	System.out.println("DAO : AddProduct() 끝!");
+  }
+		
+  
+  
+  // 제품 삭제 메서드
+  public int deleteProduct(String userid, int num) {
+	  System.out.println("상품 삭제 메서드: " + userid);
+	  int result = 0;
+	  try {
+		con = getCon();
+
+		sql = "delete from product_info where p_idx=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		result = pstmt.executeUpdate();
+		
+		// 회원의 상품 개수를 -1 하기
+		// sql = "update myshop_user set user_pcount = user_pcount-1 where user_id=?";
+		sql = "update myshop_user set user_pcount = "
+				+ "(select * from (select user_pcount from myshop_user a where user_id=?)as a)-1 where user_id=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, userid);
+		pstmt.setString(2, userid);
+		result = pstmt.executeUpdate();
+			
+		System.out.println("제품 삭제 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+	  return result;
+  }
+  
   
 } // 전체 메서드
 

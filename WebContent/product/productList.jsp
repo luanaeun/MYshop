@@ -16,7 +16,7 @@
 </head>
 <body>
 <%
-	ArrayList productList = (ArrayList) request.getAttribute("prodList");
+	ArrayList productList = (ArrayList) request.getAttribute("productList");
 
 	String pageNum = (String) request.getAttribute("pageNum");
 	int pageCount = (int) request.getAttribute("pageCount");
@@ -98,7 +98,10 @@
         </div>
         
         
-       	<div class="page_control">
+       	
+
+    </div>
+    <div class="page_control">
 			<%
 					// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
 				if (startPage > pageBlock) {
@@ -109,7 +112,7 @@
 
 			<%
 				for (int i = startPage; i <= endPage; i++) {
-			%><a href="./BoardList.bo?pageNum=<%=i%>">[<%=i%>]</a>
+			%><a href="./BoardList.bo?pageNum=<%=i%>" ><%=i%></a>
 			<%
 				}
 			%>
@@ -119,17 +122,11 @@
 			%><a href="./BoardList.bo?pageNum=<%=startPage + pageBlock%>">[Next]</a>
 			<%
 			}
-			%>
+			%>	
 
 		</div>
-
-    </div>
   </div>
 	
-
-
-  
-   
 
   <jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>

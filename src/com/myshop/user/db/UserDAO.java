@@ -225,9 +225,7 @@ public class UserDAO {
 	  int result = 0;
 	  try {
 			con = getCon();
-			// 로그인할때처럼 비번이 맞는지 먼저 확인해야겠지..?
-			
-			
+
 			// 회원을 -> 탈퇴로 변경!!
 			sql = "update myshop_user set user_status=?, user_id=?, user_lastlogin=? where user_id=?";
 			pstmt = con.prepareStatement(sql);

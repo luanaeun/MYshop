@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.myshop.common.*;
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
+import com.myshop.user.action.UpdateUserInfoAction;
 
 public class ProductFrontCtl extends HttpServlet{
 	
@@ -59,10 +60,17 @@ public class ProductFrontCtl extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/UpdateProduct.pd")) {		// 상품 수정 
+		} else if (command.equals("/UpdateProduct.pd")) {		// 상품 수정 페이지로 이동
 			forward = new ActionForward();
 			forward.setPath("./product/updateProduct.jsp");
 			forward.setRedirect(false);
+		} else if (command.equals("/UpdateProductAction.pd")) {	// 상품 수정 액션
+			action = new UpdateUserInfoAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/DeleteroductAction.pd")) {	// 상품 삭제
 			action = new DeleteProductAction();
 			try {

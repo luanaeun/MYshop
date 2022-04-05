@@ -3,6 +3,7 @@ package com.myshop.user.action;
 
 import java.sql.Timestamp;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -57,6 +58,20 @@ public class UpdateUserInfoAction implements Action{
 		ActionForward forward = new ActionForward();
 		if(result == 1) {
 			se.setAttribute("user_id", req.getParameter("id"));
+			
+			// 쿠키값 가져오기
+			String rememberID = "";
+			Cookie[] cookies = req.getCookies();
+			if(cookies !=  null) {
+				for(int i=0; i<cookies.length; i++) {	// 쿠키값 해제 동작
+					if(cookies[i].getName().equals("rememberID")) {
+						Cookie cookie = new Cookie("rememberID", req.getParameter("id"));
+						res.addCookie(cookie);
+					}
+				}
+			}
+			System.out.println("쿠키: " + rememberID);
+			
 			forward.setPath("./MyPage.us");
 			forward.setRedirect(true); //이동방법 설정.주소가 login으로 바껴야하니까 true를 한다. 
 		} else {

@@ -8,6 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/index.css" rel="stylesheet" type="text/css">
 <link href="css/product_css/prodDetail.css" rel="stylesheet" type="text/css">
+
+<script src="./scripts/jquery-3.6.0.js"></script>
+<script src="scripts/prod_script/prodDetail.js"></script>
+
 <title>MYshop</title>
 </head>
 
@@ -16,6 +20,8 @@
   <jsp:include page="../inc/category.jsp"></jsp:include>
   <%
 	ProductDTO dto = (ProductDTO)request.getAttribute("dto");
+  	String current_user = (String)session.getAttribute("user_id");
+  	request.setAttribute("dto", dto);
   %>
   
   <div class="pdetail-container">
@@ -47,10 +53,24 @@
 		  </table>
 		  
 		  <div class="table-box-button">
-		  	<input type="button" value="장바구니">
-		  	<input type="button" value="찜 하기">
-		  	<input type="button" value="바로 구매" style="background-color: #E4F7BA;">
+		  <%
+		  	if(dto.getUserid().equals(current_user)) {
+		  		%>
+	  			  <input type="button" value="수정하기" onclick="location.href='./UpdateProduct.pd'">
+	  			  <input type="button" value="삭제" onclick="showModal('delete')" style="background-color: #EDC6C6;">
+	  			<%
+		  		
+		  	} else {
+		  		%>
+		  		  <input type="button" value="장바구니">
+		  		  <input type="button" value="찜 하기">
+		  		  <input type="button" value="바로 구매" style="background-color: #E4F7BA;">
+		  		<%
+		  	}
+		  %>
 		  </div>
+		  	
+		  
 		  
 		</div>
 	</div>
@@ -88,6 +108,16 @@
 	</div>
 	
   </div>
+  
+  <div id="myModal" class="modal">
+      <div class="modal-content">
+         <p class="x-box" onClick="close_pop();"><span>X</span></p>
+
+         <p class="pw-text" name="modal-text"></p>
+
+         <div class="modal-submit" id="modal-submit" onclick="deleteScript(${dto.num})">확인</div>
+      </div>
+   </div>
   
   <jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>

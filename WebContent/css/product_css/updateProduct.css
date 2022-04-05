@@ -1,0 +1,117 @@
+h4 { 
+	text-align: left;
+	clear: both; 
+	margin: 50px 0px 10px 100px
+}
+p {
+	text-align: left; 
+	margin-left: 110px; 
+}
+textarea {
+	width: 830px;
+    height: 200px;
+    resize: none;
+    padding: 10px;
+    outline: none;
+    padding-left: 10px;
+    font-size: 11pt;
+    line-height: 140%;
+}
+
+
+.addProd-container {
+	margin: 30px 15%;
+	min-width: 1060px;
+	border: 1px solid #D5D5D5;
+	text-align: center;
+}
+.warning-text { 
+	font-size: 11px; 
+	color: red; 
+	
+	
+	margin-top: 10px;
+}
+
+
+
+/*이미지 추가 영역*/
+.images-box {
+	float:left;
+	width: 90%;
+	height: 210px;
+/* 	border: 1px solid black; */
+	margin-left: 100px;
+}
+#addImg-input{ visibility: hidden; }
+.addImg-plus {
+	width: 70px;
+	height: 70px;
+	float: left;
+	background-color: #F0F0E9;
+	border-color: #eee;
+	padding: auto;
+	cursor: pointer;
+	font-weight: 900;
+	font-size: 45px;	
+	color: gray;
+}
+.addImg-plus:hover {
+  	transform: scale(1.1);
+    transition: transform 0.5s;
+    filter: brightness(95%);
+}
+.addImg-input { visibility: hidden; }
+
+
+/*제품 정보 테이블*/
+table,th,td {
+	border-collapse: collapse;
+	border: 1px solid gray;
+}
+table {
+	margin: 5px auto 20px auto;
+	width: 850px;
+	min-width: 800px;
+	height: 200px;
+}
+table input, select {
+	height: 90%;
+	width: 90%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 11pt;
+}
+
+
+select:disabled {
+  opacity: 0.5;
+}
+.select-option {
+	background-color: #F0F0E9;
+	padding: 2px auto;
+}
+.aaa {
+	margin-left: 10px;
+}
+
+
+/*제품 등록 버튼*/
+.submit-btn {
+	padding: 5px 50px;
+	margin: 60px auto;
+    border: 1px solid #D5D5D5;
+    background-color: #F0F0E9;
+    cursor: pointer;
+}
+.submit-btn:hover {
+	box-shadow: 5px 5px 5px #CFCFCF;
+}
+
+
+
+
+
+
+

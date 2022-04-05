@@ -17,7 +17,6 @@
 		<%
 		if(cateList != null) {
 			for (Object i: cateList.keySet()) {
-				System.out.println("아이: " + i);
 				ArrayList detailList = (ArrayList) cateList.get(i);
 				if(i.equals("도서·음반·문구")) {
 					%><li class="dropdown" style="width: 110px;"><a href=""><%=i %></a><%
