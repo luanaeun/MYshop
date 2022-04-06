@@ -61,9 +61,12 @@ public class ProductFrontCtl extends HttpServlet{
 				e.printStackTrace();
 			}
 		} else if (command.equals("/UpdateProduct.pd")) {		// 상품 수정 페이지로 이동
-			forward = new ActionForward();
-			forward.setPath("./product/updateProduct.jsp");
-			forward.setRedirect(false);
+			action = new UpdateProductGetAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if (command.equals("/UpdateProductAction.pd")) {	// 상품 수정 액션
 			action = new UpdateUserInfoAction();	
 			try {

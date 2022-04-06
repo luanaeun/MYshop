@@ -349,7 +349,7 @@ public class ProductDAO {
 		int len = dto.getImages().size();
 		int i = 0;
 		for(i=0; i<len; i++) {
-			System.out.printf("리스트 길이: %d, i값: %d, j값: %d", len, i, i+9);
+			//System.out.printf("리스트 길이: %d, i값: %d, j값: %d", len, i, i+9);
 			if(i <= len) { pstmt.setString(i+7, (String)dto.getImages().get(i)); }
 		}
 		int j = i+7;

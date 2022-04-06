@@ -1,0 +1,63 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.nWrite-container {
+	margin: 5% 20%;
+	min-width: 1000px;
+	height: 300px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+
+table{
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+
+table thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+
+table tbody th {
+	width: 100px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+table td {
+	width: 400px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+table td input {
+	width: 100%;
+	height: 100%;
+	border: none;
+	padding: 5px;
+	font-size: 12pt;
+}
+table td input:hover {
+	outline: none;
+}
+
+
+.submit {
+	width: 150px;
+    margin: 10px;
+}
+
+
+

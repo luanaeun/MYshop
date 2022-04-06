@@ -17,7 +17,7 @@
 		<h2>Service</h2>
 		<ul>
 			<li><a href="#">Online Help</a></li>
-			<li><a href="#">고객의 소리</a></li>
+			<li><a href="${pageContext.request.contextPath}/QandA.bo">고객의 소리</a></li>
 			<li><a href="#">FAQ</a></li>
 		</ul>
 	</div>

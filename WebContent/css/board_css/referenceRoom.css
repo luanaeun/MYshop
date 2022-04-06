@@ -1,0 +1,88 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.notice-container {
+	padding: 5% 10% 15% 10%;
+	min-width: 900px;
+}
+.add-text { float: right; }
+.add-text > a { background-color: antiquewhite }
+
+.notice-container > h1 {
+	margin-bottom: 5px;
+	margin-left: 10px;
+	align-self: flex-end;
+	font-weight: 500;
+	font-size: 35px;
+}
+
+.list_container {
+	border-top: 1px solid black;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin-top: 5px;
+	justify-content: center;
+	width: 100%;
+	min-width: 900px;
+}
+
+
+/*테이블 css*/
+table.type09 {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+
+table.type09 thead th {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+
+table.type09 tbody th {
+	width: 100px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+table.type09 td {
+	width: 400px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+
+.page_control {
+	text-align: center;
+	margin-top: 30px;
+}
+
+/*글자정렬 center 밖여백 20px 0 0 0
+밖여백오른쪽 auto 밖여백왼쪽 auto */
+.page_control a {
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #333;
+	margin: 0 5px;
+}
+/* 안여백 2px 5px 밑줄 none 글자색#333 밖여백 0 5px */
+/* .page_control a:hover { */
+/* 	font-weight: bold; */
+/* 	color: #F90; */
+/* 	text-decoration: underline; */
+/* } */
+
+.fileName { cursor: pointer; }
+.fileName > a:hover {
+	color: orange;
+}

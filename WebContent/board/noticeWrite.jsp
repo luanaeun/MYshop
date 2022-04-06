@@ -58,8 +58,9 @@
 			<input type="submit" value="글쓰기" class="btn">
 		</div>
 		<div class="clear"></div>
+	</div>
 </form>
-</div>
+
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>

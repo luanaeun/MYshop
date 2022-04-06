@@ -56,7 +56,7 @@
 		  <%
 		  	if(dto.getUserid().equals(current_user)) {
 		  		%>
-	  			  <input type="button" value="수정하기" onclick="location.href='./UpdateProduct.pd'">
+	  			  <input type="button" value="수정하기" onclick="location.href='./UpdateProduct.pd?num='+${dto.num }">
 	  			  <input type="button" value="삭제" onclick="showModal('delete')" style="background-color: #EDC6C6;">
 	  			<%
 		  		

@@ -14,5 +14,4 @@
   //response.sendRedirect("http://localhost:8088/Model2/MemberJoin.me");
   	
 
-  
 %>

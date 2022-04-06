@@ -23,7 +23,7 @@
 <%
 	LinkedHashMap cateList = (LinkedHashMap) request.getAttribute("cateList");
 	ProductDTO dto = (ProductDTO)request.getAttribute("dto");
-
+	System.out.println("수정 페이지에서 값이 나와?" + dto);
 %>
 
 <form action="./AddProductAction.pd" method="post" enctype="multipart/form-data" onsubmit="return addProdCheck()">

@@ -291,6 +291,95 @@ public class BoardDAO {
 //	}
 	
 	
+	// 자료실 업로드 함수
+	public void writeReference(ReferenceDTO dto) {
+		int idx = 0;
+		try {
+			con = getCon();
+			sql = "select max(refer_idx) from myshop_reference";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { idx = rs.getInt(1)+1; }
+			
+			sql = "insert into myshop_reference values(?,?,?,?,0,now())";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, dto.getAuthor());
+			pstmt.setString(3, dto.getTitle());
+			pstmt.setString(4, dto.getFile());
+		
+			pstmt.executeUpdate();
+			
+			System.out.println("DAO : 자료실 업로드 완료! ");	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+	}
+	
+	
+	// 자료실 총 개수 
+	public int getReferenceCount() {
+		System.out.println("자료실 카운트 함수");
+		int result = 0;
+		try {
+			con = getCon();
+			sql = "select count(*) from myshop_reference";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1); //만약 컬럼명으로 스고싶으면 "count(*)"이렇게 쓰면된다. 
+			}
+			//System.out.println("DAO : 공지 총 개수 -> " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}		
+		return result;
+	}
+	
+	
+	// 자료실 가져오기 함수
+	public ArrayList getReferenceList() {
+		ArrayList referenceList = new ArrayList();
+		
+		try {
+			con = getCon();
+
+			sql = "select * from myshop_reference order by refer_title asc";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
+				ReferenceDTO dto = new ReferenceDTO();
+				dto.setIdx(rs.getInt("refer_idx"));
+				dto.setAuthor("관리자");
+				dto.setTitle(rs.getString("refer_title"));
+				dto.setFile(rs.getString("refer_file"));
+				dto.setDowncount(rs.getInt("refer_downcount"));
+				dto.setRgdate(rs.getTimestamp("refer_rgdate"));
+
+				// List 한칸에 저장.
+				referenceList.add(dto);
+				
+			}
+			System.out.println("DAO: 공지 목록 가져오기 완료(List)" + referenceList);
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+		return referenceList;
+	}
+	
+	
 }	// 전체 함수 끝
 
 

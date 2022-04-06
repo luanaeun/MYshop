@@ -57,7 +57,7 @@
 	
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/Notice.bo">Notice</a></li>
-			<li><a href="${pageContext.request.contextPath}/QandA.bo">Q & A</a></li>
+			<li><a href="${pageContext.request.contextPath}/ReferenceRoom.bo">자료실</a></li>
 			<li><a href="${pageContext.request.contextPath}/Preparing.pr">Review</a></li>
 		</ul>
 		

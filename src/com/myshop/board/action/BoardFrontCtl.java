@@ -71,6 +71,30 @@ public class BoardFrontCtl extends HttpServlet {
 			forward.setRedirect(false);
 		}
 		
+		 else if (command.equals("/ReferenceRoom.bo")) {		// 자료실
+			action = new ReferenceGetAction();	
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 } else if (command.equals("/ReferenceWrite.bo")) {		// 자료실 추가 페이지
+			forward = new ActionForward();
+			forward.setPath("./board/referenceWrite.jsp");	
+			forward.setRedirect(false);
+		 } else if (command.equals("/ReferenceWriteAction.bo")) {	// 자료실 업로드 동작
+			action = new ReferenceWriteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		 } else if (command.equals("/FileDown.bo")) {
+			forward = new ActionForward();
+			forward.setPath("./board/fileDown.jsp");	
+			forward.setRedirect(false);
+		 }
+		
 		
 		
 		

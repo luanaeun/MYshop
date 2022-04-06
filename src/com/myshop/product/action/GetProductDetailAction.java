@@ -27,7 +27,7 @@ public class GetProductDetailAction implements Action{
 
 		// 특정 글의 내용을 확인
 		ProductDTO dto = dao.getDetailProduct(num);
-		System.out.println("상품 세부 정보 가져왔어?" + dto);
+		//System.out.println("상품 세부 정보 가져왔어?" + dto);
 
 		// 정보를 전달하기 위해 request영역 정보 저장
 		req.setAttribute("dto", dto);
