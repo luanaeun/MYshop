@@ -71,9 +71,9 @@
 		<span>아이디 기억하기</span>
 		
 		<div class="social-icons">
-		  <img src="assets/user/naverLogo.png" alt="네이버">
-		  <img src="assets/user/kakaoLogo.png" alt="카카오"> 
-		  <img src="assets/user/googleLogo.png" alt="구글">
+<!-- 		  <img src="assets/user/naverLogo.png" alt="네이버"> -->
+<!-- 		  <img src="assets/user/kakaoLogo.png" alt="카카오">  -->
+<!-- 		  <img src="assets/user/googleLogo.png" alt="구글"> -->
 	    </div>
 	  
 		

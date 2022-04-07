@@ -18,6 +18,9 @@
 <%
 	ArrayList productList = (ArrayList) request.getAttribute("productList");
 
+	String cate = request.getParameter("cate");
+	int productCount = (int) request.getAttribute("productCount");
+	
 	String pageNum = (String) request.getAttribute("pageNum");
 	int pageCount = (int) request.getAttribute("pageCount");
 	int pageBlock = (int) request.getAttribute("pageBlock");
@@ -31,7 +34,8 @@
   <div class="productList-container">
   	<div class="right-bar">
   
-        <h2 class="right-title">오른쪽 제목</h2>
+        <h1><%=cate %></h1>
+        <div class="count-text">총 <%=productCount %>개</div>
 
 		<%
 		if(productList != null) {
@@ -54,52 +58,15 @@
 
 			</div>
 		  </a>
-			<%
-				}
-				}
-			%>
+		<%
+			}
+		} else {
+			%><h1 style="color: #6799FF;">상품이 없습니다.</h1><%
+		}
+		%>
 
-        <div class="clothes-box">
-            <div class="image">
-                이미지
-            </div>
-            <div class="box-text">
-                <span>하늘색 니트티</span>
-                <p>15,000</p>
-            </div>
-            <div style="float:left"><p class="like-icon">♡</p></div>
-        </div>
-
-        <div class="clothes-box">
-            <div class="image">이미지</div>
-            <div class="box-text">
-                <span>하늘색 니트티</span>
-                <p>15,000</p>
-            </div>
-            <div style="float:left"><p class="like-icon">♡</p></div>
-        </div>
         
-        <div class="clothes-box">
-            <div class="image">이미지</div>
-            <div class="box-text">
-                <span>하늘색 니트티</span>
-                <p>15,000</p>
-            </div>
-            <div style="float:left"><p class="like-icon">♡</p></div>
-        </div>
-        
-        <div class="clothes-box">
-            <div class="image">이미지</div>
-            <div class="box-text">
-                <span>하늘색 니트티</span>
-                <p>15,000</p>
-            </div>
-            <div style="float:left"><p class="like-icon">♡</p></div>
-        </div>
-        
-        
-       	
-
+       
     </div>
     <div class="page_control">
 			<%

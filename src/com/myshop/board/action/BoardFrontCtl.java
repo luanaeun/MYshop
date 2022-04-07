@@ -51,15 +51,37 @@ public class BoardFrontCtl extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./board/noticeWrite.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/NoticeWriteAction.bo")) {
+		} else if(command.equals("/NoticeWriteAction.bo")) {	// 공지 쓰기 액션
 			action = new NoticeWriteAction();
-			
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/QandA.bo")) {
+		} else if(command.equals("/NoticeDetailAction.bo")) {
+			action = new NoticeDetailAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/NoticeUpdate.bo")) {		// 수정페이지
+			action = new NoticeUpdatePageAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/NoticeUpdateAction.bo")) {		// 수정액션
+			action = new NoticeUpdateAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/QandA.bo")) {
 //			action = new QandAListAction();
 //			try {
 //				forward = action.execute(req, resp);
@@ -78,24 +100,63 @@ public class BoardFrontCtl extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		 } else if (command.equals("/ReferenceWrite.bo")) {		// 자료실 추가 페이지
+		} else if (command.equals("/ReferenceWrite.bo")) {		// 자료실 추가 페이지
 			forward = new ActionForward();
 			forward.setPath("./board/referenceWrite.jsp");	
 			forward.setRedirect(false);
-		 } else if (command.equals("/ReferenceWriteAction.bo")) {	// 자료실 업로드 동작
+		} else if (command.equals("/ReferenceWriteAction.bo")) {	// 자료실 업로드 동작
 			action = new ReferenceWriteAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		 } else if (command.equals("/FileDown.bo")) {
+		} else if (command.equals("/FileDown.bo")) {
 			forward = new ActionForward();
 			forward.setPath("./board/fileDown.jsp");	
 			forward.setRedirect(false);
-		 }
-		
-		
+		}
+		  
+		  else if (command.equals("/Review.bo")) {				// 리뷰 가져오기
+			action = new ReviewGetAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ReviewWrite.bo")) {			// 리뷰 쓰기 페이지
+			forward = new ActionForward();
+			forward.setPath("./board/reviewWrite.jsp");	
+			forward.setRedirect(false); 
+		} else if (command.equals("/ReviewWriteAction.bo")) {	// 리뷰쓰기 동작
+			action = new ReviewWriteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewDetail.bo")) {		// 리뷰 세부
+			action = new ReviewDetailAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/RcommentWriteAction.bo")) {	// 리뷰 댓글 쓰기 동작
+			action = new RcommentWriteAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/RcommentGetAction.bo")) {	// 리뷰 댓글 가져오기 동작
+			action = new RcommentGetAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

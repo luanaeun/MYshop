@@ -223,14 +223,16 @@ public class UserDAO {
   // 회원 탈퇴 메서드
   public int userDelete(Timestamp dropDay, String id, String pw){
 	  int result = 0;
+	  
 	  try {
 			con = getCon();
+			String changeid = id + "(탈퇴)";
 
 			// 회원을 -> 탈퇴로 변경!!
 			sql = "update myshop_user set user_status=?, user_id=?, user_lastlogin=? where user_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 2);
-			pstmt.setString(2, "탈퇴");
+			pstmt.setString(2, changeid);
 			pstmt.setTimestamp(3, dropDay);
 			pstmt.setString(4, id);
 			result = pstmt.executeUpdate();

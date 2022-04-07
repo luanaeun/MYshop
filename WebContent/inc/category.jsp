@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="com.myshop.product.db.ProductDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.LinkedHashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,12 +10,15 @@
 <link href="css/inc_css/category.css" rel="stylesheet" type="text/css">
 
 <%
-	LinkedHashMap cateList = (LinkedHashMap) request.getAttribute("cateList");
+	ProductDAO dao = new ProductDAO();
+	HashMap cateList = dao.bringCategory();
+	//LinkedHashMap cateList = (LinkedHashMap) request.getAttribute("cateList");
 %>
 
 <div class="header_bottom">
 
 	<ul class="cate-list">
+		
 		<%
 		if(cateList != null) {
 			for (Object i: cateList.keySet()) {
@@ -21,7 +26,7 @@
 				if(i.equals("도서·음반·문구")) {
 					%><li class="dropdown" style="width: 110px;"><a href=""><%=i %></a><%
 				} else {
-					%><li class="dropdown"><a href=""><%=i %></a><%
+					%><li class="dropdown"><a href="ProductList.pd?cate=<%=i %>"><%=i %></a><%
 				}
 				%>
 					<div class="dropdown-box">
@@ -29,7 +34,7 @@
 				if (detailList.size() > 0) {
 					for(Object j : detailList) {
 						%>
-							<a href="ProductList.pd"><%=j %></a>
+							<a href="ProductList.pd?cate=<%=j %>"><%=j %></a>
 						<% 			
 					}
 				}

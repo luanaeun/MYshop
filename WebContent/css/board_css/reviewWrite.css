@@ -1,0 +1,89 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+.vWrite-container {
+	margin: 30px 15%;
+	min-width: 900px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.add-th {
+	
+}
+#addImg-input{ 
+/* 	visibility: hidden;  */
+}
+.addImg-plus {
+	width: 60px;
+	height: 60px;
+	background-color: #F0F0E9;
+	border-color: #eee;
+	cursor: pointer;
+	font-weight: 900;
+	font-size: 45px;	
+	color: gray;
+	margin-left: 90px;
+}
+.addImg-plus:hover {
+  	transform: scale(1.1);
+    transition: transform 0.5s;
+    filter: brightness(95%);
+}
+
+
+.image-preview {
+	display: flex;
+}
+.image-show {
+	width: 100px;
+	height: 100px;
+}
+
+table{
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+}
+table tr {
+	border-bottom: 1px solid #ccc;
+	height: 50px;
+    line-height: 50px;
+}
+table tbody th {
+	width: 100px;
+	padding: 10px;
+	color: #369;
+	font-weight: bold;
+	vertical-align: top;
+}
+table td {
+	width: 400px;
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+table td > input {
+	width: 400px;
+	padding: 10px;
+	font-size: 13pt;
+}
+table td > input:focus {
+	outline: none;
+}
+table td > textarea {
+	width: 400px;
+	padding: 10px;
+	resize: none;
+}
+table td > textarea:focus {
+	outline: none;
+}
+
+
+.submit {
+	margin: 30px;
+	padding: 5px 10px;
+}
+

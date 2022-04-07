@@ -38,7 +38,17 @@ public class ProductFrontCtl extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/ProductDetail.pd")){	// 제품 세부정보
+		} else if (command.equals("/ProductList.pd")) {	// 카테고리에 따른 상품 리스트
+			action = new GetCateProductAction();
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		else if (command.equals("/ProductDetail.pd")){	// 제품 세부정보
 			action = new GetProductDetailAction();
 			try {
 				forward = action.execute(req, resp);	

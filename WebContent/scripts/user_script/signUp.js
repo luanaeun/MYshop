@@ -96,7 +96,7 @@ function signUpCheckFunc() {
     }
 	
 	// 아이디 중복 체크 여부
-	if($("[name=idCheckHidden]").val() != "ok") {
+	if($("[name=idCheckBtn]").val() != "사용가능✔") {
 		$("#id").text("*아이디 중복체크를 해주세요.");
 		$("[name=id]").focus();
 		return false;

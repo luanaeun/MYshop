@@ -11,6 +11,7 @@
 <body>
 	<%
 		LinkedHashMap cateList = (LinkedHashMap) request.getAttribute("cateList");
+	
 	%>
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<jsp:include page="../inc/category.jsp">
@@ -19,9 +20,19 @@
 	
 	<jsp:include page="../main/section01.jsp" />
 	
-	<jsp:include page="../product/mainpList.jsp" />
-	<jsp:include page="../product/mainpList.jsp" />
-<%-- 	<jsp:include page="./product/productList.jsp" /> --%>
+		
+	<jsp:include page="../product/mainpList.jsp">
+		<jsp:param name="sectionName" value="오늘 신상" />
+		<jsp:param name="pageLink" value="./TodayNewProduct.pd" />
+	</jsp:include>
+	
+	
+	<jsp:include page="../product/mainpList.jsp">
+		<jsp:param name="sectionName" value="조회수 높은 상품" />
+		<jsp:param name="pageLink" value="./TodayNewProduct.pd" />
+	</jsp:include>
+	
+
 	
 	<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>

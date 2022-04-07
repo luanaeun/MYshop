@@ -5,55 +5,64 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="./css/board_css/noticeDetail.css" rel="stylesheet" type="text/css">
-<link href="./css/index.css" rel="stylesheet" type="text/css">
+<link href="css/board_css/noticeWrite.css" rel="stylesheet" type="text/css">
 <title>MYshop</title>
 </head>
 <body>
 <%
-	NoticeDTO dto = new NoticeDTO();
+	NoticeDTO dto = (NoticeDTO)request.getAttribute("dto");
 %>
-  			<h1>글 목록</h1>
-			<table id="notice">
+<jsp:include page="../inc/header.jsp"></jsp:include>
+
+<form action="./NoticeWriteAction.bo" method="post">
+	<div class="nWrite-container">
+	<h1>게시판 글쓰기</h1>
+		<table id="notice">
+			<colgroup>
+          		<col width="20%"><col width="80%">
+        	</colgroup>
+
+			<tr>
+				<th class="twrite">입력</th>
+				<th class="ttitle">게시판</th>
+			</tr>
+			
+			<tr>
+ 				<td>글 번호</td>
 				<td>
-					<th class="tno" colspan="4"></th>
+	 				<%=dto.getNum()%>
 				</td>
-				<tr>
-					<td>글 번호</td>
-					<td><%=dto.getNum()%></td>
-					<td>조회수</td>
-					<td><%=dto.getViewcount()%></td>
+			</tr>
+			<tr>
+ 				<td>글쓴이</td>
+				<td><%=dto.getName() %></td>
+			</tr>
+ 			
+ 			<tr>
+ 				<td>조회수</td>
+				<td><%=dto.getViewcount()%></td>
+			</tr>
+ 			
+ 			<tr>
+ 				<td>내용</td>
+				<td>
+					${dto.content }
+				</td>
+			</tr>
+			
+			
 
-				</tr>
+		</table>
 
-				<tr>
-					<td>글쓴이</td>
-					<td><%=dto.getName() %></td>
-					<td>작성일</td>
-					<td><%=dto.getRgdate() %></td>
-				</tr>
-
-				<tr>
-					<td>글제목</td>
-					<td colspan="3"><%=dto.getTitle()%></td>
-				</tr>
-
-				<tr>
-					<td>글내용</td>
-					<td colspan="3"><%=dto.getContent()%></td>
-				</tr>
-
-				<tr>
-					<td>첨부파일</td>
-					<td colspan="3"><%=dto.getContent()%></td>
-				</tr>
-
-				<tr>
-					<td>글내용</td>
-					<td colspan="3"><%=dto.getContent()%></td>
-				</tr>
-			</table>
+		<div id="table_search">
+			<input type="button" value="수정하기" onclick="location.href='./NoticeUpdate.bo?num=<%=dto.getNum() %>'">
   
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+</form>
 
+<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -21,6 +21,9 @@
     		String g = dto.getGender();
     		System.out.println("성별: " + g);
     		
+    		String currentID = (String)session.getAttribute("user_id");
+    		System.out.println("현재 아이디: " + currentID);
+    		
     		int emailAgree = dto.getEmailAgree();
     	%>
     	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -34,7 +37,7 @@
                 	<label>아이디</label><span id="id"></span><br>
                     <input type="text" class="input-field" name="id" value="${dto.id }" placeholder="3~10자" minlength=3 maxlength=10 >   
          
-                	<input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
+                	<input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc('<%=currentID%>')"><br>
                     
                     <label>이름</label><span id="name"></span><br>
                     <input type="text" class="input-field" name="name" value="${dto.name }" minlength=1 maxlength=15><br>

@@ -8,14 +8,7 @@
 <div class="section01-container">
 
   <div class="section01-box">
-	<div class="section01-text">
-		<h1>10-14시 타임딜!</h1>
-		<h2>딸기 5000원</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-			do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	</div>
-	
-	<img src="assets/testImage/section01.png" class="section01-img"/> 
+	<img src="assets/main/section01.png" class="section01-img"/> 
   </div>
 
 </div>

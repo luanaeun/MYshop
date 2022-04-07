@@ -26,19 +26,25 @@ a{
 /*     min-height: 1px; */
 /*     padding-left: 30px; */
 /*     padding-right: 20px; */
-    border: 1px solid black;
+/*     border: 1px solid black; */
 }
 
 
-.right-title {
+h1 {
     text-align: center;
     color: #FE980F;
-    font-size: 18px;
     font-weight: 700;
     margin-bottom: 30px;
     position: relative;
     z-index: 3;
 }
+.count-text {
+	text-align: right;
+    font-size: 16px;
+    width: 98%;
+    min-width: 1240px;
+}
+
 
 .clothes-box {
     position: relative;

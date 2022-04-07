@@ -43,9 +43,9 @@ public class GetTodayProductAction implements Action {
 		
 	
 		// 제품 총 개수 알아오고 리스트 가져오기
-		int productCount = dao.getProductCount(todayDate);
+		int productCount = dao.getTodayProductCount(todayDate);
 		if(productCount != 0) {	// 글이 있을 때
-			productList = dao.getProductList(startRow, pageSize);
+			productList = dao.getTodayProductList(startRow, pageSize, todayDate);
 		}
 		System.out.println("M: 제품 조회 완료" + productList);
 		
@@ -65,7 +65,7 @@ public class GetTodayProductAction implements Action {
 		
 		// 영역객체에 글 목록 저장
 		req.setAttribute("productList", productList);
-		req.setAttribute("productCnt", productCount);
+		req.setAttribute("productCount", productCount);
 				
 		// 페이징 처리 정보도 request영역에 저장
 		req.setAttribute("pageNum", pageNum);
@@ -78,7 +78,7 @@ public class GetTodayProductAction implements Action {
 			
 		// 페이지 이동
 		ActionForward forward = new ActionForward();
-		forward.setPath("./product/productList.jsp");
+		forward.setPath("./product/todayAddList.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

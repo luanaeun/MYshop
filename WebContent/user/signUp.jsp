@@ -49,8 +49,8 @@
 
                     
                     <label>핸드폰 번호</label><span id="phone"></span><br>
-                    <input type="text" class="input-field" name="phone" placeholder="-없이 숫자만 입력">
-                    <input type="button" class="check-button" name="phoneCheck" value="인증번호받기" class="check-button"><br>
+                    <input type="text" class="input-field" name="phone" placeholder="-없이 숫자만 입력"><br>
+<!--                     <input type="button" class="check-button" name="phoneCheck" value="인증번호받기" class="check-button"><br> -->
                     
                     <label>이메일</label><span id="email"></span><br>
                     <input type="text" class="input-field" name="email"><br>

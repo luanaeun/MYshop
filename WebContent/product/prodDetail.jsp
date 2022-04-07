@@ -99,13 +99,13 @@
 		
 	</div>
 	
-	<div style="float: right; margin-top: 30px;">
-	  <div class="user-info-box">
-		<img src="">
-		<h3>${dto.userid }</h3><br>
-		<p>판매자의 제품 보러 가기 👉</p>
-	  </div>
-	</div>
+<!-- 	<div style="float: right; margin-top: 30px;"> -->
+<!-- 	  <div class="user-info-box"> -->
+<!-- 		<img src=""> -->
+<%-- 		<h3>${dto.userid }</h3><br> --%>
+<!-- 		<p>판매자의 제품 보러 가기 👉</p> -->
+<!-- 	  </div> -->
+<!-- 	</div> -->
 	
   </div>
   

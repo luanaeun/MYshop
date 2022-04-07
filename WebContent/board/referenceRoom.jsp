@@ -19,6 +19,8 @@
 	ArrayList referenceList = (ArrayList) request.getAttribute("referenceList");
 	
 	String userid = (String)session.getAttribute("user_id");
+	
+	
   %>  
 	
   <div class="notice-container">
@@ -26,7 +28,7 @@
     <h1>자료실 📃</h1>
     <div>MYshop 자료실입니다.</div>
     	<% 
-    	  if(userid.equals("admin")) {
+    	  if(userid != null && userid.equals("admin")) {
     		  %><div class="add-text"><a href="./ReferenceWrite.bo">추가</a></div><% 
     	  }
     	%>

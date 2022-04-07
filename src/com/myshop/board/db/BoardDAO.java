@@ -211,45 +211,49 @@ public class BoardDAO {
 	}
 	
 	
-//	public int updateBoard(NoticeDTO dto){
-//		int result = -1;
-//		try {
-//			con = getCon();
-//			//헤당글이 있는지 체크. 비밀번호는 notnull이기 때문에 비번이 없으면 없는 글이라는 말. 
-//			sql = "select pass from itwill_board where num=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, dto.getNum());
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()){	// 글이있다
-//				if(dto.getPass().equals(rs.getString("pass"))){	// 본인글이 맞다.
-//					System.out.printf("글번호: " + dto.getNum());	
-//					
-//					sql = "update itwill_board set name=?,subject=?,content=? where num=?";
-//					pstmt = con.prepareStatement(sql);
-//					pstmt.setString(1, dto.getName());
-//					pstmt.setString(2, dto.getSubject());
-//					pstmt.setString(3, dto.getContent());
-//					pstmt.setInt(4, dto.getNum());
-//					
-//					result = pstmt.executeUpdate();
-//
-//				} else {
-//					result = 0;
-//				}
-//			} else {
-//				result = -1;
-//			}
-//			
-//			System.out.printf("DAO : 글 수정 완료! (%d)",result);	
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//		return result;
-//	}  // updateBoard
+	public void updateNotice(NoticeDTO dto){
+		int result = -1;
+		try {
+			con = getCon();
+			//헤당글이 있는지 체크. 비밀번호는 notnull이기 때문에 비번이 없으면 없는 글이라는 말. 
+			sql = "select n_pw from myshop_notice where n_idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNum());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){	// 글이있다
+				if(dto.getPw().equals(rs.getString("n_pw"))){	// 본인글이 맞다.
+					System.out.printf("글번호: " + dto.getNum());	
+					
+					sql = "update myshop_notice set n_userid=?, n_title=?, n_content=?, n_rgdate=now(), n_pw=? where n_idx=?";
+				
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getName());
+					pstmt.setString(2, dto.getTitle());
+					pstmt.setString(3, dto.getContent());
+					pstmt.setString(4, dto.getPw());
+					pstmt.setInt(5, dto.getNum());
+					
+					result = pstmt.executeUpdate();
+
+				} else {
+					result = 0;
+				}
+			} else {
+				result = -1;
+			}
+			
+			System.out.printf("DAO : 글 수정 완료! (%d)",result);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		
+	}  // updateBoard
+	
+	
 //	
 //	
 //	public int deleteBoard(NoticeDTO dto) {
@@ -378,6 +382,11 @@ public class BoardDAO {
 		
 		return referenceList;
 	}
+	
+	
+	
+	
+	
 	
 	
 }	// 전체 함수 끝
