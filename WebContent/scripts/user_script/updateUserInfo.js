@@ -1,4 +1,5 @@
 // user/signUp.jsp페이지의 자바스크립트 파일
+let checkedID = "";
 
 // 우편번호 가져오는 함수.
 function searchPostNum() {
@@ -37,7 +38,7 @@ function searchPostNum() {
 
 // 아이디 중복 체크 버튼 함수
 function idCheckFunc(currentID) {
-	console.log("이 함수로 들어오긴 하지?", currentID)
+	let isChange = 0;
 	let userid = $("[name=id]").val();
 
 	if(userid == ""){
@@ -64,6 +65,7 @@ function idCheckFunc(currentID) {
                 } else {
                 	$("#id").text("");
                 	$('[name=idCheckBtn]').val("사용가능✔");
+                	checkedID = userid;
                 }
             },
             error : function(error) {
@@ -74,11 +76,22 @@ function idCheckFunc(currentID) {
 	}
 	
 }
-																																																											// buf
-					
+			
+
+/// 아이디 중복 체크 이후 다시 바꿨을 때
+function changeIDCheck() {
+	console.log("들어오는지 확인")
+	if($("[name=idCheckBtn]").val() == "사용가능✔") {
+		if($("[name=id]").val() != checkedID) {
+			$('[name=idCheckBtn]').val("중복확인");
+			$("[name=id]").focus();
+		}
+	}
+}
+
+
 
 // 회원가입 유효성 검사 함수.
-
 function signUpCheckFunc() {
 	var useridCheck = RegExp(/^[가-힣a-zA-Z0-9]{3,10}$/);
 	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);																																																											// //주민등록번호

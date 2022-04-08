@@ -29,7 +29,7 @@ public class ProductDAO {
     Context initCTX = new InitialContext();
 	DataSource ds = (DataSource) initCTX.lookup("java:comp/env/jdbc/myshop");
 	con = ds.getConnection();
-	System.out.println("DAO: 1.2.디비연결 성공 " + con);
+	System.out.println("DAO: 디비연결 성공");
 	  
 	return con;
   }
@@ -48,55 +48,53 @@ public class ProductDAO {
   
   // 카테고리 가져오기 메서드
   public LinkedHashMap bringCategory() {
-	  System.out.println("DAO: bringCategory 호출");
-	  LinkedHashMap totalCate = new LinkedHashMap();
+	System.out.println("DAO: bringCategory 호출");
+	LinkedHashMap totalCate = new LinkedHashMap();
 	  
-	  int cateCount = 0;
+	int topCateCount = 0;
+	//ArrayList detailCate = null;
+	//String topName = "";
 	  
-	  try {
-		  	// top카테고리의 개수를 알아본다.
-			con = getCon();
-			sql = "select count(*) from top_category";
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) { cateCount = rs.getInt(1); }
+	try {
+		// top카테고리의 개수를 알아본다.
+		con = getCon();
+		sql = "select count(*) from top_category";
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		if(rs.next()) { topCateCount = rs.getInt(1); }
 			
-			
-			for(int i=1; i<=cateCount; i++){
+		
+		if(topCateCount > 0) {
+			for(int i=1; i<=topCateCount; i++){		// top카테고리 개수만큼 반복문 돌기.
 				ArrayList detailCate = new ArrayList();
-				
 				// 탑 카테고리 
 				String topName = "";
-				sql = "select topc_name from top_category where topc_idx=?";
+				sql = "select topcate_name from top_category where topcate_idx=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, i);
 				rs = pstmt.executeQuery();
 				if(rs.next()) { topName = rs.getString(1); }
 				
-				
 				// 탑 카테고리를 가진 세부 카테고리 가져오기
-				sql = "select dct_name from detail_category where dct_topcate=?";
+				sql = "select dcate_name from detail_category where dcate_topcate=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, topName);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					detailCate.add(rs.getString("dct_name"));
+					detailCate.add(rs.getString("dcate_name"));
 				}
 				totalCate.put(topName, detailCate);
-				
 			}
-//			for (Object i : totalCate.keySet()) {
-//		        System.out.println("key: " + i + " value: " + totalCate.get(i));
-//		    }
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
+		} else {
+			totalCate.put("전체", "");
 		}
-	  	System.out.println("카테고리 가져오는 함수 끝!");
-	  	return totalCate;
-	  	
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		closeDB();
+	}
+	System.out.println("카테고리 가져오는 함수 끝!");
+	return totalCate;  	
   }
   
   
@@ -111,15 +109,14 @@ public class ProductDAO {
 		sql = "select max(p_idx) from product_info";
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		if(rs.next()) {
-			pnum = rs.getInt(1)+1;
-		}
+		if(rs.next()) { pnum = rs.getInt(1)+1; }
+		
 		
 		sql = "insert into product_info values(?,?,?,?,?,?,now(), ?,?,0,0, ?,?,?,?, ?,?,?,?)";
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setInt(1, pnum);
-		pstmt.setString(2, dto.getUserid());
+		pstmt.setInt(2, dto.getUseridx());
 		pstmt.setString(3, dto.getCategory());
 		pstmt.setString(4, dto.getName());
 		pstmt.setInt(5, dto.getPrice());
@@ -128,7 +125,6 @@ public class ProductDAO {
 		pstmt.setString(7, dto.getSumbnail());
 		pstmt.setString(8, dto.getContent());
 		// p_viewcount, p_wishcount 이 두개는 0으로 저장. 
-		
 		
 		int len = dto.getImages().size();
 		for(int i=0; i<4; i++) {
@@ -486,23 +482,13 @@ public class ProductDAO {
 		result = pstmt.executeUpdate();
 		
 		
-		sql = "select user_pcount from myshop_user where user_id=?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, userid);
-		rs = pstmt.executeQuery();
-		if(rs.next()) {
-			count = rs.getInt(1)-1; //만약 컬럼명으로 스고싶으면 "count(*)"이렇게 쓰면된다. 
-		}
-		
-		
 		
 		// 회원의 상품 개수를 -1 하기
-		 sql = "update myshop_user set user_pcount=? where user_id=?";
+		 sql = "update myshop_user set user_pcount = user_pcount -1 where user_id=?";
 //		sql = "update myshop_user set user_pcount = "
 //				+ "(select * from (select user_pcount from myshop_user a where user_id=?)as a)-1 where user_id=?";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, count);
-		pstmt.setString(2, userid);
+		pstmt.setString(1, userid);
 		result = pstmt.executeUpdate();
 			
 		System.out.println("제품 삭제 완료");

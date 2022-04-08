@@ -1,4 +1,5 @@
 // user/signUp.jsp페이지의 자바스크립트 파일
+let checkedID = "";
 
 // 우편번호 가져오는 함수.
 function searchPostNum() {
@@ -59,6 +60,7 @@ function idCheckFunc() {
                 } else {
                 	$("#id").text("");
                 	$('[name=idCheckBtn]').val("사용가능✔");
+                	$('[name=idCheckBtn]').css("background-color","#F0F0E9");
                 }
             },
             error : function(error) {
@@ -67,16 +69,28 @@ function idCheckFunc() {
 			
 		});
 
-	
 }
 
-																																																											// buf
+
+/// 아이디 중복 체크 이후 다시 바꿨을 때
+function changeIDCheck() {
+	console.log("들어오는지 확인")
+	if($("[name=idCheckBtn]").val() == "사용가능✔") {
+		if($("[name=id]").val() != checkedID) {
+			$('[name=idCheckBtn]').val("중복확인");
+			$('[name=idCheckBtn]').css("background-color","#FFCBCB");
+			$("[name=id]").focus();
+		}
+	}
+}
+
+
 				
 // 회원가입 유효성 검사 함수.
 
 function signUpCheckFunc() {
 	var useridCheck = RegExp(/^[가-힣a-zA-Z0-9]{3,10}$/);
-	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);																																																											// //주민등록번호
+	var passwdCheck = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/);	
 	var nameCheck = RegExp(/^[가-힣a-zA-Z]{2,15}$/);
 	var birthCheck = RegExp(/^[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|[3][01])/);
 	var phonNumberCheck = RegExp(/^01[0179][0-9]{7,8}$/);

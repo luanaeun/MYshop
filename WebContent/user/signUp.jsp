@@ -13,21 +13,22 @@
         <link href="css/user_css/signUp.css" rel="stylesheet" type="text/css">
     </head>
     
+    
     <body>
     	<%
-    		String idCheckResult = (String)request.getAttribute("idCheckResult");
+    		//String idCheckResult = (String)request.getAttribute("idCheckResult");
     	%>
     	<jsp:include page="../inc/header.jsp"></jsp:include>
 
         <div class="wrap">
             <div class="form-wrap">
-            	<h1 style="text-align: center; margin-top:30px">MYshop</h1>
+            	<h1>회원가입</h1>
                 
                 <form id="register" action="./SignUpAction.us" onsubmit="return signUpCheckFunc()" class="input-group">
                 	
                 	<label>아이디</label><span id="id"></span><br>
-                    <input type="text" class="input-field" name="id" placeholder="3~10자" minlength=3 maxlength=10 >   
-                    <input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()"><br>
+                    <input type="text" class="input-field" name="id" oninput="changeIDCheck()" placeholder="3~10자" minlength=3 maxlength=10 >   
+                    <input type="button" class="check-button" name="idCheckBtn" value="중복 체크" onclick="idCheckFunc()" style="background-color: #FFCBCB"><br>
                     
                     
                     <label>비밀번호</label><span id="pw"></span><br>

@@ -30,12 +30,13 @@ public class UpdateProductAction implements Action {
 		//전달된 제품정보를 저장
 		ProductDTO dto = new ProductDTO();
 		HttpSession se = req.getSession();
-		dto.setUserid((String)se.getAttribute("user_id"));
+		dto.setUseridx((int)se.getAttribute("user_idx"));
 		
 		dto.setName(multi.getParameter("name"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setCategory(multi.getParameter("category"));
 		dto.setStock(Integer.parseInt(multi.getParameter("stock")));
+		dto.setColor(multi.getParameter("color"));
 		dto.setContent(multi.getParameter("content"));
 		dto.setDeliCharge(Integer.parseInt(multi.getParameter("deliveryCharge")));
 		dto.setDeliDays(multi.getParameter("deliDays"));
