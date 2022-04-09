@@ -85,6 +85,25 @@ function changeIDCheck() {
 }
 
 
+
+// 개인정보 이용 동의
+function infoAgreeCheck(){
+	$("[name=modal-text]").text("이용 약관");
+	$('#myModal').show();
+			
+}
+
+function close_pop(flag) {
+    $('#myModal').hide();
+    $('[name=warnning-text]').text("");
+};
+
+function infoAgreeYes(){
+	$('#myModal').hide();
+	$("input:checkbox[name=infoAgree]").prop("checked", true);
+}
+
+
 				
 // 회원가입 유효성 검사 함수.
 
@@ -108,6 +127,13 @@ function signUpCheckFunc() {
         $("[name=id]").focus();
         return false;
     }
+	if($("[name=id]").val().indexOf("탈퇴") > -1) {
+		$("#id").text("*포함할 수 없는 단어가 있습니다.");
+         $("[name=id]").val("");
+        $("[name=id]").focus();
+        return false;
+	}
+		
 	
 	// 아이디 중복 체크 여부
 	if($("[name=idCheckBtn]").val() != "사용가능✔") {

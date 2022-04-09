@@ -42,8 +42,9 @@ public class UserDAO {
   
   
   // 회원가입 메서드 
-  public void userSignUp(UserDTO dto) {
+  public int userSignUp(UserDTO dto) {
 	System.out.println("DAO: signUpUser(dto) 호출");
+	int result = 0;
 	int uNum = 0;
 	
 	try {
@@ -58,13 +59,7 @@ public class UserDAO {
 			uNum = rs.getInt(1)+1;
 		}
 		
-		
-		sql = "insert into myshop_user(user_idx, user_id, user_pw, user_name, user_birth, user_gender, "
-				+ "user_phone, user_email, user_post, user_roadaddr, user_detailaddr, "
-				+ "user_rgdate, user_status, user_infoagree, user_emailagree, "
-				+ "user_buycount, user_pcount, user_qacount, user_reviewcount, user_wishcount, user_cartcount, "
-				+ "user_psending, user_pcellok, user_ordercount, user_isadmin) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0,0,?)";
+		sql = "insert into myshop_user values(?,?,?,?,?,?,?,?,now(), ?,?,?,?, ?,?, 0,0,0,0, now(), 0,0,0, ?,?)";
 		
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, uNum);
@@ -76,18 +71,21 @@ public class UserDAO {
 		
 		pstmt.setString(7, dto.getPhone());
 		pstmt.setString(8, dto.getEmail());
-		pstmt.setInt(9, dto.getPost());
-		pstmt.setString(10, dto.getRoadAddr());
-		pstmt.setString(11, dto.getDetailAddr());
 		
-		pstmt.setTimestamp(12, dto.getRegdate());
-		pstmt.setInt(13, dto.getStatus());
-		pstmt.setInt(14, dto.getInfoAgree());
-		pstmt.setInt(15, dto.getEmailAgree());
+		pstmt.setInt(9, dto.getStatus());
+		pstmt.setInt(10, dto.getPost());
+		pstmt.setString(11, dto.getRoadAddr());
+		pstmt.setString(12, dto.getDetailAddr());
+		
+		pstmt.setInt(13, dto.getInfoAgree());
+		pstmt.setInt(14, dto.getEmailAgree());
+		
+		pstmt.setString(15, dto.getUserimg());
 		pstmt.setInt(16,  dto.getIsAdmin());
 		
 		pstmt.executeUpdate();
 		System.out.println("DAO: 회원가입 완료");
+		result = 1;
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -95,6 +93,7 @@ public class UserDAO {
 		closeDB();
 	}
 	System.out.println("DAO : registerUser() 끝!");
+	return result;
   }
   
   
@@ -203,8 +202,7 @@ public class UserDAO {
 				dto.setpCount(rs.getInt("user_pcount"));
 				dto.setWishCount(rs.getInt("user_wishcount"));
 				dto.setCartCount(rs.getInt("user_cartcount"));
-				dto.setQaCount(rs.getInt("user_qacount"));
-				dto.setReviewCount(rs.getInt("user_reviewcount"));
+				
 				
 				dto.setpSending(rs.getInt("user_psending"));
 				dto.setpCellOk(rs.getInt("user_pcellok"));
