@@ -46,7 +46,7 @@
 		%>
 		  <a href = "./ProductDetail.pd?num=<%=dto.getNum()%>">
 			<div class="clothes-box">
-            	<img src="./productImgs/<%=dto.getSumbnail() %>">
+            	<img src="./upload/productImg/<%=dto.getSumbnail() %>">
             	<p><%=dto.getName()%></p>
             	
 				<div class="box-text">

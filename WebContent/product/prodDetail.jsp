@@ -20,13 +20,13 @@
   <jsp:include page="../inc/category.jsp"></jsp:include>
   <%
 	ProductDTO dto = (ProductDTO)request.getAttribute("dto");
-  	String current_user = (String)session.getAttribute("user_id");
-  	request.setAttribute("dto", dto);
+  
+  	//int current_useridx = (int)session.getAttribute("user_idx");
   %>
   
   <div class="pdetail-container">
 	<div class="pinfo-box">
-		<img src="./productImgs/${dto.sumbnail }">
+		<img src="./upload/productImg/${dto.sumbnail }">
 		<div class="table-box">
 		  <table>
 			<colgroup>
@@ -39,7 +39,7 @@
 				<th>가격</th><td>${dto.price }원</td>
 			</tr>
 			<tr>
-				<th>컬러</th><td>컬러가 없네..</td>
+				<th>컬러</th><td>${dto.color }</td>
 			</tr>
 			<tr>
 				<th>배송비</th><td>${dto.deliCharge } 원</td>
@@ -54,7 +54,7 @@
 		  
 		  <div class="table-box-button">
 		  <%
-		  	if(dto.getUserid().equals(current_user)) {
+		  	if(dto.getUseridx() == 1) {
 		  		%>
 	  			  <input type="button" value="수정하기" onclick="location.href='./UpdateProduct.pd?num='+${dto.num }">
 	  			  <input type="button" value="삭제" onclick="showModal('delete')" style="background-color: #EDC6C6;">
@@ -81,20 +81,16 @@
 	</div>
 	
 	<div class="pdetail-box">
-		<p>
+		<pre>
 			${dto.content }
-		</p>
+		</pre>
 		<%
 			ArrayList images = dto.getImages();
-			String s = "";
-			System.out.println("배열에 잘 있니?" + images);
+
 			for(int i=0; i<images.size(); i++) {
-				s = (String)images.get(i);		
-				System.out.println("s: " + s);
-				if(s.length() > 0) {
-					%><img src="./productImgs/<%=s %>"><%
-				}
+				%><img src="./upload/productImg/<%=(String)images.get(i) %>"><%
 			}
+			
 		%>
 		
 	</div>

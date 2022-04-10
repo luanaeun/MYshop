@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -98,34 +99,36 @@ public class UserDAO {
   
   
   
-  // 로그인 메서드
-  public int userSignIn(UserDTO dto){
-	  int loginResult = -1;
+  // 로그인 메서드 => 유저 고유번호(idx)도 세션에 담기위해 조회한다. 
+  public ArrayList userSignIn(UserDTO dto){
+	  ArrayList resultList = new ArrayList();
 	  
 	  try {
 			con = getCon();
 			
-			// 아이디로 비밀번호 가져오기
-			sql = "select user_pw from myshop_user where user_id=?";
+			// 아이디로 비밀번호랑 고유번호 가져오기
+			sql = "select user_pw, user_idx from myshop_user where user_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getId());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 	 			if(dto.getPw().equals(rs.getString("user_pw")) ) {	
-	 				sql = "update myshop_user set user_lastlogin=? where user_id=?";
+	 				sql = "update myshop_user set user_lastlogin=now() where user_id=?";
 	 				pstmt = con.prepareStatement(sql);
-	 				pstmt.setTimestamp(1, dto.getLastLogin());
-	 				pstmt.setString(2, dto.getId());
+	 				//pstmt.setTimestamp(1, dto.getLastLogin());
+	 				pstmt.setString(1, dto.getId());
 	 				pstmt.executeUpdate();
 	 				
-	 				loginResult = 1;
+	 				resultList.add(1);
+	 				resultList.add(rs.getInt("user_idx"));
+	 				
 	 			} else {	
-	 				loginResult = 0;
+	 				resultList.add(0);
 	 				
 	 			}
 	 		} else {	// 데이터가 없을때 -> 비회원
-	 			loginResult = -1;
+	 			resultList.add(-1);
 	 		}
 
 		} catch (Exception e) {
@@ -134,7 +137,7 @@ public class UserDAO {
 			closeDB();
 		}
 	  
-		return loginResult;
+		return resultList;
   }
   
   

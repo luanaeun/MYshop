@@ -27,13 +27,6 @@
 	int startPage = (int) request.getAttribute("startPage");
 	int endPage = (int) request.getAttribute("endPage");
 	
-// 	int productCount = 1;
-// 	String pageNum = (String) request.getAttribute("pageNum");
-// 	int pageCount = 1;
-// 	int pageBlock =1;
-// 	int startPage = 1;
-// 	int endPage = 1;
-	System.out.println("뭐가 안들어왔어?" + productCount + pageNum);
 %>
   <jsp:include page="../inc/header.jsp"></jsp:include>
   <jsp:include page="../inc/category.jsp"></jsp:include>
@@ -54,7 +47,7 @@
 		%>
 		  <a href = "./ProductDetail.pd?num=<%=dto.getNum()%>">
 			<div class="clothes-box">
-            	<img src="./productImgs/<%=dto.getSumbnail() %>">
+            	<img src="./upload/productImg/<%=dto.getSumbnail() %>">
             	<p><%=dto.getName()%></p>
             	
 				<div class="box-text">

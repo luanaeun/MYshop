@@ -3,6 +3,7 @@ package com.myshop.user.action;
 
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +26,12 @@ public class UserSignInAction implements Action{
 		// 한글처리
 		req.setCharacterEncoding("UTF-8");
 
-		// 전달해준 파라미터 저장(액션태그X)
+		// 전달해준 파라미터 저장
 		UserDTO dto = new UserDTO();
 
 		dto.setId(req.getParameter("id"));
 		dto.setPw(req.getParameter("pw"));
-		dto.setLastLogin(new Timestamp(System.currentTimeMillis()));	// 마지막 로그인 날짜
+		//dto.setLastLogin(new Timestamp(System.currentTimeMillis()));	// 마지막 로그인 날짜
 		
 		String rememberID = "";
 		try {
@@ -44,18 +45,14 @@ public class UserSignInAction implements Action{
 
 		// DAO 객체 생성
 		UserDAO dao = new UserDAO();
-		int result = dao.userSignIn(dto);
+		ArrayList result = dao.userSignIn(dto);
 		System.out.println("로그인 함수 결과: " + result);
 		
 		ActionForward forward = new ActionForward();
 		HttpSession se = req.getSession();
-		if(result == 1) {
-			se.setAttribute("user_id", dto.getId()); // 세션에 아이디 저장.
-			
-			
-			if(dto.getId().toLowerCase().contains("admin") == true && dto.getIsAdmin() == 1) {
-				forward.setPath("./MngPage.am");
-			}
+		if((int)result.get(0) == 1) {
+			se.setAttribute("user_id", dto.getId()); 	// 세션에 아이디 저장.
+			se.setAttribute("user_idx", result.get(1));	// 세션에 유저고유번호 저장. 
 			
 			if(rememberID.equals("remember")) {	
 				System.out.println("쿠키값 설정하러~: " + rememberID);
@@ -73,10 +70,8 @@ public class UserSignInAction implements Action{
 					}
 				}
 				forward.setPath("./Main.ma");
-			}
-			
-			
-		} else if(result == 0) {
+			}	
+		} else if((int)result.get(0) == 0) {
 			forward.setPath("./SignIn.us?r=" + result);
 		} else {
 			forward.setPath("./SignIn.us?r=" + result);

@@ -24,7 +24,7 @@ public class AddProductAction implements Action{
 		
 		
 		// 이미지가 들어갈 저장 경로를 설정한다.
-		String realPath = req.getRealPath("/productImgs");
+		String realPath = req.getRealPath("/upload/productImg");
 		int maxSize = 10 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(
 				req, realPath, maxSize, "UTF-8", new DefaultFileRenamePolicy()
@@ -36,29 +36,34 @@ public class AddProductAction implements Action{
 		//전달된 제품정보를 저장
 		ProductDTO dto = new ProductDTO();
 		HttpSession se = req.getSession();
-		dto.setUserid((String)se.getAttribute("user_id"));
+		dto.setUseridx((int) se.getAttribute("user_idx"));
 		
 		dto.setName(multi.getParameter("name"));
 		dto.setPrice(Integer.parseInt(multi.getParameter("price")));
 		dto.setCategory(multi.getParameter("category"));
 		dto.setStock(Integer.parseInt(multi.getParameter("stock")));
+		dto.setColor(multi.getParameter("color"));
 		dto.setContent(multi.getParameter("content"));
 		dto.setDeliCharge(Integer.parseInt(multi.getParameter("deliveryCharge")));
 		dto.setDeliDays(multi.getParameter("deliDays"));
 		dto.setHowDeli(multi.getParameter("howDeli"));
 		dto.setIp(req.getRemoteAddr());
 		
-		dto.setSumbnail(multi.getParameter("img01"));
+		dto.setSumbnail(multi.getFilesystemName("addImg1"));
 
 		
-		ArrayList fileNames = new ArrayList<>();
-		fileNames.add(multi.getParameter("img02"));
-		fileNames.add(multi.getParameter("img03"));
-		fileNames.add(multi.getParameter("img04"));
-		fileNames.add(multi.getParameter("img05"));
+		ArrayList fileNames = new ArrayList();
+		for(int i=2; i<=5; i++) {
+			String temp_file = multi.getFilesystemName("addImg"+i);
+			if(temp_file != null) {
+				fileNames.add(temp_file);
+			} else {
+				fileNames.add(null);
+			}
+		}
 		dto.setImages(fileNames);
 		
-		System.out.println("저장할 것: " + dto.toString());
+		//System.out.println("저장할 것: " + dto.toString());
 
 
 		// 제품 등록 메서드 호출
@@ -74,8 +79,6 @@ public class AddProductAction implements Action{
 		System.out.println("M: 글쓰기 완료후 페이지 정보를 Ctl로 리턴");
 		
 		return forward;
-
-	
 	}
 	
 	

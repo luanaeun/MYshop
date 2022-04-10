@@ -21,7 +21,6 @@
 
 <%
 	LinkedHashMap cateList = (LinkedHashMap) request.getAttribute("cateList");
-
 %>
 
 <form action="./AddProductAction.pd" method="post" enctype="multipart/form-data" onsubmit="return addProdCheck()">
@@ -32,14 +31,35 @@
 		<p>제일 처음 이미지는 썸네일로 활용됩니다.</p>
 		<p id="img-warning" class="warning-text"></p>
 		<div class="images-box" id="images-box">
-			<label for="addImg-input"><div class="addImg-plus">+</div></label>
-        	<input type="file" multiple id="addImg-input" name="addImg" accept="image/*" onchange="loadImage(this)">
-        	<input type="hidden" name="img01" value="">
-        	<input type="hidden" name="img02" value="">
-        	<input type="hidden" name="img03" value="">
-        	<input type="hidden" name="img04" value="">
-        	<input type="hidden" name="img05" value="">
+			<div class="detail-imgbox" id="detail-imgbox1">
+				<label for="img-input1"><div class="addImg-plus">+</div></label>
+				<input type="file" id="img-input1" class="img-input" name="addImg1" accept="image/*" onchange="loadImage(this, 1)">
+			</div>
+			
+			
+			<div class="detail-imgbox" id="detail-imgbox2">
+				<label for="img-input2"><div class="addImg-plus">+</div></label>
+				<input type="file" id="img-input2" class="img-input" name="addImg2" accept="image/*" onchange="loadImage(this, 2)">
+				
+			</div>
+			
+			<div class="detail-imgbox" id="detail-imgbox3">
+				<label for="img-input3"><div class="addImg-plus">+</div></label>
+				<input type="file" id="img-input3" class="img-input" name="addImg3" accept="image/*" onchange="loadImage(this,3)">
+			</div>
+			
+			<div class="detail-imgbox" id="detail-imgbox4">
+				<label for="img-input4"><div class="addImg-plus">+</div></label>
+				<input type="file" id="img-input4" class="img-input" name="addImg4" accept="image/*" onchange="loadImage(this,4)">
+			</div>
+			
+			<div class="detail-imgbox" id="detail-imgbox5">
+				<label for="img-input5"><div class="addImg-plus">+</div></label>
+				<input type="file" id="img-input5" class="img-input" name="addImg5" accept="image/*" onchange="loadImage(this,5)">
+			</div>
+		
     	</div>
+    	
 
 		<p id="info-warning" class="warning-text"></p>
 		<table>
@@ -47,8 +67,32 @@
           		<col width="20%"><col width="30%"><col width="20%"><col width="30%">
         	</colgroup>
         	<tr>
-				<th>*제품명</th>
-				<td><input type="text" name="name" minlength="2" maxlength='16' placeholder="2~10글자"></td>
+        		<th>*제품명</th>
+				<td><input type="text" name="name" minlength="2" maxlength='15' placeholder="2~15글자"></td>
+        	</tr>
+        	
+        	<tr>
+				<th>*가격</th>
+				<td><input type="text" name="price" placeholder="숫자만 입력"></td>
+				<th>*수량</th>
+				<td><input type="text" name="stock" ></td>
+			</tr>
+       	
+        	<tr>
+				<th>색상</th>
+				<td>
+					<select name="color">
+					  <option value="">--선택하기--</option>
+					  <option value="빨강" style="background-color: red;">빨강</option>
+					  <option value="주황" style="background-color: orange;">주황</option>
+					  <option value="노랑" style="background-color: yellow;">노랑</option>
+					  <option value="초록" style="background-color: green;">초록</option>
+					  <option value="파랑" style="background-color: blue;">파랑</option>
+					  <option value="남색" style="background-color: navy;">남색</option>
+					  <option value="보라" style="background-color: purple;">보라</option>
+					  <option value="하양" style="background-color: white;">하양</option>
+					  <option value="검정" style="background-color: black;">검정</option>
+				</td>
 				<th>*카테고리</th>
 				<td>
 					<select name="category">
@@ -73,12 +117,7 @@
 					</select>
 				</td>
 			</tr>
-			<tr>
-				<th>*가격</th>
-				<td><input type="text" name="price" placeholder="숫자만 입력"></td>
-				<th>*수량</th>
-				<td><input type="text" name="stock" ></td>
-			</tr>
+			
 			<tr>
 				<th>*배송비</th>
 				<td><input type="text" name="deliveryCharge" value=""></td>

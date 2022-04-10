@@ -52,8 +52,6 @@ public class ProductDAO {
 	LinkedHashMap totalCate = new LinkedHashMap();
 	  
 	int topCateCount = 0;
-	//ArrayList detailCate = null;
-	//String topName = "";
 	  
 	try {
 		// top카테고리의 개수를 알아본다.
@@ -112,7 +110,7 @@ public class ProductDAO {
 		if(rs.next()) { pnum = rs.getInt(1)+1; }
 		
 		
-		sql = "insert into product_info values(?,?,?,?,?,?,now(), ?,?,0,0, ?,?,?,?, ?,?,?,?)";
+		sql = "insert into product_info values(?,?,?,?,?,?,now(), ?,?,0,0, ?,?,?,?, ?,?,?,?,?)";
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setInt(1, pnum);
@@ -125,27 +123,26 @@ public class ProductDAO {
 		pstmt.setString(7, dto.getSumbnail());
 		pstmt.setString(8, dto.getContent());
 		// p_viewcount, p_wishcount 이 두개는 0으로 저장. 
-		
-		int len = dto.getImages().size();
+		System.out.println("여기서 오류가 생기나?");
 		for(int i=0; i<4; i++) {
-			System.out.printf("리스트 길이: %d, i값: %d, j값: %d", len, i, i+9);
-			if(i <= len) { pstmt.setString(i+9, (String)dto.getImages().get(i)); }
-			else { pstmt.setString(i+9, ""); }
+			if(dto.getImages().get(i) != null) { pstmt.setString(i+9, (String)dto.getImages().get(i)); }
+			else { pstmt.setString(i+9, null); }
 		}
 		
 		pstmt.setInt(13, dto.getDeliCharge());
 		pstmt.setString(14, dto.getHowDeli());
 		pstmt.setString(15, dto.getDeliDays());
 		pstmt.setString(16, dto.getIp());
+		pstmt.setString(17, dto.getColor());
 		
 		pstmt.executeUpdate();
 		System.out.println("DAO: 제품등록 완료");
 		
 		
 		// 유저 정보에서 내 상품 개수 +1 하기
-		sql = "update myshop_user set user_pcount = user_pcount + 1 where user_id=?";
+		sql = "update myshop_user set user_pcount = user_pcount + 1 where user_idx=?";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, dto.getUserid());
+		pstmt.setInt(1, dto.getUseridx());
 		pstmt.executeUpdate();
 		
 		
@@ -172,18 +169,18 @@ public class ProductDAO {
 		if(rs.next()) {
 			result = rs.getInt(1); //만약 컬럼명으로 스고싶으면 "count(*)"이렇게 쓰면된다. 
 		}
-		System.out.println("DAO : 오늘 들어온 상품 총 개수 - " + result);
+		System.out.println("DAO : 오늘 들어온 상품 총 개수 -> " + result);
 			
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
 		closeDB();
 	}		
-		return result;
+	return result;
   }
   
   
-  // 제품 가져오기 메서드
+  // 오늘 제품 가져오기 메서드
   public ArrayList getTodayProductList(int startRow, int pageSize, String today) {
 	System.out.println("DAO: 제품 가져오는 메소드 들어옴!");
 	ArrayList prodList = new ArrayList();
@@ -204,32 +201,32 @@ public class ProductDAO {
 				ProductDTO dto = new ProductDTO();
 				
 				dto.setNum(rs.getInt("p_idx"));
-				dto.setUserid(rs.getString("p_userid"));
+				dto.setUseridx(Integer.parseInt(rs.getString("p_useridx")));
 				
 				dto.setName(rs.getString("p_name"));
 				dto.setPrice(rs.getInt("p_price"));
 				dto.setCategory(rs.getString("p_category"));
 				dto.setStock(rs.getInt("p_stock"));
 				dto.setContent(rs.getString("p_content"));
+				dto.setSumbnail(rs.getString("p_sumbnail"));
 				dto.setRegdate(rs.getTimestamp("p_rgdate"));
 				
 				dto.setDeliCharge(rs.getInt("p_delicharge"));
 				dto.setDeliDays(rs.getString("p_delidays"));
 				dto.setHowDeli(rs.getString("p_howdelivery"));
 				
-				dto.setIp(rs.getString("p_userid"));
-				
-				dto.setSumbnail(rs.getString("p_sumbnail"));
-				
-				ArrayList images = new ArrayList<>();
-				images.add(rs.getString("p_img01"));
-				images.add(rs.getString("p_img02"));
-				images.add(rs.getString("p_img03"));
-				images.add(rs.getString("p_img04"));
-				dto.setImages(images);
-				
 				dto.setViewCount(rs.getInt("p_viewcount"));
 				dto.setWishCount(rs.getInt("p_wishcount"));
+				
+				ArrayList images = new ArrayList<>();
+				for(int i=1; i<5; i++) {
+					String temp_img = rs.getString("p_img0"+i);
+					if(temp_img != null) {
+						images.add(temp_img);
+					}
+				}
+				dto.setImages(images);
+				
 				
 				// List 한칸에 저장.
 				prodList.add(dto);
@@ -245,7 +242,8 @@ public class ProductDAO {
   }
   
   
-  // 카테고리별 상품 카운트
+  
+  // 카테고리별 상품 개수
   public int getCateProductCount(String cate) {
 	int result = 0;
 	try {
@@ -275,7 +273,7 @@ public class ProductDAO {
   
   
   
-  // 제품 카테고리 가져오기 메서드
+  // 상품 카테고리 별로가져오기 메서드
   public ArrayList getCateProductList(int startRow, int pageSize, String cate) {
 	System.out.println("DAO: 카테고리별로 제품 가져오는 메소드 들어옴!");
 	ArrayList prodList = new ArrayList();
@@ -303,35 +301,30 @@ public class ProductDAO {
 			ProductDTO dto = new ProductDTO();
 					
 			dto.setNum(rs.getInt("p_idx"));
-			dto.setUserid(rs.getString("p_userid"));
+			dto.setUseridx(Integer.parseInt(rs.getString("p_useridx")));
 					
 			dto.setName(rs.getString("p_name"));
 			dto.setPrice(rs.getInt("p_price"));
-			dto.setCategory(rs.getString("p_category"));
-			dto.setStock(rs.getInt("p_stock"));
-			dto.setContent(rs.getString("p_content"));
-			dto.setRegdate(rs.getTimestamp("p_rgdate"));
-					
-			dto.setDeliCharge(rs.getInt("p_delicharge"));
-			dto.setDeliDays(rs.getString("p_delidays"));
-			dto.setHowDeli(rs.getString("p_howdelivery"));
-				
-			dto.setIp(rs.getString("p_userid"));
-					
 			dto.setSumbnail(rs.getString("p_sumbnail"));
-					
-			ArrayList images = new ArrayList<>();
-			images.add(rs.getString("p_img01"));
-			images.add(rs.getString("p_img02"));
-			images.add(rs.getString("p_img03"));
-			images.add(rs.getString("p_img04"));
-			dto.setImages(images);
-					
+			dto.setRegdate(rs.getTimestamp("p_rgdate"));
+
+
 			dto.setViewCount(rs.getInt("p_viewcount"));
 			dto.setWishCount(rs.getInt("p_wishcount"));
+			
+			ArrayList images = new ArrayList<>();
+			for(int i=1; i<5; i++) {
+				String temp_img = rs.getString("p_img0"+i);
+				if(temp_img != null) {
+					images.add(temp_img);
+				}
+			}
+			dto.setImages(images);
 					
+	
 			// List 한칸에 저장.
-				prodList.add(dto);
+			prodList.add(dto);
+				
 			}
 			System.out.println("DAO: 제품 목록 가져오기 완료(List)");
 					
@@ -382,32 +375,34 @@ public class ProductDAO {
 			dto = new ProductDTO();
 				
 			dto.setNum(rs.getInt("p_idx"));
-			dto.setUserid(rs.getString("p_userid"));
+			dto.setUseridx(Integer.parseInt(rs.getString("p_useridx")));
 				
 			dto.setName(rs.getString("p_name"));
 			dto.setPrice(rs.getInt("p_price"));
 			dto.setCategory(rs.getString("p_category"));
 			dto.setStock(rs.getInt("p_stock"));
+			dto.setColor(rs.getString("p_color"));
 			dto.setContent(rs.getString("p_content"));
+			dto.setSumbnail(rs.getString("p_sumbnail"));
 			dto.setRegdate(rs.getTimestamp("p_rgdate"));
 				
 			dto.setDeliCharge(rs.getInt("p_delicharge"));
 			dto.setDeliDays(rs.getString("p_delidays"));
 			dto.setHowDeli(rs.getString("p_howdelivery"));
 				
-			dto.setIp(rs.getString("p_userid"));
-				
-			dto.setSumbnail(rs.getString("p_sumbnail"));
-				
-			ArrayList images = new ArrayList<>();
-			images.add(rs.getString("p_img01"));
-			images.add(rs.getString("p_img02"));
-			images.add(rs.getString("p_img03"));
-			images.add(rs.getString("p_img04"));
-			dto.setImages(images);
-				
 			dto.setViewCount(rs.getInt("p_viewcount"));
 			dto.setWishCount(rs.getInt("p_wishcount"));
+				
+			ArrayList images = new ArrayList<>();
+			for(int i=1; i<5; i++) {
+				String temp_img = rs.getString("p_img0"+i);
+				if(temp_img != null) {
+					images.add(temp_img);
+				}
+			}
+			dto.setImages(images);
+				
+			
 		}
 		System.out.println("가져온거: " + dto);
 	} catch (Exception e) {

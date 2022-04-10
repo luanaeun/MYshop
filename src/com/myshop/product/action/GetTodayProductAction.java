@@ -44,6 +44,7 @@ public class GetTodayProductAction implements Action {
 	
 		// 제품 총 개수 알아오고 리스트 가져오기
 		int productCount = dao.getTodayProductCount(todayDate);
+		
 		if(productCount != 0) {	// 글이 있을 때
 			productList = dao.getTodayProductList(startRow, pageSize, todayDate);
 		}
