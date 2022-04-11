@@ -74,6 +74,11 @@
 <!-- 		  <img src="assets/user/naverLogo.png" alt="네이버"> -->
 <!-- 		  <img src="assets/user/kakaoLogo.png" alt="카카오">  -->
 <!-- 		  <img src="assets/user/googleLogo.png" alt="구글"> -->
+
+	    </div>
+	    
+	    <div class="find-box">
+	      <span onclick="findIDandPW(id)">아이디 |</span><span onclick="findIDandPW(pw)"> 비밀번호 찾기</span>
 	    </div>
 	  
 		
@@ -82,7 +87,9 @@
 	  </form>
 	</div>
 
+<jsp:include page="../inc/footer.jsp"></jsp:include>
 </div>
+
 
 
 </body>

@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/index.css" rel="stylesheet" type="text/css">
+<link href="css/admin_css/managePage.css" rel="stylesheet" type="text/css">
+
 <title>MYshop</title>
 </head>
 <body>
+  <jsp:include page="../inc/header.jsp"></jsp:include>
+  <jsp:include page="../inc/category.jsp"></jsp:include>
+  
+  <div class="managePage-container">
 	<h3>세부 카테고리 추가</h3>
 	<form action="./AddDetialCateAction.am" method="post">
 	  상위 카테고리:  
@@ -28,6 +35,9 @@
 	
 	  <input type="submit" value="카테고리 추가">
 	</form>
-
+  </div>
+  
+ 
+  <jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>

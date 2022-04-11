@@ -21,7 +21,7 @@ public class BringCateAction implements Action {
 		//BoardDAO 객체 생성
 		ProductDAO dao = new ProductDAO();
 		HashMap cateList = dao.bringCategory();
-		System.out.println("M: 카테고리 조회 완료" + cateList);
+		System.out.println("M: 카테고리 조회 완료");
 		
 		
 		// 영역객체에 글 목록 저장

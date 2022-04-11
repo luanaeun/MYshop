@@ -33,14 +33,14 @@
  			<tr>
  				<td>제목</td>
 				<td>
-					<input type="text" name="title" >
+					<input type="text" name="title" max-length="20">
 				</td>
 			</tr>
  			
  			<tr>
  				<td>내용</td>
 				<td>
-					<textarea overflow="auto" rows="10" cols="20" max-length="1500" name="content"></textarea>
+					<textarea overflow="auto" rows="10" cols="20" max-length="2000" name="content"></textarea>
 				</td>
 			</tr>
 			

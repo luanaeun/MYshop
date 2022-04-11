@@ -93,6 +93,15 @@ span {
     margin: 0px 15px;
 }
 
+.find-box {
+	margin: 30px auto;
+    text-align: center;
+}
+.find-box > span {
+	cursor: pointer;
+}
+
+
 .submit {
     width: 85%;
     padding: 10px 30px;

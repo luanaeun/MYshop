@@ -29,16 +29,26 @@
 			<%
 				if(user_id == null) {
 					%><li><a href="${pageContext.request.contextPath}/SignIn.us">로그인</a></li>
-					  <li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li><% 
+					  <li><a href="${pageContext.request.contextPath}/SignUp.us">회원가입</a></li>
+					  
+					<% 
+				} else if(user_id.equals("admin")) {
+					%>
+					  <li>${user_id} 님</li>
+					  <li><a href="${pageContext.request.contextPath}/SignOut.us">로그아웃</a></li>
+					  <li><a href="${pageContext.request.contextPath}/MngPage.am">🏚️</a></li>
+					<%
 				} else {
 					%><li>${user_id} 님</li>
 					  <li><a href="${pageContext.request.contextPath}/MyPage.us">마이페이지</a></li>
 					  <li><a href="${pageContext.request.contextPath}/SignOut.us">로그아웃</a></li><% 
 				}
+
 			%>
-			
 			<li><a href="${pageContext.request.contextPath}/Preparing.pr">주문조회</a></li>
 			<li><a href="${pageContext.request.contextPath}/Preparing.pr">배송조회</a></li>
+			
+			
 		</ul>
 	</div>
 </div>
@@ -63,9 +73,9 @@
 		
 	</div>
 	
-	<div class="nav-search-box">
-		<input class="" type="text" placeholder="Search" />
-	</div>
+<!-- 	<div class="nav-search-box"> -->
+<!-- 		<input class="" type="text" placeholder="Search" /> -->
+<!-- 	</div> -->
 
 </div>
 

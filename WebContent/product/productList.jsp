@@ -14,6 +14,8 @@
 
 <title>MYshop</title>
 </head>
+
+
 <body>
 <%
 	ArrayList productList = (ArrayList) request.getAttribute("productList");
@@ -32,7 +34,7 @@
   
 
   <div class="productList-container">
-  	<div class="right-bar">
+
   
         <h1><%=cate %></h1>
         <div class="count-text">총 <%=productCount %>개</div>
@@ -66,27 +68,25 @@
 		%>
 
         
-       
-    </div>
     <div class="page_control">
 			<%
 					// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
 				if (startPage > pageBlock) {
-			%><a href="./BoardList.bo?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+			%><a href="./ProductList.pd?pageNum=<%=startPage - pageBlock%>">[이전]</a>
 			<%
 				}
 			%>
 
 			<%
 				for (int i = startPage; i <= endPage; i++) {
-			%><a href="./BoardList.bo?pageNum=<%=i%>" ><%=i%></a>
+			%><a href="./ProductList.pd?pageNum=<%=i%>" ><%=i%></a>
 			<%
 				}
 			%>
 
 			<%
 				if (endPage < pageCount) {
-			%><a href="./BoardList.bo?pageNum=<%=startPage + pageBlock%>">[Next]</a>
+			%><a href="./ProductList.pd?pageNum=<%=startPage + pageBlock%>">[Next]</a>
 			<%
 			}
 			%>	

@@ -85,7 +85,20 @@ public class UserFrontCtl extends HttpServlet{
 			}
 		}
 		
-		else if(command.equals("/MyPage.us")) {	// 마이페이지
+		  else if(command.equals("/FindIDPW.us")) {		// 아이디, 비번 찾기 페이지
+			forward = new ActionForward();
+			forward.setPath("./user/findIDPW.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/FindIDPWAction.us")) {
+			action = new FindIDPWAction();	
+			try {
+				forward = action.execute(req, resp);	
+			} catch(Exception e) {
+				e.printStackTrace();
+			}  
+		}
+		
+		  else if(command.equals("/MyPage.us")) {	// 마이페이지
 			action = new GetUserInfoAction();	
 			try {
 				forward = action.execute(req, resp);	

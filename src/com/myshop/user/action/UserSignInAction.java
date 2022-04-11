@@ -72,9 +72,9 @@ public class UserSignInAction implements Action{
 				forward.setPath("./Main.ma");
 			}	
 		} else if((int)result.get(0) == 0) {
-			forward.setPath("./SignIn.us?r=" + result);
+			forward.setPath("./SignIn.us?r=" + result.get(0));
 		} else {
-			forward.setPath("./SignIn.us?r=" + result);
+			forward.setPath("./SignIn.us?r=" + result.get(0));
 		}
 		forward.setRedirect(true);
 		

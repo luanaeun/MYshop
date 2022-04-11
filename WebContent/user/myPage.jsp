@@ -56,11 +56,11 @@
   	<div class="write-info-box">
   		<div>
   			<h3>> 후기~</h3>
-  			<p class="write-count">${dto.reviewCount }</p>	
+  			<p class="write-count">0</p>	
   		</div>
   		<div>
   			<h3>> 고객센터</h3>
-  			<p class="write-count">${dto.qaCount }</p>	
+  			<p class="write-count">0</p>	
   		</div>
   	</div>
   	

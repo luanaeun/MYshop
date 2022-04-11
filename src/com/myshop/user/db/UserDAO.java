@@ -178,7 +178,7 @@ public class UserDAO {
 			
 			sql = "select user_idx, user_id, user_name, user_birth, user_gender, user_phone, user_email, "
 					+ "user_post, user_roadaddr, user_detailaddr, "
-					+ "user_buycount, user_pcount, user_wishcount, user_cartcount, user_qacount, user_reviewcount, "
+					+ "user_buycount, user_pcount, user_wishcount, user_cartcount, "
 					+ "user_psending, user_pcellok, user_ordercount "
 					+ "from myshop_user where user_id=?";
 			pstmt = con.prepareStatement(sql);
@@ -321,6 +321,61 @@ public class UserDAO {
   }
   
   
+  // 아이디 조회 메서드
+  public int findIDPW(String name, String email) {
+	  int  result = 0;
+	  
+	  try {
+			con = getCon();
+			
+			sql = "select user_name from myshop_user where user_email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(name.equals(rs.getString("user_name"))) {
+					result = 1;
+				} 
+	 		} else {
+	 			result = 0;
+	 		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+	  return result;
+  }
+  
+  // 아이디 비번 찾기 오버라이딩
+  public int findIDPW(String name, String email, String id) {
+	  int  result = 0;
+	  
+	  try {
+			con = getCon();
+			
+			sql = "select user_name from myshop_user where user_email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(name.equals(rs.getString("user_name"))) {
+					result = 1;
+				} 
+	 		} else {
+	 			result = 0;
+	 		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	  
+	  return result;
+  }
   
 } // DAO 끝
 	

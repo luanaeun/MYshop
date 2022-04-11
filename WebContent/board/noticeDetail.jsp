@@ -31,12 +31,6 @@
 			</tr>
 			
 			<tr>
- 				<td>글 번호</td>
-				<td>
-	 				<%=dto.getNum()%>
-				</td>
-			</tr>
-			<tr>
  				<td>글쓴이</td>
 				<td><%=dto.getName() %></td>
 			</tr>

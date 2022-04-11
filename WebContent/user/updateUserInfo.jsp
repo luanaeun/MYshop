@@ -98,7 +98,7 @@
                     %>
              		
              		
-                    <button class="submitbutton">회원가입</button>
+                    <button class="submitbutton">정보 수정</button>
                 </form>
             </div>
         </div>

@@ -17,6 +17,14 @@ function signInCheckFunc() {
         $("[name=pw]").focus();
         return false;
     }
-	
 	return true;
+}
+
+
+function findIDandPW(what){
+	if(what == "id") {
+		location.href="./FindIDPW.us?what=id";
+	} else {
+		location.href="./FindIDPW.us?what=pw";
+	}
 }
