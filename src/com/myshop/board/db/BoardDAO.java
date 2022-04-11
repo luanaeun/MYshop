@@ -108,7 +108,7 @@ public class BoardDAO {
 	}
 
 	
-	// 기존 getBoardList() 오버로딩
+	// getBoardList() 
 	public ArrayList getNoticeList(int startRow, int pageSize) {
 		System.out.println("DAO: 공지 가져오는 메소드 들어옴!");
 		ArrayList boardList = new ArrayList();
@@ -116,9 +116,8 @@ public class BoardDAO {
 		try {
 			con = getCon();
 			// 글 자르기: limit
-			// 글 정렬: re_ref(내림차순) / re_seq(오름차순)
 			// sql = "select * from myshop_notice order by re_ref desc, re_seq asc limit ?,?";
-			sql = "select * from myshop_notice limit ?,?";
+			sql = "select * from myshop_notice order by n_rgdate desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow -1);
 			pstmt.setInt(2, pageSize);
@@ -127,7 +126,6 @@ public class BoardDAO {
 			while(rs.next()) {
 				// 글1개 정보는 DTO에 담아서 저장. -> DTO정보를 List 한 칸에 저장. 
 				NoticeDTO dto = new NoticeDTO();
-				
 				
 				dto.setNum(rs.getInt("n_idx"));
 				dto.setName(rs.getString("n_userid"));
@@ -211,7 +209,8 @@ public class BoardDAO {
 	}
 	
 	
-	public void updateNotice(NoticeDTO dto){
+	// 공지 수정 메서드
+	public int updateNotice(NoticeDTO dto){
 		int result = -1;
 		try {
 			con = getCon();
@@ -235,6 +234,7 @@ public class BoardDAO {
 					pstmt.setInt(5, dto.getNum());
 					
 					result = pstmt.executeUpdate();
+					result = 1;
 
 				} else {
 					result = 0;
@@ -250,50 +250,53 @@ public class BoardDAO {
 		} finally {
 			CloseDB();
 		}
+		return result;
 		
 	}  // updateBoard
 	
 	
-//	
-//	
-//	public int deleteBoard(NoticeDTO dto) {
-//		System.out.println("삭제 메서드");
-//		int result = -1;
-//		try {
-//			con = getCon();
-//			//헤당글이 있는지 체크. 비밀번호는 notnull이기 때문에 비번이 없으면 없는 글이라는 말. 
-//			sql = "select pass from itwill_board where num=?";
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, dto.getNum());
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()){	// 글이있다
-//				if(dto.getPass().equals(rs.getString("pass"))){	// 본인글이 맞다.
-//					System.out.printf("글번호: " + dto.getNum());	
-//					
-//					sql = "delete from itwill_board where num=?";
-//					pstmt = con.prepareStatement(sql);
-//					pstmt.setInt(1, dto.getNum());
-//					
-//					result = pstmt.executeUpdate();
-//
-//				} else {
-//					result = 0;
-//				}
-//			} else {
-//				result = -1;
-//			}
-//			
-//			System.out.printf("DAO : 글 삭제 완료! (%d)",result);	
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			CloseDB();
-//		}
-//		return result;
-//	}
 	
+	// 공지 삭제 메서드
+	public int deleteNotice(int idx, String pw) {
+		System.out.println("삭제 메서드");
+		int result = -1;
+		try {
+			con = getCon();
+			//헤당글이 있는지 체크. 비밀번호는 notnull이기 때문에 비번이 없으면 없는 글이라는 말. 
+			sql = "select n_pw from myshop_notice where n_idx=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){	// 글이있다
+				if(pw.equals(rs.getString("n_pw"))){	// 본인글이 맞다.
+					
+					sql = "delete from myshop_notice where n_idx=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, idx);
+					
+					result = pstmt.executeUpdate();
+
+				} else {
+					result = 0;
+				}
+			} else {
+				result = -1;
+			}
+			
+			System.out.printf("DAO : 글 삭제 완료! (%d)",result);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseDB();
+		}
+		return result;
+	}
+	
+	
+	
+	// ===============자료실==================================
 	
 	// 자료실 업로드 함수
 	public void writeReference(ReferenceDTO dto) {

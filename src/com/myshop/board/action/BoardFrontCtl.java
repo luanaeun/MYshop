@@ -39,7 +39,7 @@ public class BoardFrontCtl extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/NoticeDetail.bo")) {
+		} else if(command.equals("/NoticeDetail.bo")) {		// 공지 세부 페이지
 			action = new NoticeDetailAction();
 			
 			try {
@@ -47,19 +47,12 @@ public class BoardFrontCtl extends HttpServlet {
 			} catch (Exception e){
 				e.printStackTrace();
 			}
-		} else if(command.equals("/NoticeWrite.bo")) {		// 공지 쓰기
+		} else if(command.equals("/NoticeWrite.bo")) {		// 공지 쓰기 페이지
 			forward = new ActionForward();
 			forward.setPath("./board/noticeWrite.jsp");
 			forward.setRedirect(false);
 		} else if(command.equals("/NoticeWriteAction.bo")) {	// 공지 쓰기 액션
 			action = new NoticeWriteAction();
-			try {
-				forward = action.execute(req, resp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/NoticeDetailAction.bo")) {
-			action = new NoticeDetailAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {
@@ -74,6 +67,13 @@ public class BoardFrontCtl extends HttpServlet {
 			}
 		} else if(command.equals("/NoticeUpdateAction.bo")) {		// 수정액션
 			action = new NoticeUpdateAction();
+			try {
+				forward = action.execute(req, resp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/NoticeDeleteAction.bo")) {		// 삭제액션
+			action = new NoticeDeleteAction();
 			try {
 				forward = action.execute(req, resp);
 			} catch (Exception e) {

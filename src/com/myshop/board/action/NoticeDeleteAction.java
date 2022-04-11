@@ -10,30 +10,21 @@ import com.myshop.board.db.NoticeDTO;
 import com.myshop.common.Action;
 import com.myshop.common.ActionForward;
 
-public class NoticeUpdateAction implements Action {
+public class NoticeDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("M : BoardWriteAction_execute()호출");
+		System.out.println("M : BoardDeleteAction_execute()호출");
 		
 		// 한글처리
 		req.setCharacterEncoding("UTF-8");
 		int idx = Integer.parseInt(req.getParameter("num"));
-		
-		//전달된 글정보를 저장
-		NoticeDTO dto = new NoticeDTO();
-		dto.setNum(idx);
-		dto.setName(req.getParameter("name"));
-		dto.setTitle(req.getParameter("title"));
-		dto.setContent(req.getParameter("content"));
-		dto.setPw(req.getParameter("pw"));
-		dto.setIp(req.getRemoteAddr());
-		System.out.println("M : " + dto);
+		String pw = req.getParameter("pw");
 		
 		
 		// 공지 업데이트 메서드 호출
 		BoardDAO dao = new BoardDAO();
-		int result = dao.updateNotice(dto);
+		int result = dao.deleteNotice(idx, pw);
 		
 		
 		// 페이지 이동
@@ -59,8 +50,8 @@ public class NoticeUpdateAction implements Action {
 		
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
-		out.print("alert('글 수정 완료!');");
-		out.print("location.href='./NoticeDetailAction.bo?num="+idx+"';");
+		out.print("alert('글 삭제 완료!');");
+		out.print("location.href='./Notice.bo'");
 		out.print("</script>");
 		out.close();
 		

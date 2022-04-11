@@ -5,26 +5,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/board_css/noticeWrite.css" rel="stylesheet" type="text/css">
+<link href="css/board_css/noticeDetail.css" rel="stylesheet" type="text/css">
+
+<script src="./scripts/jquery-3.6.0.js"></script>
+<script src="scripts/board_script/noticeDetail.js"></script>
+
 <title>MYshop</title>
 </head>
 <body>
 <%
 	NoticeDTO dto = (NoticeDTO)request.getAttribute("dto");
+	String userid = (String)session.getAttribute("user_id");
 %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
 
-<form action="./NoticeWriteAction.bo" method="post">
+
 	<div class="nWrite-container">
-	<h1>게시판 글쓰기</h1>
 		<table id="notice">
 			<colgroup>
           		<col width="20%"><col width="80%">
         	</colgroup>
 
 			<tr>
-				<th class="twrite">입력</th>
-				<th class="ttitle">게시판</th>
+				<th colspan="2"><%=dto.getTitle() %></th>
 			</tr>
 			
 			<tr>
@@ -46,22 +49,37 @@
  			<tr>
  				<td>내용</td>
 				<td>
-					${dto.content }
+					<textarea disabled overflow="auto"> ${dto.content }</textarea>
 				</td>
 			</tr>
-			
-			
-
 		</table>
 
-		<div id="table_search">
-			<input type="button" value="수정하기" onclick="location.href='./NoticeUpdate.bo?num=<%=dto.getNum() %>'">
-  
-		</div>
-		<div class="clear"></div>
+	<% 
+      	if(userid != null && userid.equals("admin")) {
+    		%>
+    		<div>
+				<input type="button" value="수정하기" class="detail-btn" onclick="location.href='./NoticeUpdate.bo?num=<%=dto.getNum() %>'">
+				<input type="button" value="삭제하기" class="detail-btn" onclick="showModal()">
+			</div>
+    		<% 
+      	}
+    %>
 	</div>
 	
-</form>
+	<div id="myModal" class="modal">
+      <div class="modal-content">
+      	<form action="./NoticeDeleteAction.bo?num=<%=dto.getNum()%>" method="post" onsubmit="return pwWriteCheck()">	
+         	<p class="x-box" onClick="close_pop();"><span>X</span></p>
+
+			<p style="color: red; font-size: 11pt;" name="warnning-text"></p>
+         	<p class="pw-text" name="modal-text">비밀번호 입력</p>
+         	<input type="password" class="modal-pw" name="pw"><br>
+
+         	<input type="submit" class="modal-submit" id="modal-submit" value="확인">
+      	</form>
+      </div>
+   </div>
+
 
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>

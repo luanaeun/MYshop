@@ -19,15 +19,14 @@
         	</colgroup>
 
 			<tr>
-				<th class="twrite">입력</th>
-				<th class="ttitle">게시판</th>
+				<th>입력</th>
+				<th>게시판</th>
 			</tr>
 			
 			<tr>
  				<td>작성자</td>
 				<td>
-<%-- 					<input type="input" name="name" value="<%=request.getAttribute("id")%>"> --%>
-					<input type="input" name="name" value="admin">
+					<input type="input" name="name" value="관리자" readonly>
 				</td>
 			</tr>
  			
@@ -41,12 +40,12 @@
  			<tr>
  				<td>내용</td>
 				<td>
-					<textarea rows="10" cols="20" name="content"></textarea>
+					<textarea overflow="auto" rows="10" cols="20" max-length="1500" name="content"></textarea>
 				</td>
 			</tr>
 			
 			<tr>
- 				<td>비번</td>
+ 				<td>비밀번호</td>
 				<td>
 					<input type="password" name="pw" >
 				</td>
@@ -54,11 +53,12 @@
 
 		</table>
 
-		<div id="table_search">
-			<input type="submit" value="글쓰기" class="btn">
-		</div>
-		<div class="clear"></div>
+<div id="table_search">
+		<input type="submit" value="글쓰기" class="submit">
 	</div>
+	</div>
+	
+	
 </form>
 
 <jsp:include page="../inc/footer.jsp"></jsp:include>

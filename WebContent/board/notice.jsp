@@ -19,7 +19,7 @@
   <%
 	int noticeCnt = (Integer)request.getAttribute("noticeCnt");
 	ArrayList noticeList = (ArrayList) request.getAttribute("noticeList");
-	
+	String userid = (String)session.getAttribute("user_id");
 	
 	String pageNum = (String) request.getAttribute("pageNum");
 	int pageCount = (int) request.getAttribute("pageCount");
@@ -31,7 +31,12 @@
   <div class="notice-container">
 
     <h1>공지 📢</h1>
-    <div>MYshop 공지입니다.</div><span><a href="./NoticeWrite.bo">추가</a></span>
+    <div>MYshop 공지입니다.</div>
+    <% 
+      if(userid != null && userid.equals("admin")) {
+    	%><div class="add-text"><a href="./NoticeWrite.bo">추가</a></div><% 
+      }
+    %>
 
     <div class="list_container">
       
@@ -61,7 +66,7 @@
     		
 				<tr class="notice-list">
 					
-					<th scope="row"><%=dto.getNum() %></th>
+					<th scope="row"><%=i+1 %></th>
 					<td><a href="./NoticeDetail.bo?num=<%=dto.getNum()%>"><%=dto.getTitle() %></a></td>
 					<td><%=dto.getName() %></td>
 					<td><%=sd.format(dto.getRgdate()) %></td>
@@ -79,19 +84,19 @@
 		<%
 			// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
 			if(startPage > pageBlock) {
-			%><a href="./BoardList.bo?pageNum=<%=startPage-pageBlock %>">[이전]</a> <%
+			%><a href="./Notice.bo?pageNum=<%=startPage-pageBlock %>">[이전]</a> <%
 			}
 		%>
 
 		<%
 			for(int i=startPage; i<=endPage; i++) {
-			%><a href="./BoardList.bo?pageNum=<%=i %>">[<%=i %>]</a> <%		
+			%><a href="./Notice.bo?pageNum=<%=i %>">[<%=i %>]</a> <%		
 			}
 		%>
 
 		<%
 			if(endPage < pageCount) {
-				%><a href="./BoardList.bo?pageNum=<%=startPage+pageBlock %>">[Next]</a> <%
+				%><a href="./Notice.bo?pageNum=<%=startPage+pageBlock %>">[Next]</a> <%
 			}
 		%>
 

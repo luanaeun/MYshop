@@ -5,37 +5,60 @@
 
 .nWrite-container {
 	margin: 30px 15%;
-	border: 1px solid black;
+	min-width: 1000px;
 	text-align: center;
 }
 
-
 table{
+	margin-top: 20px;
 	border-collapse: collapse;
 	text-align: center;
 	line-height: 1.5;
+	border: 1px solid black;
 }
-
-table thead th {
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #369;
-	border-bottom: 3px solid #036;
-}
-
-table tbody th {
+th {
 	width: 100px;
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 	background: #f3f6f7;
 }
-
 table td {
 	width: 400px;
-	padding: 10px;
-	vertical-align: top;
+	height: 50px;
+    line-height: 50px;
 	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 }
+table input {
+	width: 95%;
+	height: 30px;
+    padding: 10px;
+    font-size: 12pt;	
+    border: none;
+    outline: none;
+}
+
+
+textarea {
+	width: 95%;
+	height: 300px;
+	padding: 10px;
+	font-size: 12pt;
+	resize: none;
+	border: none;
+    outline: none;
+}
+
+
+.submit {;
+	background-color: #F0F0E9;
+	border: 1px solid #D5D5D5;
+	text-align: center;
+	margin: 50px;
+	padding: 10px 60px;
+}
+
+

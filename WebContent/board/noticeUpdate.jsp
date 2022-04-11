@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/board_css/noticeWrite.css" rel="stylesheet" type="text/css">
+<link href="css/board_css/noticeDetail.css" rel="stylesheet" type="text/css">
 <title>MYshop</title>
 </head>
 <body>
@@ -24,15 +24,14 @@
         	</colgroup>
 
 			<tr>
-				<th class="twrite">입력</th>
-				<th class="ttitle">게시판</th>
+				<th>입력</th>
+				<th>게시판</th>
 			</tr>
 			
 			<tr>
  				<td>작성자</td>
 				<td>
-<%-- 					<input type="input" name="name" value="<%=request.getAttribute("id")%>"> --%>
-					<input type="input" name="name" value="admin">
+					<input type="input" name="name" value="관리자">
 				</td>
 			</tr>
  			
@@ -46,7 +45,7 @@
  			<tr>
  				<td>내용</td>
 				<td>
-					<textarea rows="10" cols="20" name="content">${dto.content }</textarea>
+					<textarea overflow="auto" name="content">${dto.content }</textarea>
 				</td>
 			</tr>
 			

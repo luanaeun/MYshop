@@ -15,7 +15,7 @@ public class NoticeListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		System.out.println("M: MYshop - NoticeListAction()호출");
-		System.out.println("M: ?????????????????");
+
 		//BoardDAO 객체 생성
 		BoardDAO dao = new BoardDAO();
 		
@@ -50,7 +50,7 @@ public class NoticeListAction implements Action {
 			
 			
 		} 
-		System.out.println("M:받은리스트: " + noticeList);
+
 		
 		
 		//페이징 처리(하단)=====================
