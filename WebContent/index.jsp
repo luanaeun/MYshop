@@ -7,5 +7,5 @@
   System.out.println("MYshop 시작!");
 
   response.sendRedirect("./Main.ma");
-
+	
 %>

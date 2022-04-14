@@ -322,60 +322,52 @@ public class UserDAO {
   
   
   // 아이디 조회 메서드
-  public int findIDPW(String name, String email) {
-	  int  result = 0;
+  public String findID(String name, String email) {
+	  String result = "";
+	  System.out.println("실제 메서드 들어옴" + name + email);
 	  
 	  try {
 			con = getCon();
 			
-			sql = "select user_name from myshop_user where user_email=?";
+			sql = "select user_id from myshop_user where user_email=? and user_name=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, name);
+			pstmt.setString(1, email);
+			pstmt.setString(2, name);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				if(name.equals(rs.getString("user_name"))) {
-					result = 1;
-				} 
-	 		} else {
-	 			result = 0;
-	 		}
+				result = rs.getString("user_id");
+	 		} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-	  
 	  return result;
   }
   
-  // 아이디 비번 찾기 오버라이딩
-  public int findIDPW(String name, String email, String id) {
-	  int  result = 0;
+  // 비번 찾기 
+  public int findPW(String id, String email) {
+	  int result = 0;
 	  
 	  try {
 			con = getCon();
 			
-			sql = "select user_name from myshop_user where user_email=?";
+			sql = "select user_idx from myshop_user where user_email=? and user_id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, name);
+			pstmt.setString(1, email);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				if(name.equals(rs.getString("user_name"))) {
-					result = 1;
-				} 
-	 		} else {
-	 			result = 0;
-	 		}
+			if(rs.next()) { result = 1; } 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();
 		}
-	  
 	  return result;
   }
+  
   
 } // DAO 끝
 	

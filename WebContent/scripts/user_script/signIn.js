@@ -21,10 +21,11 @@ function signInCheckFunc() {
 }
 
 
+// 아이디, 비번 찾기
 function findIDandPW(what){
-	if(what == "id") {
-		location.href="./FindIDPW.us?what=id";
+	if(what == 'id') {
+		location.href="./FindIDPW.us?what=i";
 	} else {
-		location.href="./FindIDPW.us?what=pw";
+		location.href="./FindIDPW.us?what=p";
 	}
 }

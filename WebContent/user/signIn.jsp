@@ -78,7 +78,7 @@
 	    </div>
 	    
 	    <div class="find-box">
-	      <span onclick="findIDandPW(id)">아이디 |</span><span onclick="findIDandPW(pw)"> 비밀번호 찾기</span>
+	      <span onclick="findIDandPW('id')">아이디 |</span><span onclick="findIDandPW('pw')"> 비밀번호 찾기</span>
 	    </div>
 	  
 		
