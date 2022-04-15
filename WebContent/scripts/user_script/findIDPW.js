@@ -31,15 +31,16 @@ function isWrite(what) {
         success : function(findResult) {
         	console.log("아이디 조회 결과: ", findResult);
             if (findResult == 1) {
-            	$("[name=name]").detach();
-            	$("[name=id]").detach();
-            	$("[name=email]").detach();
-            	$("[name=email-text]").detach();
-            	$(".findIDPW-container").append("<h2>아이디를 이메일로 보냈습니다.</h2s>");
-            	$("#submit").val("확인");
-            	$("#submit").click(function(){
-            		location.href="./SignIn.us";
-            	});
+            	$("#warn-text").text("*이메일을 입력하세요");
+//            	$("[name=name]").detach();
+//            	$("[name=id]").detach();
+//            	$("[name=email]").detach();
+//            	$("[name=email-text]").detach();
+//            	$(".findIDPW-container").append("<h2>아이디를 이메일로 보냈습니다.</h2s>");
+//            	$("#submit").val("확인");
+//            	$("#submit").click(function(){
+//            		location.href="./SignIn.us";
+//            	});
             	  
             } else if(findResult == 0){
             	$("#result-text").text("*메일을 보낼 수 없습니다. 잠시후에 다시 시도.");

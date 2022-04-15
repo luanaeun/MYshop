@@ -54,8 +54,9 @@ public class FindIDPWAction implements Action {
 		Session se = Session.getDefaultInstance(prop, auth);
 		
 		// 아이디를 찾을때
+		int findResult = 0;
 		if(what.equals("i")){	
-		  int findResult = 0;
+		  
 		  String result = dao.findID(name, email);
 		  if (result != "") {
 			try {  
@@ -87,37 +88,37 @@ public class FindIDPWAction implements Action {
 			  findResult = -1;
 			  System.out.println("메일 보내기 실패");
 		  }
-		  out.print(findResult);
+		  
 		}  
+		out.print(findResult);  
 		  
-		  
-		if(what.equals("p")){
-			System.out.println("얘는 안들어오지?");
-			int resultPW = dao.findPW(id, name);
-			if(resultPW == 1) {
-				try {			
-					Message msg = new MimeMessage(se);
-					InternetAddress sender_address = new InternetAddress("cieloeun@naver.com");	// 보내는 사람 표시
-					InternetAddress receiver_address = new InternetAddress(email);			// 받을 이메일 주소
-					
-					msg.setHeader("content-type", "text/html;charset=UTF-8");
-					msg.setSentDate(new java.util.Date());							// 보내는 날짜
-					msg.setFrom(sender_address);									// 송산자
-					msg.addRecipient(Message.RecipientType.TO, receiver_address);	// 수신자
-					msg.setSubject("MYshop 아이디 찾기");
-					msg.setText("");
-					
-					Transport.send(msg);
-					System.out.println("메일 보내기 완료");
-					out.print("이메일로 확인번호를 보냈습니다.");
-				} catch(Exception e) {
-					System.out.println("메일 보내기 실패");
-					e.printStackTrace();
-				}
-			} else {
-				out.print("정보가 없습니다. 다시 입력해주세요.");
-			}
-		}
+//		if(what.equals("p")){
+//			System.out.println("얘는 안들어오지?");
+//			int resultPW = dao.findPW(id, name);
+//			if(resultPW == 1) {
+//				try {			
+//					Message msg = new MimeMessage(se);
+//					InternetAddress sender_address = new InternetAddress("cieloeun@naver.com");	// 보내는 사람 표시
+//					InternetAddress receiver_address = new InternetAddress(email);			// 받을 이메일 주소
+//					
+//					msg.setHeader("content-type", "text/html;charset=UTF-8");
+//					msg.setSentDate(new java.util.Date());							// 보내는 날짜
+//					msg.setFrom(sender_address);									// 송산자
+//					msg.addRecipient(Message.RecipientType.TO, receiver_address);	// 수신자
+//					msg.setSubject("MYshop 아이디 찾기");
+//					msg.setText("");
+//					
+//					Transport.send(msg);
+//					System.out.println("메일 보내기 완료");
+//					out.print("이메일로 확인번호를 보냈습니다.");
+//				} catch(Exception e) {
+//					System.out.println("메일 보내기 실패");
+//					e.printStackTrace();
+//				}
+//			} else {
+//				out.print("정보가 없습니다. 다시 입력해주세요.");
+//			}
+//		}
 
 
 

@@ -4,9 +4,16 @@
 }
 
 .nWrite-container {
-	margin: 30px 15%;
+	margin: 5% 15%;
 	min-width: 1000px;
 	text-align: center;
+}
+
+.move-list-btn {
+	padding: 5px 10px;
+	background-color: #F0F0E9;
+	border: 1px solid gray;
+	cursor: pointer;
 }
 
 table{

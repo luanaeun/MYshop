@@ -67,7 +67,7 @@
 				<tr class="notice-list">
 					
 					<th scope="row"><%=i+1 %></th>
-					<td><a href="./NoticeDetail.bo?num=<%=dto.getNum()%>"><%=dto.getTitle() %></a></td>
+					<td><a href="./NoticeDetail.bo?num=<%=dto.getNum()%>&pnum=<%=pageNum%>"><%=dto.getTitle() %></a></td>
 					<td><%=dto.getName() %></td>
 					<td><%=sd.format(dto.getRgdate()) %></td>
 					<td><%=dto.getViewcount() %></td>

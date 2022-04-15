@@ -34,7 +34,7 @@
   
   <div class="pdetail-container">
 	<div class="pinfo-box">
-		<img src="./upload/review/${dto.img }">
+		<img src="../upload/review/${dto.img }">
 		<div class="table-box">
 		  <table>
 			<colgroup>

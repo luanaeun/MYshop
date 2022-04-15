@@ -16,11 +16,16 @@
 <%
 	NoticeDTO dto = (NoticeDTO)request.getAttribute("dto");
 	String userid = (String)session.getAttribute("user_id");
+	int pnum = Integer.parseInt(request.getParameter("pnum"));
 %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
 
 
 	<div class="nWrite-container">
+		<div style="text-align: right;">
+			<input type="button" value="목록으로" onclick="location.href='./Notice.bo?pageNum=<%=pnum %>'" class="move-list-btn">
+		</div>
+		
 		<table id="notice">
 			<colgroup>
           		<col width="20%"><col width="80%">
